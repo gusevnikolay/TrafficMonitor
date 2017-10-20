@@ -27,13 +27,7 @@ trafficmonitor.firmware\main.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_ha
 trafficmonitor.firmware\main.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h
 trafficmonitor.firmware\main.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_spi.h
 trafficmonitor.firmware\main.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h
-trafficmonitor.firmware\main.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_wwdg.h
-trafficmonitor.firmware\main.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pcd.h
-trafficmonitor.firmware\main.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_ll_usb.h
-trafficmonitor.firmware\main.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pcd_ex.h
-trafficmonitor.firmware\main.o: ../Inc/usb_device.h
-trafficmonitor.firmware\main.o: ../Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_def.h
-trafficmonitor.firmware\main.o: ../Inc/usbd_conf.h
-trafficmonitor.firmware\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
+trafficmonitor.firmware\main.o: ../Inc/ssd1306.h
+trafficmonitor.firmware\main.o: ../Inc/fonts.h
 trafficmonitor.firmware\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
-trafficmonitor.firmware\main.o: ../Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_def.h
+trafficmonitor.firmware\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h

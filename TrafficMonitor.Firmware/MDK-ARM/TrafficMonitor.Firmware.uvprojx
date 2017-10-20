@@ -133,11 +133,11 @@
             <RunIndependent>0</RunIndependent>
             <UpdateFlashBeforeDebugging>1</UpdateFlashBeforeDebugging>
             <Capability>1</Capability>
-            <DriverSelection>4107</DriverSelection>
+            <DriverSelection>4100</DriverSelection>
           </Flash1>
           <bUseTDR>1</bUseTDR>
           <Flash2>STLink\ST-LINKIII-KEIL_SWO.dll</Flash2>
-          <Flash3></Flash3>
+          <Flash3>"" ()</Flash3>
           <Flash4></Flash4>
           <pFcarmOut></pFcarmOut>
           <pFcarmGrp></pFcarmGrp>
@@ -334,7 +334,7 @@
               <MiscControls>--C99</MiscControls>
               <Define>USE_HAL_DRIVER,STM32F103xB</Define>
               <Undefine></Undefine>
-              <IncludePath>../Inc;../Drivers/STM32F1xx_HAL_Driver/Inc;../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy;../Middlewares/ST/STM32_USB_Device_Library/Core/Inc;../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc;../Drivers/CMSIS/Include;../Drivers/CMSIS/Device/ST/STM32F1xx/Include</IncludePath>
+              <IncludePath>../Inc;   ../Drivers/STM32F1xx_HAL_Driver/Inc;   ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy;   ../Drivers/CMSIS/Include;   ../Drivers/CMSIS/Device/ST/STM32F1xx/Include</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -375,9 +375,6 @@
       </TargetOption>
       <Groups>
         <Group>
-          <GroupName>::CMSIS</GroupName>
-        </Group>
-        <Group>
           <GroupName>Drivers/STM32F1xx_HAL_Driver</GroupName>
           <Files>
             <File>
@@ -406,11 +403,6 @@
               <FilePath>../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_flash.c</FilePath>
             </File>
             <File>
-              <FileName>stm32f1xx_hal_wwdg.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_wwdg.c</FilePath>
-            </File>
-            <File>
               <FileName>stm32f1xx_hal_uart.c</FileName>
               <FileType>1</FileType>
               <FilePath>../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_uart.c</FilePath>
@@ -424,11 +416,6 @@
               <FileName>stm32f1xx_hal.c</FileName>
               <FileType>1</FileType>
               <FilePath>../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f1xx_hal_pcd.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_pcd.c</FilePath>
             </File>
             <File>
               <FileName>stm32f1xx_hal_spi.c</FileName>
@@ -456,11 +443,6 @@
               <FilePath>../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim_ex.c</FilePath>
             </File>
             <File>
-              <FileName>stm32f1xx_hal_pcd_ex.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_pcd_ex.c</FilePath>
-            </File>
-            <File>
               <FileName>stm32f1xx_hal_tim.c</FileName>
               <FileType>1</FileType>
               <FilePath>../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim.c</FilePath>
@@ -475,11 +457,6 @@
               <FileType>1</FileType>
               <FilePath>../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_dma.c</FilePath>
             </File>
-            <File>
-              <FileName>stm32f1xx_ll_usb.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_ll_usb.c</FilePath>
-            </File>
           </Files>
         </Group>
         <Group>
@@ -489,31 +466,6 @@
               <FileName>system_stm32f1xx.c</FileName>
               <FileType>1</FileType>
               <FilePath>../Drivers/CMSIS//Device/ST/STM32F1xx/Source/Templates/system_stm32f1xx.c</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>Middlewares/USB_Device_Library</GroupName>
-          <Files>
-            <File>
-              <FileName>usbd_core.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c</FilePath>
-            </File>
-            <File>
-              <FileName>usbd_ctlreq.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_ctlreq.c</FilePath>
-            </File>
-            <File>
-              <FileName>usbd_cdc.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Src/usbd_cdc.c</FilePath>
-            </File>
-            <File>
-              <FileName>usbd_ioreq.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_ioreq.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -541,31 +493,29 @@
               <FilePath>../Src/main.c</FilePath>
             </File>
             <File>
-              <FileName>usbd_cdc_if.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../Src/usbd_cdc_if.c</FilePath>
-            </File>
-            <File>
               <FileName>stm32f1xx_it.c</FileName>
               <FileType>1</FileType>
               <FilePath>../Src/stm32f1xx_it.c</FilePath>
             </File>
             <File>
-              <FileName>usbd_desc.c</FileName>
+              <FileName>ssd1306.c</FileName>
               <FileType>1</FileType>
-              <FilePath>../Src/usbd_desc.c</FilePath>
+              <FilePath>..\Src\ssd1306.c</FilePath>
             </File>
             <File>
-              <FileName>usb_device.c</FileName>
+              <FileName>fonts.c</FileName>
               <FileType>1</FileType>
-              <FilePath>../Src/usb_device.c</FilePath>
+              <FilePath>..\Src\fonts.c</FilePath>
             </File>
             <File>
-              <FileName>usbd_conf.c</FileName>
+              <FileName>nmea_decoder.c</FileName>
               <FileType>1</FileType>
-              <FilePath>../Src/usbd_conf.c</FilePath>
+              <FilePath>..\Src\nmea_decoder.c</FilePath>
             </File>
           </Files>
+        </Group>
+        <Group>
+          <GroupName>::CMSIS</GroupName>
         </Group>
       </Groups>
     </Target>

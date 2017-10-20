@@ -27,7 +27,3 @@ trafficmonitor.firmware\stm32f1xx_hal_rcc.o: ../Drivers/STM32F1xx_HAL_Driver/Inc
 trafficmonitor.firmware\stm32f1xx_hal_rcc.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h
 trafficmonitor.firmware\stm32f1xx_hal_rcc.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_spi.h
 trafficmonitor.firmware\stm32f1xx_hal_rcc.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h
-trafficmonitor.firmware\stm32f1xx_hal_rcc.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_wwdg.h
-trafficmonitor.firmware\stm32f1xx_hal_rcc.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pcd.h
-trafficmonitor.firmware\stm32f1xx_hal_rcc.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_ll_usb.h
-trafficmonitor.firmware\stm32f1xx_hal_rcc.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pcd_ex.h
