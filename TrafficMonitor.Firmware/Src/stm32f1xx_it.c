@@ -178,9 +178,6 @@ void SysTick_Handler(void)
 /* please refer to the startup file (startup_stm32f1xx.s).                    */
 /******************************************************************************/
 
-/**
-* @brief This function handles USART1 global interrupt.
-*/
 void USART1_IRQHandler(void)
 {	
 	HAL_UART_IRQHandler(&huart1);

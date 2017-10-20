@@ -20,7 +20,6 @@ extern int hh, mm,ss, sats;
 
 void prepare_top_line()
 {
-		char string[2];
 		top_line[4] = (char)(sats/10 +0x30);
 		top_line[5] = (char)(sats%10 +0x30);
 	
@@ -45,15 +44,30 @@ int main(void)
   MX_USART1_UART_Init();
   MX_I2C2_Init();
 	SSD1306_Init();
+	unsigned char lora_state = 0;
   while (1)
   {	
 		__HAL_UART_DISABLE_IT(&huart1, UART_IT_RXNE);
 		SSD1306_GotoXY(0, 0);
 		prepare_top_line();
 	  SSD1306_Puts(top_line, &Font_7x10, SSD1306_COLOR_WHITE);
+		SSD1306_GotoXY(0, 16);
+		if(lora_state){
+			lora_state = 0;
+		SSD1306_Puts("Lora:       Sleep", &Font_7x10, SSD1306_COLOR_WHITE);
+		}else{
+		SSD1306_Puts("Lota:TX. SQ:  -87", &Font_7x10, SSD1306_COLOR_WHITE);
+			lora_state = 1;			
+		}
+		SSD1306_GotoXY(0, 27);
+		SSD1306_Puts("USB(+) | RS485(-)", &Font_7x10, SSD1306_COLOR_WHITE);
+		SSD1306_GotoXY(0, 38);
+		SSD1306_Puts("Sensor:       621", &Font_7x10, SSD1306_COLOR_WHITE);
+		SSD1306_GotoXY(0, 49);
+		SSD1306_Puts("Bat: 3.7V  Sun: +", &Font_7x10, SSD1306_COLOR_WHITE);
 		SSD1306_UpdateScreen();
 		__HAL_UART_ENABLE_IT(&huart1, UART_IT_RXNE);
-		HAL_Delay(5000);
+		HAL_Delay(3000);
 		
   }
 }

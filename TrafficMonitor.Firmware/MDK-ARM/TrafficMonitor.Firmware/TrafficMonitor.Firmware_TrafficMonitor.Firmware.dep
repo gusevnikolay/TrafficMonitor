@@ -504,7 +504,7 @@ I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_i2c.h)(0x59A27D03)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h)(0x59A27D03)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_spi.h)(0x59A27D03)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h)(0x59A27D04)
-F (../Src/main.c)(0x59E9FFA6)(-c --cpu Cortex-M3 -D__EVAL -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Include -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include --C99-I D:\work\Other\TrafficMonitor\TrafficMonitor.Firmware\MDK-ARM\RTE-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include-I C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.1.0\Device\Include-D__UVISION_VERSION="520" -D_RTE_ -DSTM32F10X_MD -DUSE_HAL_DRIVER -DSTM32F103xB-o trafficmonitor.firmware\main.o --omf_browse trafficmonitor.firmware\main.crf --depend trafficmonitor.firmware\main.d)
+F (../Src/main.c)(0x59EA160B)(-c --cpu Cortex-M3 -D__EVAL -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Include -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include --C99-I D:\work\Other\TrafficMonitor\TrafficMonitor.Firmware\MDK-ARM\RTE-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include-I C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.1.0\Device\Include-D__UVISION_VERSION="520" -D_RTE_ -DSTM32F10X_MD -DUSE_HAL_DRIVER -DSTM32F103xB-o trafficmonitor.firmware\main.o --omf_browse trafficmonitor.firmware\main.crf --depend trafficmonitor.firmware\main.d)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h)(0x59A27D03)
 I (../Inc/stm32f1xx_hal_conf.h)(0x59E99D07)
 I (../Inc/mxconstants.h)(0x59E99D08)
@@ -536,7 +536,7 @@ I (../Inc/ssd1306.h)(0x59E9A6A9)
 I (../Inc/fonts.h)(0x59E9A7C3)
 I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x56FE7B1E)
 I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x56FE7B1E)
-F (../Src/stm32f1xx_it.c)(0x59E9F49F)(-c --cpu Cortex-M3 -D__EVAL -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Include -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include --C99-I D:\work\Other\TrafficMonitor\TrafficMonitor.Firmware\MDK-ARM\RTE-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include-I C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.1.0\Device\Include-D__UVISION_VERSION="520" -D_RTE_ -DSTM32F10X_MD -DUSE_HAL_DRIVER -DSTM32F103xB-o trafficmonitor.firmware\stm32f1xx_it.o --omf_browse trafficmonitor.firmware\stm32f1xx_it.crf --depend trafficmonitor.firmware\stm32f1xx_it.d)
+F (../Src/stm32f1xx_it.c)(0x59EA12CB)(-c --cpu Cortex-M3 -D__EVAL -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Include -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include --C99-I D:\work\Other\TrafficMonitor\TrafficMonitor.Firmware\MDK-ARM\RTE-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include-I C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.1.0\Device\Include-D__UVISION_VERSION="520" -D_RTE_ -DSTM32F10X_MD -DUSE_HAL_DRIVER -DSTM32F103xB-o trafficmonitor.firmware\stm32f1xx_it.o --omf_browse trafficmonitor.firmware\stm32f1xx_it.crf --depend trafficmonitor.firmware\stm32f1xx_it.d)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h)(0x59A27D03)
 I (../Inc/stm32f1xx_hal_conf.h)(0x59E99D07)
 I (../Inc/mxconstants.h)(0x59E99D08)
