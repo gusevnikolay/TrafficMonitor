@@ -3,9 +3,6 @@
 
 char          line[255];
 unsigned char cursor_pointer = 0;
-unsigned int  hh,mm,ss;
-unsigned int sats = 7;
-float x, y;
 
 void nmea_append(char ch)
 {
@@ -25,11 +22,11 @@ void nmea_append(char ch)
 														break;
 														
 														case 1:
-																x = (line[j+1]-0x30)*1000+(line[j+2]-0x30)*100+(line[j+3]-0x30)*10+(line[j+4]-0x30)+(line[j+6]-0x30)*0.1 + (line[j+7]-0x30)*0.01 + (line[j+8]-0x30)*0.001+ (line[j+9]-0x30)*0.0001;
+																latitude = (line[j+1]-0x30)*1000+(line[j+2]-0x30)*100+(line[j+3]-0x30)*10+(line[j+4]-0x30)+(line[j+6]-0x30)*0.1 + (line[j+7]-0x30)*0.01 + (line[j+8]-0x30)*0.001+ (line[j+9]-0x30)*0.0001;
 														break;
 														
 														case 3:
-																y = (line[j+1]-0x30)*1000+(line[j+2]-0x30)*100+(line[j+3]-0x30)*10+(line[j+4]-0x30)+(line[j+6]-0x30)*0.1 + (line[j+7]-0x30)*0.01 + (line[j+8]-0x30)*0.001+ (line[j+9]-0x30)*0.0001;
+																longitude = (line[j+1]-0x30)*1000+(line[j+2]-0x30)*100+(line[j+3]-0x30)*10+(line[j+4]-0x30)+(line[j+6]-0x30)*0.1 + (line[j+7]-0x30)*0.01 + (line[j+8]-0x30)*0.001+ (line[j+9]-0x30)*0.0001;
 														break;
 														
 														case 6:
