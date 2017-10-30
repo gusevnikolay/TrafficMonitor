@@ -22,15 +22,27 @@ extern sserial_response_t sserial_response;
 extern sserial_request_t sserial_request;
 
 extern int hh, mm,ss, sats;
+extern uint16_t latitude_h, longitude_h;
+extern unsigned char latitude_string[12];
+extern unsigned char longitude_string[12];
+extern unsigned char isEast;
+extern unsigned char isNorth;
 
 void sserial_process_request(unsigned char portindex)
 {
 		if(sserial_request.command == 1){
-				sserial_response.datalength = 4;
 			  sserial_response.data[0] = (char)sats;
 				sserial_response.data[1] = (char)hh;
 				sserial_response.data[2] = (char)mm;
 				sserial_response.data[3] = (char)ss;
+					 
+				for(int i=0;i<12;i++){
+					sserial_response.data[i+4] = latitude_string[i];
+					sserial_response.data[i+16] = longitude_string[i];
+				}
+			  sserial_response.data[29] = isEast;
+				sserial_response.data[30] = isNorth;
+				sserial_response.datalength = 31;
 				sserial_send_response();
 		}
 }
