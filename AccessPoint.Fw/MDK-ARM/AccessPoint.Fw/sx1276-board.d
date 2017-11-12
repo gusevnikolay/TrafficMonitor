@@ -1,0 +1,12 @@
+accesspoint.fw\sx1276-board.o: ..\Src\sx1276-board.c
+accesspoint.fw\sx1276-board.o: ../Inc/board.h
+accesspoint.fw\sx1276-board.o: ../Inc/radio.h
+accesspoint.fw\sx1276-board.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h
+accesspoint.fw\sx1276-board.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
+accesspoint.fw\sx1276-board.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
+accesspoint.fw\sx1276-board.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+accesspoint.fw\sx1276-board.o: ../Inc/sx1276.h
+accesspoint.fw\sx1276-board.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
+accesspoint.fw\sx1276-board.o: ../Inc/sx1276Regs-Fsk.h
+accesspoint.fw\sx1276-board.o: ../Inc/sx1276Regs-LoRa.h
+accesspoint.fw\sx1276-board.o: ../Inc/sx1276-board.h
