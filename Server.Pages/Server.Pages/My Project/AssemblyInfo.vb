@@ -7,24 +7,24 @@ Imports System.Runtime.InteropServices
 ' связанных с этой сборкой.
 
 ' Проверка значений атрибутов сборки
-<Assembly: AssemblyTitle("SmartCity.Web")>
+<Assembly: AssemblyTitle("Server.Pages")>
 <Assembly: AssemblyDescription("")>
 <Assembly: AssemblyCompany("")>
-<Assembly: AssemblyProduct("SmartCity.Web")>
-<Assembly: AssemblyCopyright("Copyright ©  2017")>
+<Assembly: AssemblyProduct("Server.Pages")>
+<Assembly: AssemblyCopyright("© , 2017")>
 <Assembly: AssemblyTrademark("")>
 
 <Assembly: ComVisible(False)>
 
 'Следующий GUID служит для идентификации библиотеки типов typelib, если этот проект видим для COM
-<Assembly: Guid("4025361d-b8b1-423c-a706-a0f0ac3c638d")>
+<Assembly: Guid("ee98ed20-8884-499a-8c04-7fb2258cb127")>
 
 ' Сведения о версии сборки состоят из указанных ниже четырех значений:
 '
-'      Major Version
-'      Minor Version 
-'      Build Number
-'      Revision
+'      Основной номер версии
+'      Дополнительный номер версии 
+'      Номер сборки
+'      Редакция
 '
 ' Можно задать все значения или принять номер сборки и номер редакции по умолчанию, 
 ' используя "*", как показано ниже:
