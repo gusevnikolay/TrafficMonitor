@@ -3,11 +3,12 @@
 #include "ssd1306.h"
 #include "nmea_decoder.h"
 
-GPS_t GPS;
+ADC_HandleTypeDef hadc1;
 I2C_HandleTypeDef hi2c1;
 SPI_HandleTypeDef hspi2;
 TIM_HandleTypeDef htim5;
 TIM_HandleTypeDef htim6;
+GPS_t GPS;
 UART_HandleTypeDef huart4;
 UART_HandleTypeDef huart1;
 void SystemClock_Config(void);
@@ -19,7 +20,7 @@ static void MX_TIM5_Init(void);
 static void MX_TIM6_Init(void);
 static void MX_UART4_Init(void);
 static void MX_USART1_UART_Init(void);
-static void HAL_I2C_MspInit(I2C_HandleTypeDef* hi2c);
+static void MX_ADC1_Init(void);
 void current_mode_monitor(void);
 void GPS_set_state(char state);
 unsigned int mode_delay = 10;
@@ -49,6 +50,7 @@ int main(void)
   MX_UART4_Init();
   MX_USART1_UART_Init();
   MX_USB_DEVICE_Init();
+  MX_ADC1_Init();
 	GPS_set_state(1);
 	HAL_GPIO_WritePin(OLED_EN_GPIO_Port, OLED_EN_Pin, GPIO_PIN_SET);
 	HAL_Delay(100);
@@ -56,19 +58,19 @@ int main(void)
 	__HAL_UART_ENABLE_IT(&huart4, UART_IT_RXNE);
   while (1)
   {
-		SSD1306_GotoXY(0, 0);
-		prepare_top_line();
-		SSD1306_Puts(top_line, &Font_7x10, SSD1306_COLOR_WHITE);
-		SSD1306_GotoXY(0, 16);
-		SSD1306_Puts("Lota:TX. SQ:  -87", &Font_7x10, SSD1306_COLOR_WHITE);
-		SSD1306_GotoXY(0, 27);
-		SSD1306_Puts("USB(+) | RS485(-)", &Font_7x10, SSD1306_COLOR_WHITE);
-		SSD1306_GotoXY(0, 38);
-		SSD1306_Puts("Sensor:       621", &Font_7x10, SSD1306_COLOR_WHITE);
-		SSD1306_GotoXY(0, 49);
-		SSD1306_Puts("Bat: 3.7V  Sun: +", &Font_7x10, SSD1306_COLOR_WHITE);
-		SSD1306_UpdateScreen();	
-		HAL_Delay(1000);	
+			SSD1306_GotoXY(0, 0);
+			prepare_top_line();
+			SSD1306_Puts(top_line, &Font_7x10, SSD1306_COLOR_WHITE);
+			SSD1306_GotoXY(0, 16);
+			SSD1306_Puts("Lota:TX. SQ:  -87", &Font_7x10, SSD1306_COLOR_WHITE);
+			SSD1306_GotoXY(0, 27);
+			SSD1306_Puts("USB(+) | RS485(-)", &Font_7x10, SSD1306_COLOR_WHITE);
+			SSD1306_GotoXY(0, 38);
+			SSD1306_Puts("Sensor:       621", &Font_7x10, SSD1306_COLOR_WHITE);
+			SSD1306_GotoXY(0, 49);
+			SSD1306_Puts("Bat: 3.7V  Sun: +", &Font_7x10, SSD1306_COLOR_WHITE);
+			SSD1306_UpdateScreen();	
+			HAL_Delay(1000);	
   }
 }
 
@@ -81,34 +83,12 @@ void GPS_set_state(char state)
 	}
 }
 
-
-void current_mode_monitor(void)
-{
-		__HAL_UART_DISABLE_IT(&huart1, UART_IT_RXNE);
-	  __HAL_UART_DISABLE_IT(&huart4, UART_IT_RXNE);
-	
-	  SSD1306_GotoXY(0, 0);
-		SSD1306_Puts("Sat: 8 | 18:47:15", &Font_7x10, SSD1306_COLOR_WHITE);
-		SSD1306_GotoXY(0, 16);
-		SSD1306_Puts("Lota:TX. SQ:  -87", &Font_7x10, SSD1306_COLOR_WHITE);
-		SSD1306_GotoXY(0, 27);
-		SSD1306_Puts("USB(+) | RS485(-)", &Font_7x10, SSD1306_COLOR_WHITE);
-		SSD1306_GotoXY(0, 38);
-		SSD1306_Puts("Sensor:       621", &Font_7x10, SSD1306_COLOR_WHITE);
-		SSD1306_GotoXY(0, 49);
-		SSD1306_Puts("Bat: 3.7V  Sun: +", &Font_7x10, SSD1306_COLOR_WHITE);
-		SSD1306_UpdateScreen();
-	
-		__HAL_UART_ENABLE_IT(&huart1, UART_IT_RXNE);
-	  __HAL_UART_ENABLE_IT(&huart4, UART_IT_RXNE);
-}
 void SystemClock_Config(void)
 {
 
   RCC_OscInitTypeDef RCC_OscInitStruct;
   RCC_ClkInitTypeDef RCC_ClkInitStruct;
   RCC_PeriphCLKInitTypeDef PeriphClkInit;
-
   RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSE;
   RCC_OscInitStruct.HSEState = RCC_HSE_ON;
   RCC_OscInitStruct.HSEPredivValue = RCC_HSE_PREDIV_DIV1;
@@ -125,13 +105,14 @@ void SystemClock_Config(void)
   RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_PLLCLK;
   RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
   RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV2;
-  RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV1;
+  RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV4;
   if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_1) != HAL_OK)
   {
     Error_Handler();
   }
 
-  PeriphClkInit.PeriphClockSelection = RCC_PERIPHCLK_USB;
+  PeriphClkInit.PeriphClockSelection = RCC_PERIPHCLK_ADC|RCC_PERIPHCLK_USB;
+  PeriphClkInit.AdcClockSelection = RCC_ADCPCLK2_DIV2;
   PeriphClkInit.UsbClockSelection = RCC_USBCLKSOURCE_PLL;
   if (HAL_RCCEx_PeriphCLKConfig(&PeriphClkInit) != HAL_OK)
   {
@@ -139,11 +120,40 @@ void SystemClock_Config(void)
   }
 
   HAL_SYSTICK_Config(HAL_RCC_GetHCLKFreq()/1000);
-
   HAL_SYSTICK_CLKSourceConfig(SYSTICK_CLKSOURCE_HCLK);
-
-  /* SysTick_IRQn interrupt configuration */
   HAL_NVIC_SetPriority(SysTick_IRQn, 0, 0);
+	
+}
+
+static void MX_ADC1_Init(void)
+{
+
+  ADC_ChannelConfTypeDef sConfig;
+
+    /**Common config 
+    */
+  hadc1.Instance = ADC1;
+  hadc1.Init.ScanConvMode = ADC_SCAN_DISABLE;
+  hadc1.Init.ContinuousConvMode = DISABLE;
+  hadc1.Init.DiscontinuousConvMode = DISABLE;
+  hadc1.Init.ExternalTrigConv = ADC_SOFTWARE_START;
+  hadc1.Init.DataAlign = ADC_DATAALIGN_RIGHT;
+  hadc1.Init.NbrOfConversion = 1;
+  if (HAL_ADC_Init(&hadc1) != HAL_OK)
+  {
+    Error_Handler();
+  }
+
+    /**Configure Regular Channel 
+    */
+  sConfig.Channel = ADC_CHANNEL_4;
+  sConfig.Rank = 1;
+  sConfig.SamplingTime = ADC_SAMPLETIME_1CYCLE_5;
+  if (HAL_ADC_ConfigChannel(&hadc1, &sConfig) != HAL_OK)
+  {
+    Error_Handler();
+  }
+
 }
 
 /* I2C1 init function */
@@ -168,7 +178,7 @@ static void MX_I2C1_Init(void)
   {
     Error_Handler();
   }
-	
+
 }
 
 /* SPI2 init function */
@@ -318,12 +328,6 @@ static void MX_USART1_UART_Init(void)
 static void MX_GPIO_Init(void)
 {
 
-	 __HAL_RCC_I2C1_CLK_ENABLE();
-  HAL_Delay(100);
-  __HAL_RCC_I2C1_FORCE_RESET();
-  HAL_Delay(100);
-  __HAL_RCC_I2C1_RELEASE_RESET();
-  HAL_Delay(100);
   GPIO_InitTypeDef GPIO_InitStruct;
 
   /* GPIO Ports Clock Enable */
@@ -373,7 +377,7 @@ static void MX_GPIO_Init(void)
   /*Configure GPIO pin : BUTTON_Pin */
   GPIO_InitStruct.Pin = BUTTON_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
-  GPIO_InitStruct.Pull = GPIO_PULLUP;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
   HAL_GPIO_Init(BUTTON_GPIO_Port, &GPIO_InitStruct);
 
   /*Configure GPIO pin : PPS_Pin */

@@ -8,6 +8,7 @@ extern TIM_HandleTypeDef htim6;
 extern UART_HandleTypeDef huart4;
 extern UART_HandleTypeDef huart1;
 extern void nmea_append(char ch);
+
 void NMI_Handler(void)
 {
 
@@ -22,18 +23,17 @@ void HardFault_Handler(void)
   }
 }
 
-
 void MemManage_Handler(void)
 {
-	
+
   while (1)
   {
   }
 }
 
+
 void BusFault_Handler(void)
 {
-
   while (1)
   {
   }
@@ -73,11 +73,13 @@ void SysTick_Handler(void)
   HAL_SYSTICK_IRQHandler();
 }
 
+
 void USB_LP_CAN1_RX0_IRQHandler(void)
 {
-	
+
   HAL_PCD_IRQHandler(&hpcd_USB_FS);
 }
+
 
 void USART1_IRQHandler(void)
 {
@@ -88,13 +90,13 @@ void USART1_IRQHandler(void)
 
 void EXTI15_10_IRQHandler(void)
 {
-	HAL_GPIO_TogglePin(LED1_GPIO_Port, LED1_Pin);
   HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_15);
+	HAL_GPIO_TogglePin(LED1_GPIO_Port, LED1_Pin);
 }
+
 
 void TIM5_IRQHandler(void)
 {
-
   HAL_TIM_IRQHandler(&htim5);
 
 }
@@ -102,9 +104,10 @@ void TIM5_IRQHandler(void)
 
 void UART4_IRQHandler(void)
 {
+	nmea_append(UART4->DR);
   HAL_UART_IRQHandler(&huart4);
-  nmea_append(UART4->DR); 
 }
+
 
 void TIM6_IRQHandler(void)
 {

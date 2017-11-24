@@ -19,6 +19,8 @@
 "smartcity.trafficmonitor\stm32f1xx_hal_gpio.o"
 "smartcity.trafficmonitor\stm32f1xx_hal_pwr.o"
 "smartcity.trafficmonitor\stm32f1xx_hal_spi.o"
+"smartcity.trafficmonitor\stm32f1xx_hal_adc_ex.o"
+"smartcity.trafficmonitor\stm32f1xx_hal_adc.o"
 "smartcity.trafficmonitor\startup_stm32f103xe.o"
 "smartcity.trafficmonitor\usbd_ioreq.o"
 "smartcity.trafficmonitor\usbd_core.o"
