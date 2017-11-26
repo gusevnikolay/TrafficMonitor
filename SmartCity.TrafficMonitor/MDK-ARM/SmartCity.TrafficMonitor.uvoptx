@@ -201,25 +201,9 @@
         <Bp>
           <Number>0</Number>
           <Type>0</Type>
-          <LineNumber>57</LineNumber>
-          <EnabledFlag>1</EnabledFlag>
-          <Address>134234844</Address>
-          <ByteObject>0</ByteObject>
-          <HtxType>0</HtxType>
-          <ManyObjects>0</ManyObjects>
-          <SizeOfObject>0</SizeOfObject>
-          <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>1</BreakIfRCount>
-          <Filename>..\Src\nmea_decoder.c</Filename>
-          <ExecCommand></ExecCommand>
-          <Expression>\\SmartCity\../Src/nmea_decoder.c\57</Expression>
-        </Bp>
-        <Bp>
-          <Number>1</Number>
-          <Type>0</Type>
           <LineNumber>47</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>134234276</Address>
+          <Address>134237694</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -231,43 +215,11 @@
           <Expression>\\SmartCity\../Src/main.c\47</Expression>
         </Bp>
         <Bp>
-          <Number>2</Number>
-          <Type>0</Type>
-          <LineNumber>107</LineNumber>
-          <EnabledFlag>1</EnabledFlag>
-          <Address>134228860</Address>
-          <ByteObject>0</ByteObject>
-          <HtxType>0</HtxType>
-          <ManyObjects>0</ManyObjects>
-          <SizeOfObject>0</SizeOfObject>
-          <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>1</BreakIfRCount>
-          <Filename>../Src/stm32f1xx_it.c</Filename>
-          <ExecCommand></ExecCommand>
-          <Expression>\\SmartCity\../Src/stm32f1xx_it.c\107</Expression>
-        </Bp>
-        <Bp>
-          <Number>3</Number>
-          <Type>0</Type>
-          <LineNumber>85</LineNumber>
-          <EnabledFlag>1</EnabledFlag>
-          <Address>134229536</Address>
-          <ByteObject>0</ByteObject>
-          <HtxType>0</HtxType>
-          <ManyObjects>0</ManyObjects>
-          <SizeOfObject>0</SizeOfObject>
-          <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>1</BreakIfRCount>
-          <Filename>../Src/stm32f1xx_it.c</Filename>
-          <ExecCommand></ExecCommand>
-          <Expression>\\SmartCity\../Src/stm32f1xx_it.c\85</Expression>
-        </Bp>
-        <Bp>
-          <Number>4</Number>
+          <Number>1</Number>
           <Type>0</Type>
           <LineNumber>40</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>134234238</Address>
+          <Address>134237894</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -279,11 +231,11 @@
           <Expression>\\SmartCity\../Src/main.c\40</Expression>
         </Bp>
         <Bp>
-          <Number>5</Number>
+          <Number>2</Number>
           <Type>0</Type>
           <LineNumber>1838</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>134219454</Address>
+          <Address>134221870</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -295,11 +247,11 @@
           <Expression>\\SmartCity\../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_i2c.c\1838</Expression>
         </Bp>
         <Bp>
-          <Number>6</Number>
+          <Number>3</Number>
           <Type>0</Type>
           <LineNumber>1834</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>134219436</Address>
+          <Address>134221852</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -311,11 +263,11 @@
           <Expression>\\SmartCity\../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_i2c.c\1834</Expression>
         </Bp>
         <Bp>
-          <Number>7</Number>
+          <Number>4</Number>
           <Type>0</Type>
           <LineNumber>1821</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>134219354</Address>
+          <Address>134221770</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -327,68 +279,20 @@
           <Expression>\\SmartCity\../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_i2c.c\1821</Expression>
         </Bp>
         <Bp>
-          <Number>8</Number>
+          <Number>5</Number>
           <Type>0</Type>
-          <LineNumber>32</LineNumber>
+          <LineNumber>52</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>134234102</Address>
+          <Address>134237626</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
           <SizeOfObject>0</SizeOfObject>
           <BreakByAccess>0</BreakByAccess>
           <BreakIfRCount>1</BreakIfRCount>
-          <Filename>../Src/main.c</Filename>
-          <ExecCommand></ExecCommand>
-          <Expression>\\SmartCity\../Src/main.c\32</Expression>
-        </Bp>
-        <Bp>
-          <Number>9</Number>
-          <Type>0</Type>
-          <LineNumber>52</LineNumber>
-          <EnabledFlag>1</EnabledFlag>
-          <Address>0</Address>
-          <ByteObject>0</ByteObject>
-          <HtxType>0</HtxType>
-          <ManyObjects>0</ManyObjects>
-          <SizeOfObject>0</SizeOfObject>
-          <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>0</BreakIfRCount>
           <Filename>..\Src\nmea_decoder.c</Filename>
           <ExecCommand></ExecCommand>
-          <Expression></Expression>
-        </Bp>
-        <Bp>
-          <Number>10</Number>
-          <Type>0</Type>
-          <LineNumber>26</LineNumber>
-          <EnabledFlag>1</EnabledFlag>
-          <Address>0</Address>
-          <ByteObject>0</ByteObject>
-          <HtxType>0</HtxType>
-          <ManyObjects>0</ManyObjects>
-          <SizeOfObject>0</SizeOfObject>
-          <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>0</BreakIfRCount>
-          <Filename>../Src/stm32f1xx_it.c</Filename>
-          <ExecCommand></ExecCommand>
-          <Expression></Expression>
-        </Bp>
-        <Bp>
-          <Number>11</Number>
-          <Type>0</Type>
-          <LineNumber>38</LineNumber>
-          <EnabledFlag>1</EnabledFlag>
-          <Address>0</Address>
-          <ByteObject>0</ByteObject>
-          <HtxType>0</HtxType>
-          <ManyObjects>0</ManyObjects>
-          <SizeOfObject>0</SizeOfObject>
-          <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>0</BreakIfRCount>
-          <Filename>../Src/stm32f1xx_it.c</Filename>
-          <ExecCommand></ExecCommand>
-          <Expression></Expression>
+          <Expression>\\\../Src/nmea_decoder.c\52</Expression>
         </Bp>
       </Breakpoint>
       <Tracepoint>
@@ -397,7 +301,7 @@
       <DebugFlag>
         <trace>0</trace>
         <periodic>1</periodic>
-        <aLwin>1</aLwin>
+        <aLwin>0</aLwin>
         <aCover>0</aCover>
         <aSer1>0</aSer1>
         <aSer2>0</aSer2>
@@ -457,7 +361,7 @@
 
   <Group>
     <GroupName>Drivers/STM32F1xx_HAL_Driver</GroupName>
-    <tvExp>0</tvExp>
+    <tvExp>1</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <RteFlg>0</RteFlg>
@@ -914,6 +818,18 @@
       <bDave2>0</bDave2>
       <PathWithFileName>..\Src\ssd1306.c</PathWithFileName>
       <FilenameWithoutPath>ssd1306.c</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
+    </File>
+    <File>
+      <GroupNumber>5</GroupNumber>
+      <FileNumber>38</FileNumber>
+      <FileType>1</FileType>
+      <tvExp>0</tvExp>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <bDave2>0</bDave2>
+      <PathWithFileName>..\Src\speed.c</PathWithFileName>
+      <FilenameWithoutPath>speed.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>

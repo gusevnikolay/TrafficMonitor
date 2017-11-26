@@ -90,24 +90,25 @@ void USART1_IRQHandler(void)
 
 void EXTI15_10_IRQHandler(void)
 {
-  HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_15);
-	HAL_GPIO_TogglePin(LED1_GPIO_Port, LED1_Pin);
+  HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_15);	
 }
 
-
+extern void speed_append_sensor_two(uint16_t tim);
+extern void speed_append_sensor_one(uint16_t tim);
 void TIM5_IRQHandler(void)
 {
+	__HAL_TIM_SetCounter(&htim5, 0);
+	HAL_GPIO_TogglePin(LED1_GPIO_Port, LED1_Pin);
+	speed_append_sensor_two(__HAL_TIM_GetCompare(&htim5, TIM_CHANNEL_3));
+	speed_append_sensor_one(__HAL_TIM_GetCompare(&htim5, TIM_CHANNEL_1));
   HAL_TIM_IRQHandler(&htim5);
-
 }
-
 
 void UART4_IRQHandler(void)
 {
 	nmea_append(UART4->DR);
   HAL_UART_IRQHandler(&huart4);
 }
-
 
 void TIM6_IRQHandler(void)
 {

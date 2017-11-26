@@ -43,3 +43,4 @@ smartcity.trafficmonitor\main.o: ../Middlewares/ST/STM32_USB_Device_Library/Core
 smartcity.trafficmonitor\main.o: ../Inc/ssd1306.h
 smartcity.trafficmonitor\main.o: ../Inc/fonts.h
 smartcity.trafficmonitor\main.o: ../Inc/nmea_decoder.h
+smartcity.trafficmonitor\main.o: ../Inc/speed.h
