@@ -61,15 +61,15 @@ void prepare_power_line()
 char sensor_line[18] = "                  ";
 void prepare_sensor_line()
 {
-		sensor_line[0] =   SpeedSensors.SENSOR_ONE_AVERAGE/1000 + 0x30;
-		sensor_line[1] =  (SpeedSensors.SENSOR_ONE_AVERAGE%1000)/100 + 0x30;
-		sensor_line[2] =	(SpeedSensors.SENSOR_ONE_AVERAGE%100)/10 + 0x30;
-	  sensor_line[3] =	(SpeedSensors.SENSOR_ONE_AVERAGE%10) + 0x30;
+		sensor_line[0] =   SpeedSensors.SENSOR_ONE_MIN/1000 + 0x30;
+		sensor_line[1] =  (SpeedSensors.SENSOR_ONE_MIN%1000)/100 + 0x30;
+		sensor_line[2] =	(SpeedSensors.SENSOR_ONE_MIN%100)/10 + 0x30;
+	  sensor_line[3] =	(SpeedSensors.SENSOR_ONE_MIN%10) + 0x30;
 		
-		sensor_line[13] =  SpeedSensors.SENSOR_TWO_MAX/1000 + 0x30;
-		sensor_line[14] = (SpeedSensors.SENSOR_TWO_MAX%1000)/100 + 0x30;
-		sensor_line[15] =	(SpeedSensors.SENSOR_TWO_MAX%100)/10 + 0x30;
-	  sensor_line[16] =	(SpeedSensors.SENSOR_TWO_MAX%10) + 0x30;
+		sensor_line[13] =  SpeedSensors.SENSOR_ONE_AVERAGE/1000 + 0x30;
+		sensor_line[14] = (SpeedSensors.SENSOR_ONE_AVERAGE%1000)/100 + 0x30;
+		sensor_line[15] =	(SpeedSensors.SENSOR_ONE_AVERAGE%100)/10 + 0x30;
+	  sensor_line[16] =	(SpeedSensors.SENSOR_ONE_AVERAGE%10) + 0x30;
 }
 
 void prepare_data()
@@ -105,6 +105,9 @@ int main(void)
 	HAL_TIM_IC_Start_IT(&htim5, TIM_CHANNEL_1);
 	HAL_TIM_IC_Start_IT(&htim5, TIM_CHANNEL_3);
 	SpeedSensors.SENSOR_TWO_MAX = 4585;
+	//HAL_GPIO_WritePin(DOPLER_1_EN_GPIO_Port, DOPLER_1_EN_Pin, GPIO_PIN_SET);
+	HAL_GPIO_WritePin(GPIOC, GPIO_PIN_1, GPIO_PIN_SET);
+	HAL_GPIO_WritePin(DOPLER_2_EN_GPIO_Port, DOPLER_2_EN_Pin, GPIO_PIN_SET);
   while (1)
   {
 			SSD1306_GotoXY(0, 0);
@@ -256,7 +259,7 @@ static void MX_TIM5_Init(void)
   TIM_IC_InitTypeDef sConfigIC;
 
   htim5.Instance = TIM5;
-  htim5.Init.Prescaler = 2;
+  htim5.Init.Prescaler = 720;
   htim5.Init.CounterMode = TIM_COUNTERMODE_UP;
   htim5.Init.Period = 9999;
   htim5.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;

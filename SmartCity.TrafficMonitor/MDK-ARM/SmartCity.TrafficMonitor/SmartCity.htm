@@ -3,7 +3,7 @@
 <title>Static Call Graph - [SmartCity.TrafficMonitor\SmartCity.TrafficMonitor]</title></head>
 <body><HR>
 <H1>Static Call Graph for image SmartCity.TrafficMonitor\SmartCity.TrafficMonitor</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060183: Last Updated: Sun Nov 26 22:11:46 2017
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060183: Last Updated: Mon Nov 27 22:49:41 2017
 <BR><P>
 <H3>Maximum Stack Usage =        320 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -1785,7 +1785,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[106]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USBD_static_free
 </UL>
 
-<P><STRONG><a name="[5b]"></a>main</STRONG> (Thumb, 338 bytes, Stack size 16 bytes, main.o(i.main))
+<P><STRONG><a name="[5b]"></a>main</STRONG> (Thumb, 360 bytes, Stack size 16 bytes, main.o(i.main))
 <BR><BR>[Stack]<UL><LI>Max Depth = 320<LI>Call Chain = main &rArr; SSD1306_Init &rArr; SSD1306_UpdateScreen &rArr; SSD1306_WRITECOMMAND &rArr; HAL_I2C_Mem_Write &rArr; I2C_RequestMemoryWrite &rArr; I2C_WaitOnFlagUntilTimeout
 </UL>
 <BR>[Calls]<UL><LI><a href="#[88]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_Init
@@ -2112,7 +2112,7 @@ Local Symbols
 <BR>[Called By]<UL><LI><a href="#[5b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[ec]"></a>MX_TIM5_Init</STRONG> (Thumb, 124 bytes, Stack size 48 bytes, main.o(i.MX_TIM5_Init))
+<P><STRONG><a name="[ec]"></a>MX_TIM5_Init</STRONG> (Thumb, 126 bytes, Stack size 48 bytes, main.o(i.MX_TIM5_Init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 120<LI>Call Chain = MX_TIM5_Init &rArr; HAL_TIM_Base_Init &rArr; HAL_TIM_Base_MspInit &rArr; HAL_GPIO_Init
 </UL>
 <BR>[Calls]<UL><LI><a href="#[ed]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_TIMEx_MasterConfigSynchronization
