@@ -46,7 +46,6 @@ USBD_HandleTypeDef hUsbDeviceFS;
 /* init function */				        
 void MX_USB_DEVICE_Init(void)
 {
-  /* Init Device Library,Add Supported Class and Start the library*/
   USBD_Init(&hUsbDeviceFS, &FS_Desc, DEVICE_FS);
 
   USBD_RegisterClass(&hUsbDeviceFS, &USBD_CDC);

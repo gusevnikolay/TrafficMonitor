@@ -1,0 +1,238 @@
+05.12.2017 19:21:23 ROOT [Err] Fail
+#CallFrom: ClassName=Bootloader, FullName=SmartCity.AccessPoint.Bootloader, Method=Upload
+05.12.2017 19:21:24 ROOT [Err] Fail
+#CallFrom: ClassName=Bootloader, FullName=SmartCity.AccessPoint.Bootloader, Method=Upload
+05.12.2017 19:21:25 ROOT [Err] Fail
+#CallFrom: ClassName=Bootloader, FullName=SmartCity.AccessPoint.Bootloader, Method=Upload
+05.12.2017 19:21:26 ROOT [Err] Fail
+#CallFrom: ClassName=Bootloader, FullName=SmartCity.AccessPoint.Bootloader, Method=Upload
+05.12.2017 19:21:27 ROOT [Err] Fail
+#CallFrom: ClassName=Bootloader, FullName=SmartCity.AccessPoint.Bootloader, Method=Upload
+05.12.2017 19:21:28 ROOT [Err] Fail
+#CallFrom: ClassName=Bootloader, FullName=SmartCity.AccessPoint.Bootloader, Method=Upload
+05.12.2017 19:21:29 ROOT [Err] Fail
+#CallFrom: ClassName=Bootloader, FullName=SmartCity.AccessPoint.Bootloader, Method=Upload
+05.12.2017 19:21:30 ROOT [Err] Fail
+#CallFrom: ClassName=Bootloader, FullName=SmartCity.AccessPoint.Bootloader, Method=Upload
+05.12.2017 19:21:31 ROOT [Err] Fail
+#CallFrom: ClassName=Bootloader, FullName=SmartCity.AccessPoint.Bootloader, Method=Upload
+05.12.2017 19:21:32 ROOT [Err] Fail
+#CallFrom: ClassName=Bootloader, FullName=SmartCity.AccessPoint.Bootloader, Method=Upload
+05.12.2017 19:21:33 ROOT [Err] Fail
+#CallFrom: ClassName=Bootloader, FullName=SmartCity.AccessPoint.Bootloader, Method=Upload
+05.12.2017 19:21:34 ROOT [Err] Fail
+#CallFrom: ClassName=Bootloader, FullName=SmartCity.AccessPoint.Bootloader, Method=Upload
+05.12.2017 19:21:35 ROOT [Err] Fail
+#CallFrom: ClassName=Bootloader, FullName=SmartCity.AccessPoint.Bootloader, Method=Upload
+05.12.2017 19:21:36 ROOT [Err] Fail
+#CallFrom: ClassName=Bootloader, FullName=SmartCity.AccessPoint.Bootloader, Method=Upload
+05.12.2017 19:21:37 ROOT [Err] Fail
+#CallFrom: ClassName=Bootloader, FullName=SmartCity.AccessPoint.Bootloader, Method=Upload
+05.12.2017 19:21:38 ROOT [Err] Fail
+#CallFrom: ClassName=Bootloader, FullName=SmartCity.AccessPoint.Bootloader, Method=Upload
+05.12.2017 19:21:39 ROOT [Err] Fail
+#CallFrom: ClassName=Bootloader, FullName=SmartCity.AccessPoint.Bootloader, Method=Upload
+05.12.2017 19:21:40 ROOT [Err] Fail
+#CallFrom: ClassName=Bootloader, FullName=SmartCity.AccessPoint.Bootloader, Method=Upload
+05.12.2017 19:21:41 ROOT [Err] Fail
+#CallFrom: ClassName=Bootloader, FullName=SmartCity.AccessPoint.Bootloader, Method=Upload
+05.12.2017 19:21:42 ROOT [Err] Fail
+#CallFrom: ClassName=Bootloader, FullName=SmartCity.AccessPoint.Bootloader, Method=Upload
+05.12.2017 19:21:43 ROOT [Err] Fail
+#CallFrom: ClassName=Bootloader, FullName=SmartCity.AccessPoint.Bootloader, Method=Upload
+05.12.2017 19:21:44 ROOT [Err] Fail
+#CallFrom: ClassName=Bootloader, FullName=SmartCity.AccessPoint.Bootloader, Method=Upload
+05.12.2017 19:21:45 ROOT [Err] Fail
+#CallFrom: ClassName=Bootloader, FullName=SmartCity.AccessPoint.Bootloader, Method=Upload
+05.12.2017 19:21:46 ROOT [Err] Fail
+#CallFrom: ClassName=Bootloader, FullName=SmartCity.AccessPoint.Bootloader, Method=Upload
+05.12.2017 19:21:47 ROOT [Err] Fail
+#CallFrom: ClassName=Bootloader, FullName=SmartCity.AccessPoint.Bootloader, Method=Upload
+05.12.2017 19:21:48 ROOT [Err] Fail
+#CallFrom: ClassName=Bootloader, FullName=SmartCity.AccessPoint.Bootloader, Method=Upload
+05.12.2017 19:21:49 ROOT [Err] Fail
+#CallFrom: ClassName=Bootloader, FullName=SmartCity.AccessPoint.Bootloader, Method=Upload
+05.12.2017 19:21:50 ROOT [Err] Fail
+#CallFrom: ClassName=Bootloader, FullName=SmartCity.AccessPoint.Bootloader, Method=Upload
+05.12.2017 19:21:51 ROOT [Err] Fail
+#CallFrom: ClassName=Bootloader, FullName=SmartCity.AccessPoint.Bootloader, Method=Upload
+05.12.2017 19:21:52 ROOT [Err] Fail
+#CallFrom: ClassName=Bootloader, FullName=SmartCity.AccessPoint.Bootloader, Method=Upload
+05.12.2017 19:21:53 ROOT [Err] Fail
+#CallFrom: ClassName=Bootloader, FullName=SmartCity.AccessPoint.Bootloader, Method=Upload
+05.12.2017 19:21:54 ROOT [Err] Fail
+#CallFrom: ClassName=Bootloader, FullName=SmartCity.AccessPoint.Bootloader, Method=Upload
+05.12.2017 19:21:55 ROOT [Err] Fail
+#CallFrom: ClassName=Bootloader, FullName=SmartCity.AccessPoint.Bootloader, Method=Upload
+05.12.2017 19:21:56 ROOT [Err] Fail
+#CallFrom: ClassName=Bootloader, FullName=SmartCity.AccessPoint.Bootloader, Method=Upload
+05.12.2017 19:21:57 ROOT [Err] Fail
+#CallFrom: ClassName=Bootloader, FullName=SmartCity.AccessPoint.Bootloader, Method=Upload
+05.12.2017 19:21:58 ROOT [Err] Fail
+#CallFrom: ClassName=Bootloader, FullName=SmartCity.AccessPoint.Bootloader, Method=Upload
+05.12.2017 19:21:59 ROOT [Err] Fail
+#CallFrom: ClassName=Bootloader, FullName=SmartCity.AccessPoint.Bootloader, Method=Upload
+05.12.2017 19:22:00 ROOT [Err] Fail
+#CallFrom: ClassName=Bootloader, FullName=SmartCity.AccessPoint.Bootloader, Method=Upload
+05.12.2017 19:22:01 ROOT [Err] Fail
+#CallFrom: ClassName=Bootloader, FullName=SmartCity.AccessPoint.Bootloader, Method=Upload
+05.12.2017 19:22:02 ROOT [Err] Fail
+#CallFrom: ClassName=Bootloader, FullName=SmartCity.AccessPoint.Bootloader, Method=Upload
+05.12.2017 19:22:03 ROOT [Err] Fail
+#CallFrom: ClassName=Bootloader, FullName=SmartCity.AccessPoint.Bootloader, Method=Upload
+05.12.2017 19:22:04 ROOT [Err] Fail
+#CallFrom: ClassName=Bootloader, FullName=SmartCity.AccessPoint.Bootloader, Method=Upload
+05.12.2017 19:22:05 ROOT [Err] Fail
+#CallFrom: ClassName=Bootloader, FullName=SmartCity.AccessPoint.Bootloader, Method=Upload
+05.12.2017 19:22:06 ROOT [Err] Fail
+#CallFrom: ClassName=Bootloader, FullName=SmartCity.AccessPoint.Bootloader, Method=Upload
+05.12.2017 19:22:07 ROOT [Err] Fail
+#CallFrom: ClassName=Bootloader, FullName=SmartCity.AccessPoint.Bootloader, Method=Upload
+05.12.2017 19:22:08 ROOT [Err] Fail
+#CallFrom: ClassName=Bootloader, FullName=SmartCity.AccessPoint.Bootloader, Method=Upload
+05.12.2017 19:22:09 ROOT [Err] Fail
+#CallFrom: ClassName=Bootloader, FullName=SmartCity.AccessPoint.Bootloader, Method=Upload
+05.12.2017 19:22:10 ROOT [Err] Fail
+#CallFrom: ClassName=Bootloader, FullName=SmartCity.AccessPoint.Bootloader, Method=Upload
+05.12.2017 19:22:11 ROOT [Err] Fail
+#CallFrom: ClassName=Bootloader, FullName=SmartCity.AccessPoint.Bootloader, Method=Upload
+05.12.2017 19:22:12 ROOT [Err] Fail
+#CallFrom: ClassName=Bootloader, FullName=SmartCity.AccessPoint.Bootloader, Method=Upload
+05.12.2017 19:22:13 ROOT [Err] Fail
+#CallFrom: ClassName=Bootloader, FullName=SmartCity.AccessPoint.Bootloader, Method=Upload
+05.12.2017 19:22:14 ROOT [Err] Fail
+#CallFrom: ClassName=Bootloader, FullName=SmartCity.AccessPoint.Bootloader, Method=Upload
+05.12.2017 19:22:15 ROOT [Err] Fail
+#CallFrom: ClassName=Bootloader, FullName=SmartCity.AccessPoint.Bootloader, Method=Upload
+05.12.2017 19:22:16 ROOT [Err] Fail
+#CallFrom: ClassName=Bootloader, FullName=SmartCity.AccessPoint.Bootloader, Method=Upload
+05.12.2017 19:22:17 ROOT [Err] Fail
+#CallFrom: ClassName=Bootloader, FullName=SmartCity.AccessPoint.Bootloader, Method=Upload
+05.12.2017 19:22:18 ROOT [Err] Fail
+#CallFrom: ClassName=Bootloader, FullName=SmartCity.AccessPoint.Bootloader, Method=Upload
+05.12.2017 19:22:19 ROOT [Err] Fail
+#CallFrom: ClassName=Bootloader, FullName=SmartCity.AccessPoint.Bootloader, Method=Upload
+05.12.2017 19:22:20 ROOT [Err] Fail
+#CallFrom: ClassName=Bootloader, FullName=SmartCity.AccessPoint.Bootloader, Method=Upload
+05.12.2017 19:22:21 ROOT [Err] Fail
+#CallFrom: ClassName=Bootloader, FullName=SmartCity.AccessPoint.Bootloader, Method=Upload
+05.12.2017 19:22:22 ROOT [Err] Fail
+#CallFrom: ClassName=Bootloader, FullName=SmartCity.AccessPoint.Bootloader, Method=Upload
+05.12.2017 19:22:23 ROOT [Err] Fail
+#CallFrom: ClassName=Bootloader, FullName=SmartCity.AccessPoint.Bootloader, Method=Upload
+05.12.2017 19:22:24 ROOT [Err] Fail
+#CallFrom: ClassName=Bootloader, FullName=SmartCity.AccessPoint.Bootloader, Method=Upload
+05.12.2017 19:22:25 ROOT [Err] Fail
+#CallFrom: ClassName=Bootloader, FullName=SmartCity.AccessPoint.Bootloader, Method=Upload
+05.12.2017 19:22:26 ROOT [Err] Fail
+#CallFrom: ClassName=Bootloader, FullName=SmartCity.AccessPoint.Bootloader, Method=Upload
+05.12.2017 19:22:27 ROOT [Err] Fail
+#CallFrom: ClassName=Bootloader, FullName=SmartCity.AccessPoint.Bootloader, Method=Upload
+05.12.2017 19:22:28 ROOT [Err] Fail
+#CallFrom: ClassName=Bootloader, FullName=SmartCity.AccessPoint.Bootloader, Method=Upload
+05.12.2017 19:22:29 ROOT [Err] Fail
+#CallFrom: ClassName=Bootloader, FullName=SmartCity.AccessPoint.Bootloader, Method=Upload
+05.12.2017 19:22:30 ROOT [Err] Fail
+#CallFrom: ClassName=Bootloader, FullName=SmartCity.AccessPoint.Bootloader, Method=Upload
+05.12.2017 19:22:31 ROOT [Err] Fail
+#CallFrom: ClassName=Bootloader, FullName=SmartCity.AccessPoint.Bootloader, Method=Upload
+05.12.2017 19:22:32 ROOT [Err] Fail
+#CallFrom: ClassName=Bootloader, FullName=SmartCity.AccessPoint.Bootloader, Method=Upload
+05.12.2017 19:22:33 ROOT [Err] Fail
+#CallFrom: ClassName=Bootloader, FullName=SmartCity.AccessPoint.Bootloader, Method=Upload
+05.12.2017 19:22:34 ROOT [Err] Fail
+#CallFrom: ClassName=Bootloader, FullName=SmartCity.AccessPoint.Bootloader, Method=Upload
+05.12.2017 19:22:35 ROOT [Err] Fail
+#CallFrom: ClassName=Bootloader, FullName=SmartCity.AccessPoint.Bootloader, Method=Upload
+05.12.2017 19:22:36 ROOT [Err] Fail
+#CallFrom: ClassName=Bootloader, FullName=SmartCity.AccessPoint.Bootloader, Method=Upload
+05.12.2017 19:22:37 ROOT [Err] Fail
+#CallFrom: ClassName=Bootloader, FullName=SmartCity.AccessPoint.Bootloader, Method=Upload
+05.12.2017 19:22:38 ROOT [Err] Fail
+#CallFrom: ClassName=Bootloader, FullName=SmartCity.AccessPoint.Bootloader, Method=Upload
+05.12.2017 19:22:39 ROOT [Err] Fail
+#CallFrom: ClassName=Bootloader, FullName=SmartCity.AccessPoint.Bootloader, Method=Upload
+05.12.2017 19:22:40 ROOT [Err] Fail
+#CallFrom: ClassName=Bootloader, FullName=SmartCity.AccessPoint.Bootloader, Method=Upload
+05.12.2017 19:22:41 ROOT [Err] Fail
+#CallFrom: ClassName=Bootloader, FullName=SmartCity.AccessPoint.Bootloader, Method=Upload
+05.12.2017 19:22:42 ROOT [Err] Fail
+#CallFrom: ClassName=Bootloader, FullName=SmartCity.AccessPoint.Bootloader, Method=Upload
+05.12.2017 19:22:43 ROOT [Err] Fail
+#CallFrom: ClassName=Bootloader, FullName=SmartCity.AccessPoint.Bootloader, Method=Upload
+05.12.2017 19:22:44 ROOT [Err] Fail
+#CallFrom: ClassName=Bootloader, FullName=SmartCity.AccessPoint.Bootloader, Method=Upload
+05.12.2017 19:22:45 ROOT [Err] Fail
+#CallFrom: ClassName=Bootloader, FullName=SmartCity.AccessPoint.Bootloader, Method=Upload
+05.12.2017 19:22:46 ROOT [Err] Fail
+#CallFrom: ClassName=Bootloader, FullName=SmartCity.AccessPoint.Bootloader, Method=Upload
+05.12.2017 19:22:48 ROOT [Err] Fail
+#CallFrom: ClassName=Bootloader, FullName=SmartCity.AccessPoint.Bootloader, Method=Upload
+05.12.2017 19:22:49 ROOT [Err] Fail
+#CallFrom: ClassName=Bootloader, FullName=SmartCity.AccessPoint.Bootloader, Method=Upload
+05.12.2017 19:22:50 ROOT [Err] Fail
+#CallFrom: ClassName=Bootloader, FullName=SmartCity.AccessPoint.Bootloader, Method=Upload
+05.12.2017 19:22:51 ROOT [Err] Fail
+#CallFrom: ClassName=Bootloader, FullName=SmartCity.AccessPoint.Bootloader, Method=Upload
+05.12.2017 19:22:52 ROOT [Err] Fail
+#CallFrom: ClassName=Bootloader, FullName=SmartCity.AccessPoint.Bootloader, Method=Upload
+05.12.2017 19:22:53 ROOT [Err] Fail
+#CallFrom: ClassName=Bootloader, FullName=SmartCity.AccessPoint.Bootloader, Method=Upload
+05.12.2017 19:22:54 ROOT [Err] Fail
+#CallFrom: ClassName=Bootloader, FullName=SmartCity.AccessPoint.Bootloader, Method=Upload
+05.12.2017 19:22:55 ROOT [Err] Fail
+#CallFrom: ClassName=Bootloader, FullName=SmartCity.AccessPoint.Bootloader, Method=Upload
+05.12.2017 19:22:56 ROOT [Err] Fail
+#CallFrom: ClassName=Bootloader, FullName=SmartCity.AccessPoint.Bootloader, Method=Upload
+05.12.2017 19:22:57 ROOT [Err] Fail
+#CallFrom: ClassName=Bootloader, FullName=SmartCity.AccessPoint.Bootloader, Method=Upload
+05.12.2017 19:22:59 ROOT [Err] Fail
+#CallFrom: ClassName=Bootloader, FullName=SmartCity.AccessPoint.Bootloader, Method=Upload
+05.12.2017 19:23:00 ROOT [Err] Fail
+#CallFrom: ClassName=Bootloader, FullName=SmartCity.AccessPoint.Bootloader, Method=Upload
+05.12.2017 19:23:01 ROOT [Err] Fail
+#CallFrom: ClassName=Bootloader, FullName=SmartCity.AccessPoint.Bootloader, Method=Upload
+05.12.2017 19:23:02 ROOT [Err] Fail
+#CallFrom: ClassName=Bootloader, FullName=SmartCity.AccessPoint.Bootloader, Method=Upload
+05.12.2017 19:23:03 ROOT [Err] Fail
+#CallFrom: ClassName=Bootloader, FullName=SmartCity.AccessPoint.Bootloader, Method=Upload
+05.12.2017 19:23:04 ROOT [Err] Fail
+#CallFrom: ClassName=Bootloader, FullName=SmartCity.AccessPoint.Bootloader, Method=Upload
+05.12.2017 19:23:05 ROOT [Err] Fail
+#CallFrom: ClassName=Bootloader, FullName=SmartCity.AccessPoint.Bootloader, Method=Upload
+05.12.2017 19:23:06 ROOT [Err] Fail
+#CallFrom: ClassName=Bootloader, FullName=SmartCity.AccessPoint.Bootloader, Method=Upload
+05.12.2017 19:23:07 ROOT [Err] Fail
+#CallFrom: ClassName=Bootloader, FullName=SmartCity.AccessPoint.Bootloader, Method=Upload
+05.12.2017 19:23:08 ROOT [Err] Fail
+#CallFrom: ClassName=Bootloader, FullName=SmartCity.AccessPoint.Bootloader, Method=Upload
+05.12.2017 19:23:09 ROOT [Err] Fail
+#CallFrom: ClassName=Bootloader, FullName=SmartCity.AccessPoint.Bootloader, Method=Upload
+05.12.2017 19:23:10 ROOT [Err] Fail
+#CallFrom: ClassName=Bootloader, FullName=SmartCity.AccessPoint.Bootloader, Method=Upload
+05.12.2017 19:23:11 ROOT [Err] Fail
+#CallFrom: ClassName=Bootloader, FullName=SmartCity.AccessPoint.Bootloader, Method=Upload
+05.12.2017 19:23:12 ROOT [Err] Fail
+#CallFrom: ClassName=Bootloader, FullName=SmartCity.AccessPoint.Bootloader, Method=Upload
+05.12.2017 19:23:13 ROOT [Err] Fail
+#CallFrom: ClassName=Bootloader, FullName=SmartCity.AccessPoint.Bootloader, Method=Upload
+05.12.2017 19:23:14 ROOT [Err] Fail
+#CallFrom: ClassName=Bootloader, FullName=SmartCity.AccessPoint.Bootloader, Method=Upload
+05.12.2017 19:23:15 ROOT [Err] Fail
+#CallFrom: ClassName=Bootloader, FullName=SmartCity.AccessPoint.Bootloader, Method=Upload
+05.12.2017 21:08:58 ROOT [Err] Fail
+#CallFrom: ClassName=Bootloader, FullName=SmartCity.AccessPoint.Bootloader, Method=Upload
+05.12.2017 21:08:59 ROOT [Err] Fail
+#CallFrom: ClassName=Bootloader, FullName=SmartCity.AccessPoint.Bootloader, Method=Upload
+05.12.2017 21:09:00 ROOT [Err] Fail
+#CallFrom: ClassName=Bootloader, FullName=SmartCity.AccessPoint.Bootloader, Method=Upload
+05.12.2017 21:09:02 ROOT [Err] Fail
+#CallFrom: ClassName=Bootloader, FullName=SmartCity.AccessPoint.Bootloader, Method=Upload
+05.12.2017 21:09:03 ROOT [Err] Fail
+#CallFrom: ClassName=Bootloader, FullName=SmartCity.AccessPoint.Bootloader, Method=Upload
+05.12.2017 21:09:04 ROOT [Err] Fail
+#CallFrom: ClassName=Bootloader, FullName=SmartCity.AccessPoint.Bootloader, Method=Upload
+05.12.2017 21:09:05 ROOT [Err] Fail
+#CallFrom: ClassName=Bootloader, FullName=SmartCity.AccessPoint.Bootloader, Method=Upload
+05.12.2017 21:09:06 ROOT [Err] Fail
+#CallFrom: ClassName=Bootloader, FullName=SmartCity.AccessPoint.Bootloader, Method=Upload

@@ -14,11 +14,10 @@ unsigned char sserial_buffer[CATUART_MAX_PACKET_LENGTH+CATUART_ADDITIONAL];
 unsigned int sserial_buffer_pointer;
 unsigned char sserial_buffer_overflow;
 uint16_t sserial_crc16;
-unsigned char sserial_bootloader_present=0;
-unsigned char sserial_portindex=0;
+static byte sserial_portindex=0;
 
-sserial_response_t sserial_response;
-sserial_request_t sserial_request;
+extern sserial_response_t sserial_response;
+extern sserial_request_t sserial_request;
 
 uint16_t _crc16_update(uint16_t crc, uint8_t a)
 {
@@ -39,43 +38,6 @@ static void sserial_append_devname(byte startIndex, byte length, char* newname)
 		if (sserial_devname[i]<30){sserial_devname[i]=' ';}
 		sserial_devname[i+startIndex]=newname[i];
 	}
-}
-
-
-#ifdef __AVR_ATmega2560__
-#define PGM_READ_BYTE pgm_read_byte_far
-#else
-#define PGM_READ_BYTE pgm_read_byte_near
-#endif
-
-static void sserial_find_bootloader()
-{
-	/*byte found=0;
-	uint32_t pos=FLASHEND-32;
-	do
-	{
-		pos--;
-		found=1;
-		for (uint32_t i=0; i<7; i++)
-		{
-			uint32_t p=pos+i;
-			if (PGM_READ_BYTE(p)!="BwlBoot"[i]){found=0;i=8;}
-		}
-	} while ((found==0)&&(pos>FLASHEND-4096));
-	
-	if (found==1)
-	{
-		for (byte i=0; i<16; i++)
-		{
-			sserial_devname[i]=PGM_READ_BYTE(pos+16+i);
-			sserial_devguid[i]=PGM_READ_BYTE(pos+32+i);
-		}
-		for (byte i=0; i<16; i++)
-		{
-			sserial_bootname[i]=PGM_READ_BYTE(pos+i);
-		}
-	}
-	sserial_bootloader_present=found;*/
 }
 
 void sserial_set_devname(const char* devname)
@@ -253,88 +215,6 @@ static char sserial_process_internal()
 	return 0;
 }
 
-static char sserial_send_request_wait_response(unsigned char portindex, int wait_ms )
-{
-	sserial_send_start(portindex);
-	uart_send(portindex,0);
-	uart_send(portindex,0);
-	uart_send(portindex,0);
-	uart_send(portindex,0x98);
-	uart_send(portindex,0x01);
-	sserial_crc16=0xFFFF;
-	sserial_sendbyte(sserial_request.address_to>>8);
-	sserial_sendbyte(sserial_request.address_to&255);
-	sserial_sendbyte(sserial_request.command);
-	for (unsigned int i=0; i< sserial_request.datalength; i++)
-	{
-		sserial_sendbyte(sserial_request.data[i]);
-	}
-	uint16_t crc=sserial_crc16;
-	sserial_sendbyte(crc>>8);
-	sserial_sendbyte(crc&255);
-	uart_send(portindex,0x98);
-	uart_send(portindex,0x02);
-	uart_send(portindex,0);
-	uart_send(portindex,0);
-	uart_send(portindex,0);
-	sserial_send_end(portindex);
-	//wait response
-	volatile unsigned long limit=wait_ms*100;
-	volatile unsigned long counter=0;
-
-	byte lastbyte=0;
-	while ((counter++)<limit)
-	{
-		if (uart_received(portindex))
-		{
-			byte currbyte=uart_get(portindex);
-			
-			if (sserial_buffer_pointer>=SSERIAL_BUFFER_SIZE){sserial_buffer_pointer=SSERIAL_BUFFER_SIZE-1;sserial_buffer_overflow=1;}
-			
-			if (lastbyte==0x98)
-			{
-				switch (currbyte)
-				{
-					case 0x00:
-					sserial_buffer[sserial_buffer_pointer++]=0x98;
-					break;
-					case 0x03:
-					sserial_buffer_pointer=0;
-					sserial_buffer_overflow=0;
-					break;
-					case 0x04:
-					if ((sserial_buffer_overflow==0)&&(sserial_buffer_pointer>4))
-					{
-						uint16_t real_crc16=0xFFFF;
-						for (unsigned int i=0; i<sserial_buffer_pointer-2; i++)
-						{real_crc16=_crc16_update(real_crc16,sserial_buffer[i]);}
-						uint16_t recv_crc16=(sserial_buffer[sserial_buffer_pointer-2]<<8)+sserial_buffer[sserial_buffer_pointer-1];
-						if (recv_crc16==real_crc16)
-						{
-							//uint16_t addr=(sserial_buffer[0]<<8)+(sserial_buffer[1]);
-							//sserial_response.address_to=addr;
-							sserial_response.result=sserial_buffer[2];
-							sserial_response.datalength=sserial_buffer_pointer-5;
-							for (unsigned int i=3; i<sserial_buffer_pointer-2; i++)
-							{
-								sserial_response.data[i-3]=sserial_buffer[i];
-							}
-							//sei();
-							return 1;
-						}
-					}
-				}
-			}else
-			{
-				if (currbyte!=0x98)
-				sserial_buffer[sserial_buffer_pointer++]=currbyte;
-			}
-			lastbyte=currbyte;
-		}
-	}
-	//sei();
-	return 0;
-}
 
 void sserial_poll_uart(unsigned char portindex)
 {

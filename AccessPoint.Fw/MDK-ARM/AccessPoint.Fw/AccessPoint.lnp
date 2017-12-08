@@ -32,8 +32,7 @@
 "accesspoint.fw\stm32f0xx_it.o"
 "accesspoint.fw\main.o"
 "accesspoint.fw\stm32f0xx_hal_msp.o"
-"accesspoint.fw\sx1276.o"
-"accesspoint.fw\sx1276-board.o"
+"accesspoint.fw\lora.o"
 "accesspoint.fw\bwl_simplserial.o"
 --library_type=microlib --strict --scatter "AccessPoint.Fw\AccessPoint.sct"
 --diag_suppress=L6329 --summary_stderr --info summarysizes --map --xref --callgraph --symbols

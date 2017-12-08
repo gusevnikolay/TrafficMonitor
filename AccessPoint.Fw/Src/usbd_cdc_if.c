@@ -13,6 +13,7 @@ static int8_t CDC_DeInit_FS   (void);
 static int8_t CDC_Control_FS  (uint8_t cmd, uint8_t* pbuf, uint16_t length);
 static int8_t CDC_Receive_FS  (uint8_t* pbuf, uint32_t *Len);
 
+
 USBD_CDC_ItfTypeDef USBD_Interface_fops_FS = 
 {
   CDC_Init_FS,
@@ -21,25 +22,22 @@ USBD_CDC_ItfTypeDef USBD_Interface_fops_FS =
   CDC_Receive_FS
 };
 
-
 static int8_t CDC_Init_FS(void)
 { 
-	
   USBD_CDC_SetTxBuffer(&hUsbDeviceFS, UserTxBufferFS, 0);
   USBD_CDC_SetRxBuffer(&hUsbDeviceFS, UserRxBufferFS);
-  return (USBD_OK);
+  return (USBD_OK); 
 }
-
 
 static int8_t CDC_DeInit_FS(void)
 {
-	
   return (USBD_OK);
 }
 
 
 static int8_t CDC_Control_FS  (uint8_t cmd, uint8_t* pbuf, uint16_t length)
 { 
+
   switch (cmd)
   {
   case CDC_SEND_ENCAPSULATED_COMMAND:
@@ -61,7 +59,6 @@ static int8_t CDC_Control_FS  (uint8_t cmd, uint8_t* pbuf, uint16_t length)
   case CDC_CLEAR_COMM_FEATURE:
 
     break;
-
   case CDC_SET_LINE_CODING:   
 	
     break;
@@ -81,28 +78,24 @@ static int8_t CDC_Control_FS  (uint8_t cmd, uint8_t* pbuf, uint16_t length)
   default:
     break;
   }
+
   return (USBD_OK);
+  /* USER CODE END 5 */
 }
 
-
-extern uint8_t dataByte;
-extern void sserial_poll_uart(unsigned char port);
+extern uint8_t usb_byte;
+extern void sserial_poll_uart(unsigned char portindex);
 static int8_t CDC_Receive_FS (uint8_t* Buf, uint32_t *Len)
 {
-	int datalen =  (int)*Len;
-	for(int i=0;i<datalen;i++)
-	{
-	 	 dataByte = Buf[i];
-		 sserial_poll_uart(1);
-	}
-	HAL_GPIO_WritePin(GPIOB, LED0_Pin, GPIO_PIN_SET);
-	HAL_GPIO_WritePin(GPIOB, LED0_Pin, GPIO_PIN_RESET);
   USBD_CDC_SetRxBuffer(&hUsbDeviceFS, &Buf[0]);
+	for(int i=0;i<*Len;i++)
+	{
+		usb_byte = Buf[i];
+		sserial_poll_uart(2);
+	}
   USBD_CDC_ReceivePacket(&hUsbDeviceFS);
   return (USBD_OK);
 }
-
-
 
 uint8_t CDC_Transmit_FS(uint8_t* Buf, uint16_t Len)
 {
@@ -115,3 +108,4 @@ uint8_t CDC_Transmit_FS(uint8_t* Buf, uint16_t Len)
   result = USBD_CDC_TransmitPacket(&hUsbDeviceFS);
   return result;
 }
+

@@ -158,89 +158,30 @@ void HAL_NVIC_SetPriority(IRQn_Type IRQn, uint32_t PreemptPriority, uint32_t Sub
   NVIC_SetPriority(IRQn,PreemptPriority);
 }
 
-/**
-  * @brief  Enables a device specific interrupt in the NVIC interrupt controller.
-  * @note   To configure interrupts priority correctly, the NVIC_PriorityGroupConfig()
-  *         function should be called before. 
-  * @param  IRQn External interrupt number.
-  *         This parameter can be an enumerator of IRQn_Type enumeration
-  *         (For the complete STM32 Devices IRQ Channels list, please refer to the appropriate CMSIS device file (stm32f0xxxx.h))
-  * @retval None
-  */
+
 void HAL_NVIC_EnableIRQ(IRQn_Type IRQn)
 {
-  /* Check the parameters */
   assert_param(IS_NVIC_DEVICE_IRQ(IRQn));
-  
-  /* Enable interrupt */
   NVIC_EnableIRQ(IRQn);
 }
 
-/**
-  * @brief  Disables a device specific interrupt in the NVIC interrupt controller.
-  * @param  IRQn External interrupt number.
-  *         This parameter can be an enumerator of IRQn_Type enumeration
-  *         (For the complete STM32 Devices IRQ Channels list, please refer to the appropriate CMSIS device file (stm32f0xxxx.h))
-  * @retval None
-  */
 void HAL_NVIC_DisableIRQ(IRQn_Type IRQn)
 {
-  /* Check the parameters */
   assert_param(IS_NVIC_DEVICE_IRQ(IRQn));
-  
-  /* Disable interrupt */
   NVIC_DisableIRQ(IRQn);
 }
 
-/**
-  * @brief  Initiates a system reset request to reset the MCU.
-  * @retval None
-  */
 void HAL_NVIC_SystemReset(void)
 {
-  /* System Reset */
   NVIC_SystemReset();
 }
 
-/**
-  * @brief  Initializes the System Timer and its interrupt, and starts the System Tick Timer.
-  *         Counter is in free running mode to generate periodic interrupts.
-  * @param  TicksNumb: Specifies the ticks Number of ticks between two interrupts.
-  * @retval status:  - 0  Function succeeded.
-  *                  - 1  Function failed.
-  */
 uint32_t HAL_SYSTICK_Config(uint32_t TicksNumb)
 {
    return SysTick_Config(TicksNumb);
 }
-/**
-  * @}
-  */
-
-/** @defgroup CORTEX_Exported_Functions_Group2 Peripheral Control functions 
- *  @brief   Cortex control functions
- *
-@verbatim
-  ==============================================================================
-                      ##### Peripheral Control functions #####
-  ==============================================================================
-    [..]
-      This subsection provides a set of functions allowing to control the CORTEX
-      (NVIC, SYSTICK) functionalities.
 
 
-@endverbatim
-  * @{
-  */
-
-
-/**
-  * @brief  Gets the priority of an interrupt.
-  * @param  IRQn: External interrupt number.
-  *         This parameter can be an enumerator of IRQn_Type enumeration
-  *         (For the complete STM32 Devices IRQ Channels list, please refer to the appropriate CMSIS device file (stm32f0xxxx.h))
-  * @retval None
-  */
 uint32_t HAL_NVIC_GetPriority(IRQn_Type IRQn)
 {
   /* Get priority for Cortex-M system or device specific interrupts */

@@ -592,18 +592,11 @@ HAL_StatusTypeDef HAL_SPI_Receive(SPI_HandleTypeDef *hspi, uint8_t *pData, uint1
   __IO uint16_t tmpreg;
   uint32_t tickstart = HAL_GetTick();
   HAL_StatusTypeDef errorcode = HAL_OK;
-
   if((hspi->Init.Mode == SPI_MODE_MASTER) && (hspi->Init.Direction == SPI_DIRECTION_2LINES))
   {
-    /* the receive process is not supported in 2Lines direction master mode */
-    /* in this case we call the TransmitReceive process                     */
-    /* Process Locked */
     return HAL_SPI_TransmitReceive(hspi,pData,pData,Size,Timeout);
   }
-
-  /* Process Locked */
   __HAL_LOCK(hspi);
-
   if(hspi->State != HAL_SPI_STATE_READY)
   {
     errorcode = HAL_BUSY;
@@ -806,10 +799,7 @@ HAL_StatusTypeDef HAL_SPI_TransmitReceive(SPI_HandleTypeDef *hspi, uint8_t *pTxD
 __IO uint16_t tmpreg;
   uint32_t tickstart = HAL_GetTick();
   HAL_StatusTypeDef errorcode = HAL_OK;
-
   assert_param(IS_SPI_DIRECTION_2LINES(hspi->Init.Direction));
-
-  /* Process Locked */
   __HAL_LOCK(hspi);
 
   if(hspi->State != HAL_SPI_STATE_READY)

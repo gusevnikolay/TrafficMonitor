@@ -1,2 +1,0 @@
-void var_delay_ms(int ms);
-void rfm_write(char addr, char val);

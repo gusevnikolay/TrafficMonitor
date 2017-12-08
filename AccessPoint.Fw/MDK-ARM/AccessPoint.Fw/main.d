@@ -39,10 +39,11 @@ accesspoint.fw\main.o: ../Inc/usbd_conf.h
 accesspoint.fw\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
 accesspoint.fw\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
 accesspoint.fw\main.o: ../Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_def.h
-accesspoint.fw\main.o: ../Inc/radio.h
-accesspoint.fw\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h
-accesspoint.fw\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
-accesspoint.fw\main.o: ../Inc/sx1276.h
-accesspoint.fw\main.o: ../Inc/sx1276Regs-Fsk.h
-accesspoint.fw\main.o: ../Inc/sx1276Regs-LoRa.h
 accesspoint.fw\main.o: ../Inc/bwl_simplserial.h
+accesspoint.fw\main.o: ../Inc/lora.h
+accesspoint.fw\main.o: ../Inc/usbd_cdc_if.h
+accesspoint.fw\main.o: ../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc/usbd_cdc.h
+accesspoint.fw\main.o: ../Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_ioreq.h
+accesspoint.fw\main.o: ../Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_core.h
+accesspoint.fw\main.o: ../Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_ioreq.h
+accesspoint.fw\main.o: ../Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_ctlreq.h

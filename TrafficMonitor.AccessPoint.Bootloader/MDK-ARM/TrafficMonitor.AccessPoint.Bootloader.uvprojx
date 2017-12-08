@@ -10,6 +10,7 @@
       <TargetName>TrafficMonitor.AccessPoint.Bootloader</TargetName>
       <ToolsetNumber>0x4</ToolsetNumber>
       <ToolsetName>ARM-ADS</ToolsetName>
+      <pCCUsed>5060183::V5.06 update 2 (build 183)::ARMCC</pCCUsed>
       <TargetOption>
         <TargetCommonOption>
           <Device>STM32F042C6</Device>
@@ -50,7 +51,7 @@
           <OutputName>TrafficMonitor.AccessPoint.Bootloader</OutputName>
           <CreateExecutable>1</CreateExecutable>
           <CreateLib>0</CreateLib>
-          <CreateHexFile>0</CreateHexFile>
+          <CreateHexFile>1</CreateHexFile>
           <DebugInformation>1</DebugInformation>
           <BrowseInformation>1</BrowseInformation>
           <ListingPath></ListingPath>
@@ -132,11 +133,11 @@
             <RunIndependent>0</RunIndependent>
             <UpdateFlashBeforeDebugging>1</UpdateFlashBeforeDebugging>
             <Capability>1</Capability>
-            <DriverSelection>4107</DriverSelection>
+            <DriverSelection>4100</DriverSelection>
           </Flash1>
           <bUseTDR>1</bUseTDR>
           <Flash2>STLink\ST-LINKIII-KEIL_SWO.dll</Flash2>
-          <Flash3></Flash3>
+          <Flash3>"" ()</Flash3>
           <Flash4></Flash4>
           <pFcarmOut></pFcarmOut>
           <pFcarmGrp></pFcarmGrp>
@@ -272,7 +273,7 @@
               <OCR_RVCT4>
                 <Type>1</Type>
                 <StartAddress>0x8000000</StartAddress>
-                <Size>0x8000</Size>
+                <Size>0x2000</Size>
               </OCR_RVCT4>
               <OCR_RVCT5>
                 <Type>1</Type>
@@ -333,7 +334,7 @@
               <MiscControls>--C99</MiscControls>
               <Define>USE_HAL_DRIVER,STM32F042x6</Define>
               <Undefine></Undefine>
-              <IncludePath>../Inc; ../Drivers/STM32F0xx_HAL_Driver/Inc; ../Drivers/STM32F0xx_HAL_Driver/Inc/Legacy; ../Drivers/CMSIS/Include; ../Drivers/CMSIS/Device/ST/STM32F0xx/Include</IncludePath>
+              <IncludePath>../Inc;   ../Drivers/STM32F0xx_HAL_Driver/Inc;   ../Drivers/STM32F0xx_HAL_Driver/Inc/Legacy;   ../Drivers/CMSIS/Include;   ../Drivers/CMSIS/Device/ST/STM32F0xx/Include</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -507,9 +508,9 @@
               <FilePath>../Src/stm32f0xx_it.c</FilePath>
             </File>
             <File>
-              <FileName>flasher.c</FileName>
+              <FileName>bwl_simplserial.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\Src\flasher.c</FilePath>
+              <FilePath>..\Src\bwl_simplserial.c</FilePath>
             </File>
           </Files>
         </Group>
