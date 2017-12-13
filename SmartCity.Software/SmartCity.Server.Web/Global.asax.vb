@@ -5,7 +5,7 @@ Public Class Global_asax
 
     Public Shared SQL As SqlTool
     Sub Application_Start(ByVal sender As Object, ByVal e As EventArgs)
-        SQL = New SqlTool("localhost", "appender", "appender", "smart_city")
+        SQL = New SqlTool("localhost", "smartcity", "smartcity", "smartcity")
     End Sub
 
     Sub Session_Start(ByVal sender As Object, ByVal e As EventArgs)

@@ -1,60 +1,58 @@
-﻿Imports SmartCity.Server
+﻿Imports MySql.Data.MySqlClient
+Imports SmartCity.Server
 
 Public Class TrafficMonitor
-    Inherits BaseDevice
-    Public Property RoadFlowSpeed As Single
-    Public Property Latitude As String
-    Public Property Longitude As String
-    Public Property InputVoltage As Single
-    Public Property BatteryVoltage As Single
-    Public Property BaseStationAddress As String
-    Sub New(data As Byte(), baseStation As String)
-        DeviceId = GetHexString(data, 0, 6)
-        DeviceTime = data(6).ToString + ":" + data(7).ToString + ":" + data(8).ToString
-        RoadFlowSpeed = (data(9) * 256 + data(10)) * 0.1
-        InputVoltage = (data(11) * 256 + data(12)) * 0.1
-        BatteryVoltage = (data(13) * 256 + data(14)) * 0.1
-        Latitude = System.Text.Encoding.ASCII.GetString(data).Substring(15, 8)
-        Longitude = System.Text.Encoding.ASCII.GetString(data).Substring(23, 9)
-        BaseStationAddress = baseStation
-    End Sub
+    Implements IDevice
+    Public Property DeviceId As String Implements IDevice.DeviceId
 
-    Public Overrides Function GetQueryСondition() As String
-        Return "INSERT INTO traffic_monitor (device_id, base_station, device_time, latitude, longitude, flow_speed, input_voltage, time, battery_voltage) VALUES('" + DeviceId + "', '" + BaseStationAddress + "', '" + DeviceTime + "', '" + Latitude + "', '" + Longitude + "', " + RoadFlowSpeed.ToString.Replace(",", ".") + ", " + InputVoltage.ToString.Replace(",", ".") + ", NOW(), " + BatteryVoltage.ToString.Replace(",", ".") + ");"
-    End Function
-End Class
-
-Public Class TrafficMonitorDriver
-    Implements IDeviceDriver
     Sub New()
+    End Sub
+
+    Public Sub AppendDataToBase(packet As DevicePacket, db As DataBase) Implements IDevice.AppendDataToBase
+        If packet.Data.Length > 15 Then
+            Dim minSpeed = packet.Data(1)
+            Dim maxSpeed = packet.Data(2)
+            Dim meanSpeed = packet.Data(3)
+            Dim hh = packet.Data(4)
+            Dim mm = packet.Data(5)
+            Dim ss = packet.Data(6)
+            Dim battery = packet.Data(7) * 0.1
+            Dim latitudeWhole = packet.Data(8) * 100 + packet.Data(9)
+            Dim latitudeFractional = packet.Data(10) * 100 + packet.Data(11)
+            Dim longitudeWhole = packet.Data(12) * 100 + packet.Data(13)
+            Dim longitudeFractional = packet.Data(14) * 100 + packet.Data(15)
+            Dim query = "INSERT INTO traffic_monitor (device_id, base_station, device_time, latitude, longitude, mean_speed, min_speed, max_speed, rssi_packet, rssi, time, battery_voltage) VALUES('"
+            query += packet.DeviceId + "', '" + packet.AccessPointId + "', '" + GetTimeString(hh, mm, ss) + "', '" + GetGpsData(latitudeWhole, latitudeFractional) + "', '" + GetGpsData(longitudeWhole, longitudeFractional) + "', " + meanSpeed.ToString + ", " + minSpeed.ToString + ", "
+            query += maxSpeed.ToString + "," + packet.RssiPacket.ToString + ", " + packet.Rssi.ToString + ",  Now(), " + battery.ToString.Replace(",", ".") + ");"
+            db.Execute(query)
+        Else
+            Throw New Exception("Invalid data format")
+        End If
 
     End Sub
 
-    Public Function GetQueryCreatTable() As String Implements IDeviceDriver.GetQueryCreatTable
-        Dim query = "CREATE TABLE traffic_monitor(
-        id INT NOT NULL AUTO_INCREMENT,
-        PRIMARY KEY(id), 
-        device_id       VARCHAR(16) NOT NULL, 
-        base_station    VARCHAR(16),
-        device_time     VARCHAR(16), 
-        latitude        VARCHAR(16),         
-        longitude       VARCHAR(16), 
-        flow_speed      VARCHAR(16), 
-        input_voltage   decimal(5,2), 
-        time            TIMESTAMP,
-        battery_voltage decimal(5,2));"
-        Return query
+    Private Function GetTimeString(hh As Byte, mm As Byte, ss As Byte) As String
+        Dim timeLine As String = ""
+        If (hh.ToString.Length < 2) Then timeLine += ("0" + hh.ToString) Else timeLine += hh.ToString
+        If (mm.ToString.Length < 2) Then timeLine += (":0" + mm.ToString) Else timeLine += (":" + mm.ToString)
+        If (ss.ToString.Length < 2) Then timeLine += (":0" + ss.ToString) Else timeLine += (":" + ss.ToString)
+        Return timeLine
     End Function
 
-    Public Function GetTableName() As String Implements IDeviceDriver.GetTableName
-        Return "traffic_monitor"
-    End Function
-
-    Public Function IsDeviceSupported(data As Byte(), baseStation As String) As IDevice Implements IDeviceDriver.IsDeviceSupported
-        If (data(0) = 1) Then
-            Return New TrafficMonitor(data, baseStation)
+    Private Function GetGpsData(W As Integer, F As Integer) As String
+        Dim wS = W.ToString
+        Dim fS = F.ToString
+        If fS.Length < 4 Then
+            While fS.Length < 4
+                fS = "0" + fS
+            End While
         End If
-        Return Nothing
+        Return wS + "." + fS
+    End Function
+
+    Public Function IsSupported(id As String) As Boolean Implements IDevice.IsSupported
+        If id.Substring(0, 2) = "01" Then Return True
+        Return False
     End Function
 End Class
 

@@ -1,7 +1,5 @@
 #ifndef __NMEA_DECODER_H
 #define __NMEA_DECODER_H
-//void nmea_append(char ch);
-
 typedef struct
 {
 		unsigned int  hh;
@@ -13,5 +11,6 @@ typedef struct
 		unsigned char isEast;
 		unsigned char isNorth;        
 } GPS_t;
-
+void nmea_second_process(void);
+void UART4_IRQHandler(void);
 #endif

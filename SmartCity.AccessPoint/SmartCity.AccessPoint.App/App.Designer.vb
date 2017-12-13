@@ -22,6 +22,7 @@ Partial Class App
     'Не изменяйте ее в редакторе исходного кода.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.checkSignalDetected = New System.Windows.Forms.CheckBox()
         Me.checkSynchronized = New System.Windows.Forms.CheckBox()
@@ -48,17 +49,18 @@ Partial Class App
         Me.SmartPoll = New System.Windows.Forms.TabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
         Me.TabPage2 = New System.Windows.Forms.TabPage()
-        Me.TabPage3 = New System.Windows.Forms.TabPage()
-        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
-        Me.GroupBox2 = New System.Windows.Forms.GroupBox()
         Me.GroupBox3 = New System.Windows.Forms.GroupBox()
-        Me.ListLoraReceived = New System.Windows.Forms.ListBox()
         Me.bSendLora = New System.Windows.Forms.Button()
+        Me.ListLoraReceived = New System.Windows.Forms.ListBox()
+        Me.GroupBox2 = New System.Windows.Forms.GroupBox()
+        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.TabPage3 = New System.Windows.Forms.TabPage()
+        Me.timer = New System.Windows.Forms.Timer(Me.components)
         Me.SmartPoll.SuspendLayout()
         Me.TabPage2.SuspendLayout()
-        Me.GroupBox1.SuspendLayout()
-        Me.GroupBox2.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
+        Me.GroupBox2.SuspendLayout()
+        Me.GroupBox1.SuspendLayout()
         Me.SuspendLayout()
         '
         'logWriter
@@ -299,7 +301,7 @@ Partial Class App
         Me.TabPage1.Location = New System.Drawing.Point(4, 22)
         Me.TabPage1.Name = "TabPage1"
         Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage1.Size = New System.Drawing.Size(692, 459)
+        Me.TabPage1.Size = New System.Drawing.Size(682, 363)
         Me.TabPage1.TabIndex = 0
         Me.TabPage1.Text = "Board"
         Me.TabPage1.UseVisualStyleBackColor = True
@@ -317,15 +319,47 @@ Partial Class App
         Me.TabPage2.Text = "LoRa"
         Me.TabPage2.UseVisualStyleBackColor = True
         '
-        'TabPage3
+        'GroupBox3
         '
-        Me.TabPage3.Location = New System.Drawing.Point(4, 22)
-        Me.TabPage3.Name = "TabPage3"
-        Me.TabPage3.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage3.Size = New System.Drawing.Size(692, 459)
-        Me.TabPage3.TabIndex = 2
-        Me.TabPage3.Text = "City Logs"
-        Me.TabPage3.UseVisualStyleBackColor = True
+        Me.GroupBox3.Controls.Add(Me.bSendLora)
+        Me.GroupBox3.Controls.Add(Me.ListLoraReceived)
+        Me.GroupBox3.Controls.Add(Me.textSendToLora)
+        Me.GroupBox3.Location = New System.Drawing.Point(6, 15)
+        Me.GroupBox3.Name = "GroupBox3"
+        Me.GroupBox3.Size = New System.Drawing.Size(383, 335)
+        Me.GroupBox3.TabIndex = 51
+        Me.GroupBox3.TabStop = False
+        Me.GroupBox3.Text = "Communication "
+        '
+        'bSendLora
+        '
+        Me.bSendLora.Location = New System.Drawing.Point(7, 287)
+        Me.bSendLora.Name = "bSendLora"
+        Me.bSendLora.Size = New System.Drawing.Size(370, 23)
+        Me.bSendLora.TabIndex = 51
+        Me.bSendLora.Text = "SEND"
+        Me.bSendLora.UseVisualStyleBackColor = True
+        '
+        'ListLoraReceived
+        '
+        Me.ListLoraReceived.FormattingEnabled = True
+        Me.ListLoraReceived.Location = New System.Drawing.Point(7, 20)
+        Me.ListLoraReceived.Name = "ListLoraReceived"
+        Me.ListLoraReceived.Size = New System.Drawing.Size(370, 225)
+        Me.ListLoraReceived.TabIndex = 0
+        '
+        'GroupBox2
+        '
+        Me.GroupBox2.Controls.Add(Me.bReadReg)
+        Me.GroupBox2.Controls.Add(Me.textRegister)
+        Me.GroupBox2.Controls.Add(Me.textRegValue)
+        Me.GroupBox2.Controls.Add(Me.bWriteReg)
+        Me.GroupBox2.Location = New System.Drawing.Point(395, 255)
+        Me.GroupBox2.Name = "GroupBox2"
+        Me.GroupBox2.Size = New System.Drawing.Size(275, 95)
+        Me.GroupBox2.TabIndex = 1
+        Me.GroupBox2.TabStop = False
+        Me.GroupBox2.Text = "RFM Registers"
         '
         'GroupBox1
         '
@@ -354,47 +388,20 @@ Partial Class App
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "RFM95 Flags"
         '
-        'GroupBox2
+        'TabPage3
         '
-        Me.GroupBox2.Controls.Add(Me.bReadReg)
-        Me.GroupBox2.Controls.Add(Me.textRegister)
-        Me.GroupBox2.Controls.Add(Me.textRegValue)
-        Me.GroupBox2.Controls.Add(Me.bWriteReg)
-        Me.GroupBox2.Location = New System.Drawing.Point(395, 255)
-        Me.GroupBox2.Name = "GroupBox2"
-        Me.GroupBox2.Size = New System.Drawing.Size(275, 95)
-        Me.GroupBox2.TabIndex = 1
-        Me.GroupBox2.TabStop = False
-        Me.GroupBox2.Text = "RFM Registers"
+        Me.TabPage3.Location = New System.Drawing.Point(4, 22)
+        Me.TabPage3.Name = "TabPage3"
+        Me.TabPage3.Padding = New System.Windows.Forms.Padding(3)
+        Me.TabPage3.Size = New System.Drawing.Size(682, 363)
+        Me.TabPage3.TabIndex = 2
+        Me.TabPage3.Text = "City Logs"
+        Me.TabPage3.UseVisualStyleBackColor = True
         '
-        'GroupBox3
+        'timer
         '
-        Me.GroupBox3.Controls.Add(Me.bSendLora)
-        Me.GroupBox3.Controls.Add(Me.ListLoraReceived)
-        Me.GroupBox3.Controls.Add(Me.textSendToLora)
-        Me.GroupBox3.Location = New System.Drawing.Point(6, 15)
-        Me.GroupBox3.Name = "GroupBox3"
-        Me.GroupBox3.Size = New System.Drawing.Size(383, 335)
-        Me.GroupBox3.TabIndex = 51
-        Me.GroupBox3.TabStop = False
-        Me.GroupBox3.Text = "Communication "
-        '
-        'ListLoraReceived
-        '
-        Me.ListLoraReceived.FormattingEnabled = True
-        Me.ListLoraReceived.Location = New System.Drawing.Point(7, 20)
-        Me.ListLoraReceived.Name = "ListLoraReceived"
-        Me.ListLoraReceived.Size = New System.Drawing.Size(370, 225)
-        Me.ListLoraReceived.TabIndex = 0
-        '
-        'bSendLora
-        '
-        Me.bSendLora.Location = New System.Drawing.Point(7, 287)
-        Me.bSendLora.Name = "bSendLora"
-        Me.bSendLora.Size = New System.Drawing.Size(370, 23)
-        Me.bSendLora.TabIndex = 51
-        Me.bSendLora.Text = "SEND"
-        Me.bSendLora.UseVisualStyleBackColor = True
+        Me.timer.Enabled = True
+        Me.timer.Interval = 2000
         '
         'App
         '
@@ -408,12 +415,12 @@ Partial Class App
         Me.Controls.SetChildIndex(Me.SmartPoll, 0)
         Me.SmartPoll.ResumeLayout(False)
         Me.TabPage2.ResumeLayout(False)
-        Me.GroupBox1.ResumeLayout(False)
-        Me.GroupBox1.PerformLayout()
-        Me.GroupBox2.ResumeLayout(False)
-        Me.GroupBox2.PerformLayout()
         Me.GroupBox3.ResumeLayout(False)
         Me.GroupBox3.PerformLayout()
+        Me.GroupBox2.ResumeLayout(False)
+        Me.GroupBox2.PerformLayout()
+        Me.GroupBox1.ResumeLayout(False)
+        Me.GroupBox1.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -451,4 +458,5 @@ Partial Class App
     Friend WithEvents GroupBox2 As GroupBox
     Friend WithEvents GroupBox1 As GroupBox
     Friend WithEvents TabPage3 As TabPage
+    Friend WithEvents timer As Timer
 End Class

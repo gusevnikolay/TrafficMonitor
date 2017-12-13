@@ -59,12 +59,8 @@
 #define RFM_IO0_GPIO_Port GPIOB
 #define RFM_IO1_Pin GPIO_PIN_1
 #define RFM_IO1_GPIO_Port GPIOB
-#define RFM_IO2_Pin GPIO_PIN_2
-#define RFM_IO2_GPIO_Port GPIOB
 #define RFM_RESET_Pin GPIO_PIN_11
 #define RFM_RESET_GPIO_Port GPIOB
-#define SPI_CS_Pin GPIO_PIN_12
-#define SPI_CS_GPIO_Port GPIOB
 #define BUTTON_Pin GPIO_PIN_7
 #define BUTTON_GPIO_Port GPIOC
 #define RS485_TX_Pin GPIO_PIN_9

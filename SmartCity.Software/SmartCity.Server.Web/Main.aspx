@@ -96,6 +96,8 @@
                   <th>Время</th>
                   <th>Питание</th>
                   <th>Аккумулятор</th>
+                  <th>RX RSSI</th>
+                  <th>RXP RSSI</th>
                 </tr>
               </thead>
               <tbody>              

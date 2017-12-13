@@ -14,6 +14,47 @@ typedef struct {
 
 static SSD1306_t SSD1306;
 
+uint32_t ADC_RESULTS[3];
+extern char gps_state_line[20];
+extern char gps_coordinates[20];
+extern char lora_status_line[18];
+extern uint8_t lora_data[19];
+
+char power_line[18] = "Bat: 3.7V  Sun: + ";
+char last_oled_state = 0;
+void Display(unsigned int state)
+{
+		if(state>0){
+				if(last_oled_state == 0){
+						last_oled_state = 1;
+						HAL_GPIO_WritePin(OLED_EN_GPIO_Port, OLED_EN_Pin, GPIO_PIN_SET);
+						HAL_Delay(50);
+						SSD1306_Init();
+				}
+				SSD1306_GotoXY(0, 0);
+				SSD1306_Puts(gps_state_line, &Font_7x10, SSD1306_COLOR_WHITE);
+				SSD1306_GotoXY(0, 38);
+				SSD1306_Puts(lora_status_line, &Font_7x10, SSD1306_COLOR_WHITE);
+				SSD1306_GotoXY(0, 27);
+				SSD1306_Puts("USB(+) | RS485(-)", &Font_7x10, SSD1306_COLOR_WHITE);
+				SSD1306_GotoXY(0, 16);
+				
+				SSD1306_Puts(gps_coordinates, &Font_7x10, SSD1306_COLOR_WHITE);
+				
+				SSD1306_GotoXY(0, 49);
+				uint16_t vbat = 14.7*2*ADC_RESULTS[0]/(ADC_RESULTS[2]+1);
+				lora_data[12] = (uint8_t)vbat;
+				power_line[5] = vbat/10 + 0x30;
+				power_line[7] = vbat%10 + 0x30;				
+				SSD1306_Puts(power_line, &Font_7x10, SSD1306_COLOR_WHITE);
+				__disable_irq();
+				SSD1306_UpdateScreen();
+				__enable_irq();
+		}else{
+				last_oled_state = 0;
+				HAL_GPIO_WritePin(OLED_EN_GPIO_Port, OLED_EN_Pin, GPIO_PIN_RESET);
+		}
+}
 void SSD1306_WRITECOMMAND(char cmd)
 {
 	 uint8_t data[1];

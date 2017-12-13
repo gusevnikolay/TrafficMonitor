@@ -249,21 +249,11 @@ void HAL_PCD_DisconnectCallback(PCD_HandleTypeDef *hpcd)
   USBD_LL_DevDisconnected((USBD_HandleTypeDef*)hpcd->pData);
 }
 
-/*******************************************************************************
-                       LL Driver Interface (USB Device Library --> PCD)
-*******************************************************************************/
-/**
-  * @brief  Initializes the Low Level portion of the Device driver.
-  * @param  pdev: Device handle
-  * @retval USBD Status
-  */
 USBD_StatusTypeDef  USBD_LL_Init (USBD_HandleTypeDef *pdev)
 { 
-  /* Init USB_IP */
-  /* Link The driver to the stack */
+
   hpcd_USB_FS.pData = pdev;
   pdev->pData = &hpcd_USB_FS;
-
   hpcd_USB_FS.Instance = USB;
   hpcd_USB_FS.Init.dev_endpoints = 8;
   hpcd_USB_FS.Init.speed = PCD_SPEED_FULL;

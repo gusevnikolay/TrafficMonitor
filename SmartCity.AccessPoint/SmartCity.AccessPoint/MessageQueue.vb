@@ -19,7 +19,6 @@
         Dim loraThread = New Threading.Thread(AddressOf LoraQueueProcessor)
         loraThread.IsBackground = True
         loraThread.Start()
-
         Dim serverThread = New Threading.Thread(AddressOf ServerQueueProcessor)
         serverThread.IsBackground = True
         serverThread.Start()
@@ -61,7 +60,7 @@
             If _FifoToServer.Count > 0 Then
                 Try
                     _server.Send(_FifoToServer.ElementAt(0))
-                    _FifoToLora.RemoveAt(0)
+                    _FifoToServer.RemoveAt(0)
                 Catch ex As Exception
                     Console.ForegroundColor = ConsoleColor.Red
                     Console.WriteLine(ex.Message)

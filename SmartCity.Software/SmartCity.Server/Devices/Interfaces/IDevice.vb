@@ -1,6 +1,5 @@
 ﻿Public Interface IDevice
     Property DeviceId As String
-    Property DeviceTime As String
-    Property BaseTableName As String
-    Function GetQueryСondition() As String
+    Sub AppendDataToBase(packet As DevicePacket, db As DataBase)
+    Function IsSupported(id As String) As Boolean
 End Interface

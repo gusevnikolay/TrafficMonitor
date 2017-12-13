@@ -2,12 +2,13 @@
 #include "stm32f1xx_hal.h"
 
 #define BUFFER_SIZE 128
+
 uint16_t sensor_one_buffer[BUFFER_SIZE];
 uint16_t sensor_one_cursor = 0;
 uint16_t sensor_two_buffer[BUFFER_SIZE];
 uint16_t sensor_two_cursor = 0;
 
-extern Doppler_t SpeedSensors;
+Doppler_t SpeedSensors;
 
 void fill_struct()
 {

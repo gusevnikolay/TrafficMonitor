@@ -42,19 +42,10 @@ typedef struct
 extern sserial_response_t sserial_response;
 extern sserial_request_t sserial_request;
 
-//extern void sserial_send_start(unsigned char portindex);
-//extern void sserial_send_end(unsigned char portindex);
-void sserial_process_request(unsigned char portindex);
-void uart_send(unsigned char, unsigned char);
-//unsigned char uart_get( unsigned char );
-//unsigned char uart_received( unsigned char );
-extern void var_delay_ms(int ms);
-
+void sserial_process_request(unsigned char port);
 void sserial_poll_uart(unsigned char portindex);
-void sserial_send_response();
-static void sserial_find_bootloader();
-static void sserial_append_devname(byte startIndex, byte length, char* newname);
-//static void sserial_set_devname(const char* devname);
+void sserial_send_response(unsigned char port);
+void sserial_append_devname(byte startIndex, byte length, char* newname);
 static char sserial_send_request_wait_response(unsigned char portindex, int wait_ms );
 
 static unsigned char int_to_byte(int val);

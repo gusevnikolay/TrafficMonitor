@@ -1,9 +1,0 @@
-D:\work\Other\TrafficMonitor\SmartCity.Software\SmartCity.AccessPoint.App\obj\Debug\SmartCity.AccecPoint.App.CmdApp.xml
-D:\work\Other\TrafficMonitor\SmartCity.Software\SmartCity.AccessPoint.App\obj\Debug\SmartCity.AccessPoint.App.vbprojResolveAssemblyReference.cache
-D:\work\Other\TrafficMonitor\SmartCity.Software\SmartCity.AccessPoint.App\obj\Debug\SmartCity.AccessPoint.App.Resources.resources
-D:\work\Other\TrafficMonitor\SmartCity.Software\SmartCity.AccessPoint.App\obj\Debug\SmartCity.AccessPoint.App.vbproj.GenerateResource.Cache
-D:\work\Other\TrafficMonitor\SmartCity.Software\debug\AccessPoint.App\bin\SmartCity.AccessPoint.App.exe
-D:\work\Other\TrafficMonitor\SmartCity.Software\debug\AccessPoint.App\bin\SmartCity.AccessPoint.App.pdb
-D:\work\Other\TrafficMonitor\SmartCity.Software\debug\AccessPoint.App\bin\SmartCity.AccecPoint.App.CmdApp.xml
-D:\work\Other\TrafficMonitor\SmartCity.Software\SmartCity.AccessPoint.App\obj\Debug\SmartCity.AccessPoint.App.exe
-D:\work\Other\TrafficMonitor\SmartCity.Software\SmartCity.AccessPoint.App\obj\Debug\SmartCity.AccessPoint.App.pdb

@@ -1,22 +1,24 @@
 #include "stm32f1xx_hal.h"
 #include "usb_device.h"
-#include "ssd1306.h"
-#include "nmea_decoder.h"
-#include "speed.h"
-
-Doppler_t SpeedSensors;
+#include "bwl_simplserial.h"
+#include <stdint.h>
 
 ADC_HandleTypeDef hadc1;
+DMA_HandleTypeDef hdma_adc1;
 I2C_HandleTypeDef hi2c1;
 SPI_HandleTypeDef hspi2;
 TIM_HandleTypeDef htim5;
 TIM_HandleTypeDef htim6;
-GPS_t GPS;
 UART_HandleTypeDef huart4;
 UART_HandleTypeDef huart1;
-void SystemClock_Config(void);
-void Error_Handler(void);
+
+sserial_response_t sserial_response;
+sserial_request_t sserial_request;
+
+void 				SystemClock_Config(void);
+void 				Error_Handler(void);
 static void MX_GPIO_Init(void);
+static void MX_DMA_Init(void);
 static void MX_I2C1_Init(void);
 static void MX_SPI2_Init(void);
 static void MX_TIM5_Init(void);
@@ -24,71 +26,36 @@ static void MX_TIM6_Init(void);
 static void MX_UART4_Init(void);
 static void MX_USART1_UART_Init(void);
 static void MX_ADC1_Init(void);
-void current_mode_monitor(void);
-void GPS_set_state(char state);
-unsigned int mode_delay = 10;
 
-char top_line[20] = "Sat: 0 | 00:00:00";
-void prepare_top_line()
+extern uint32_t ADC_RESULTS[3];
+extern void nmea_second_process(void);
+extern void Display(unsigned int state);
+extern void Lora_Init(void);
+extern void Lora_Polling(void);
+extern void Rfm_Send(uint8_t *data, uint8_t length);
+
+uint16_t    display_counter = 10;
+
+void regular_processes(void)
 {
-		top_line[4] = (char)(GPS.sats/10 +0x30);
-		top_line[5] = (char)(GPS.sats%10 +0x30);
-		top_line[9]  = (char)(GPS.hh/10 +0x30);
-		top_line[10] = (char)(GPS.hh%10 +0x30);
-		top_line[12] = (char)(GPS.mm/10 +0x30);
-		top_line[13] = (char)(GPS.mm%10 +0x30);
-		top_line[15] = (char)(GPS.ss/10 +0x30);
-		top_line[16] = (char)(GPS.ss%10 +0x30);
+		nmea_second_process();
+		HAL_ADC_Start_IT(&hadc1);
+		if(display_counter>0)display_counter--;
 }
 
-char power_line[18] = "Bat: 3.7V  Sun: + ";
-void prepare_power_line()
+uint8_t lora_data[24] = {1,0,0,0,1,0,12,48,36,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+void sserial_process_request(unsigned char port)
 {
-		HAL_ADC_Start(&hadc1);
-    HAL_ADC_PollForConversion(&hadc1, 100);
-		uint32_t result = 0;
-		for(int i=0;i<5;i++){
-				HAL_ADC_Start(&hadc1);
-				HAL_ADC_PollForConversion(&hadc1, 100);
-				result += HAL_ADC_GetValue(&hadc1);
-		}
 	
-	  uint16_t voltage = (uint16_t)(3.3/4096*result * 4 - 4);
-		power_line[5] = (voltage/10) + 0x30;
-		power_line[7] = (voltage%10) + 0x30;
 }
 
-char sensor_line[18] = "                  ";
-void prepare_sensor_line()
-{
-		sensor_line[0] =   SpeedSensors.SENSOR_ONE_MIN/1000 + 0x30;
-		sensor_line[1] =  (SpeedSensors.SENSOR_ONE_MIN%1000)/100 + 0x30;
-		sensor_line[2] =	(SpeedSensors.SENSOR_ONE_MIN%100)/10 + 0x30;
-	  sensor_line[3] =	(SpeedSensors.SENSOR_ONE_MIN%10) + 0x30;
-		
-		sensor_line[13] =  SpeedSensors.SENSOR_ONE_AVERAGE/1000 + 0x30;
-		sensor_line[14] = (SpeedSensors.SENSOR_ONE_AVERAGE%1000)/100 + 0x30;
-		sensor_line[15] =	(SpeedSensors.SENSOR_ONE_AVERAGE%100)/10 + 0x30;
-	  sensor_line[16] =	(SpeedSensors.SENSOR_ONE_AVERAGE%10) + 0x30;
-}
-
-void prepare_data()
-{
-		prepare_sensor_line();
-		prepare_top_line();
-		prepare_power_line();
-}
 
 int main(void)
 {
-	GPS.hh   = 0;
-	GPS.mm   = 0;
-	GPS.ss   = 0;
-	GPS.sats = 0;
-	
   HAL_Init();
   SystemClock_Config();
   MX_GPIO_Init();
+  MX_DMA_Init();
   MX_I2C1_Init();
   MX_SPI2_Init();
   MX_TIM5_Init();
@@ -97,42 +64,24 @@ int main(void)
   MX_USART1_UART_Init();
   MX_USB_DEVICE_Init();
   MX_ADC1_Init();
-	GPS_set_state(1);
-	HAL_GPIO_WritePin(OLED_EN_GPIO_Port, OLED_EN_Pin, GPIO_PIN_SET);
-	HAL_Delay(100);
-	SSD1306_Init();
+	HAL_ADC_Start_DMA(&hadc1, (uint32_t *)ADC_RESULTS, 3);
+	HAL_TIM_Base_Start_IT(&htim6);
+	HAL_GPIO_WritePin(GPIOB, GPIO_PIN_11, GPIO_PIN_SET);	
+	Lora_Init();
 	__HAL_UART_ENABLE_IT(&huart4, UART_IT_RXNE);
-	HAL_TIM_IC_Start_IT(&htim5, TIM_CHANNEL_1);
-	HAL_TIM_IC_Start_IT(&htim5, TIM_CHANNEL_3);
-	SpeedSensors.SENSOR_TWO_MAX = 4585;
-	//HAL_GPIO_WritePin(DOPLER_1_EN_GPIO_Port, DOPLER_1_EN_Pin, GPIO_PIN_SET);
-	HAL_GPIO_WritePin(GPIOC, GPIO_PIN_1, GPIO_PIN_SET);
-	HAL_GPIO_WritePin(DOPLER_2_EN_GPIO_Port, DOPLER_2_EN_Pin, GPIO_PIN_SET);
+	unsigned int delay = 0;
   while (1)
   {
-			SSD1306_GotoXY(0, 0);
-			prepare_data();
-			SSD1306_Puts(top_line, &Font_7x10, SSD1306_COLOR_WHITE);
-			SSD1306_GotoXY(0, 16);
-			SSD1306_Puts("Lora:TX. SQ:  -87", &Font_7x10, SSD1306_COLOR_WHITE);
-			SSD1306_GotoXY(0, 27);
-			SSD1306_Puts("USB(+) | RS485(-)", &Font_7x10, SSD1306_COLOR_WHITE);
-			SSD1306_GotoXY(0, 38);
-			SSD1306_Puts(sensor_line, &Font_7x10, SSD1306_COLOR_WHITE);
-			SSD1306_GotoXY(0, 49);			    
-			SSD1306_Puts(power_line, &Font_7x10, SSD1306_COLOR_WHITE);
-			SSD1306_UpdateScreen();	
-			HAL_Delay(100);	
+			if(HAL_GPIO_ReadPin(BUTTON_GPIO_Port, BUTTON_Pin)==GPIO_PIN_RESET){
+					display_counter = 300;
+					Rfm_Send(lora_data, 24);
+					HAL_Delay(500);
+				  Lora_Polling(); 
+			}
+			HAL_Delay(1000);
+			if(delay++>4){Lora_Polling(); delay=0;}
+			Display(display_counter);	
   }
-}
-
-void GPS_set_state(char state)
-{
-	if(state){
-			HAL_GPIO_WritePin(GPS_EN_GPIO_Port, GPS_EN_Pin, GPIO_PIN_SET);
-	}else{
-			HAL_GPIO_WritePin(GPS_EN_GPIO_Port, GPS_EN_Pin, GPIO_PIN_RESET);
-	}
 }
 
 void SystemClock_Config(void)
@@ -141,6 +90,7 @@ void SystemClock_Config(void)
   RCC_OscInitTypeDef RCC_OscInitStruct;
   RCC_ClkInitTypeDef RCC_ClkInitStruct;
   RCC_PeriphCLKInitTypeDef PeriphClkInit;
+
   RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSE;
   RCC_OscInitStruct.HSEState = RCC_HSE_ON;
   RCC_OscInitStruct.HSEPredivValue = RCC_HSE_PREDIV_DIV1;
@@ -151,9 +101,7 @@ void SystemClock_Config(void)
   {
     Error_Handler();
   }
-
-  RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK|RCC_CLOCKTYPE_SYSCLK
-                              |RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2;
+  RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK|RCC_CLOCKTYPE_SYSCLK|RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2;
   RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_PLLCLK;
   RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
   RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV2;
@@ -162,7 +110,6 @@ void SystemClock_Config(void)
   {
     Error_Handler();
   }
-
   PeriphClkInit.PeriphClockSelection = RCC_PERIPHCLK_ADC|RCC_PERIPHCLK_USB;
   PeriphClkInit.AdcClockSelection = RCC_ADCPCLK2_DIV2;
   PeriphClkInit.UsbClockSelection = RCC_USBCLKSOURCE_PLL;
@@ -170,31 +117,41 @@ void SystemClock_Config(void)
   {
     Error_Handler();
   }
-
   HAL_SYSTICK_Config(HAL_RCC_GetHCLKFreq()/1000);
   HAL_SYSTICK_CLKSourceConfig(SYSTICK_CLKSOURCE_HCLK);
   HAL_NVIC_SetPriority(SysTick_IRQn, 0, 0);
-	
 }
+
 
 static void MX_ADC1_Init(void)
 {
-
   ADC_ChannelConfTypeDef sConfig;
   hadc1.Instance = ADC1;
-  hadc1.Init.ScanConvMode = ADC_SCAN_DISABLE;
+  hadc1.Init.ScanConvMode = ADC_SCAN_ENABLE;
   hadc1.Init.ContinuousConvMode = DISABLE;
   hadc1.Init.DiscontinuousConvMode = DISABLE;
   hadc1.Init.ExternalTrigConv = ADC_SOFTWARE_START;
   hadc1.Init.DataAlign = ADC_DATAALIGN_RIGHT;
-  hadc1.Init.NbrOfConversion = 1;
+  hadc1.Init.NbrOfConversion = 3;
   if (HAL_ADC_Init(&hadc1) != HAL_OK)
   {
     Error_Handler();
   }
   sConfig.Channel = ADC_CHANNEL_4;
   sConfig.Rank = 1;
-  sConfig.SamplingTime = ADC_SAMPLETIME_1CYCLE_5;
+  sConfig.SamplingTime = ADC_SAMPLETIME_55CYCLES_5;
+  if (HAL_ADC_ConfigChannel(&hadc1, &sConfig) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  sConfig.Channel = ADC_CHANNEL_TEMPSENSOR;
+  sConfig.Rank = 2;
+  if (HAL_ADC_ConfigChannel(&hadc1, &sConfig) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  sConfig.Channel = ADC_CHANNEL_4;
+  sConfig.Rank = 3;
   if (HAL_ADC_ConfigChannel(&hadc1, &sConfig) != HAL_OK)
   {
     Error_Handler();
@@ -202,7 +159,6 @@ static void MX_ADC1_Init(void)
 
 }
 
-/* I2C1 init function */
 static void MX_I2C1_Init(void)
 {
 	GPIO_InitTypeDef GPIO_InitStruct;
@@ -227,7 +183,7 @@ static void MX_I2C1_Init(void)
 
 }
 
-/* SPI2 init function */
+
 static void MX_SPI2_Init(void)
 {
 
@@ -238,7 +194,7 @@ static void MX_SPI2_Init(void)
   hspi2.Init.CLKPolarity = SPI_POLARITY_LOW;
   hspi2.Init.CLKPhase = SPI_PHASE_1EDGE;
   hspi2.Init.NSS = SPI_NSS_SOFT;
-  hspi2.Init.BaudRatePrescaler = SPI_BAUDRATEPRESCALER_2;
+  hspi2.Init.BaudRatePrescaler = SPI_BAUDRATEPRESCALER_128;
   hspi2.Init.FirstBit = SPI_FIRSTBIT_MSB;
   hspi2.Init.TIMode = SPI_TIMODE_DISABLE;
   hspi2.Init.CRCCalculation = SPI_CRCCALCULATION_DISABLE;
@@ -250,7 +206,7 @@ static void MX_SPI2_Init(void)
 
 }
 
-/* TIM5 init function */
+
 static void MX_TIM5_Init(void)
 {
 
@@ -259,9 +215,9 @@ static void MX_TIM5_Init(void)
   TIM_IC_InitTypeDef sConfigIC;
 
   htim5.Instance = TIM5;
-  htim5.Init.Prescaler = 720;
+  htim5.Init.Prescaler = 72;
   htim5.Init.CounterMode = TIM_COUNTERMODE_UP;
-  htim5.Init.Period = 9999;
+  htim5.Init.Period = 0;
   htim5.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
   if (HAL_TIM_Base_Init(&htim5) != HAL_OK)
   {
@@ -289,7 +245,7 @@ static void MX_TIM5_Init(void)
   sConfigIC.ICPolarity = TIM_INPUTCHANNELPOLARITY_RISING;
   sConfigIC.ICSelection = TIM_ICSELECTION_DIRECTTI;
   sConfigIC.ICPrescaler = TIM_ICPSC_DIV1;
-  sConfigIC.ICFilter = 15;
+  sConfigIC.ICFilter = 0;
   if (HAL_TIM_IC_ConfigChannel(&htim5, &sConfigIC, TIM_CHANNEL_1) != HAL_OK)
   {
     Error_Handler();
@@ -304,18 +260,15 @@ static void MX_TIM5_Init(void)
 
 static void MX_TIM6_Init(void)
 {
-
   TIM_MasterConfigTypeDef sMasterConfig;
-
   htim6.Instance = TIM6;
-  htim6.Init.Prescaler = 72;
+  htim6.Init.Prescaler = 4800;
   htim6.Init.CounterMode = TIM_COUNTERMODE_UP;
-  htim6.Init.Period = 1000;
+  htim6.Init.Period = 10000;
   if (HAL_TIM_Base_Init(&htim6) != HAL_OK)
   {
     Error_Handler();
   }
-
   sMasterConfig.MasterOutputTrigger = TIM_TRGO_RESET;
   sMasterConfig.MasterSlaveMode = TIM_MASTERSLAVEMODE_DISABLE;
   if (HAL_TIMEx_MasterConfigSynchronization(&htim6, &sMasterConfig) != HAL_OK)
@@ -327,7 +280,6 @@ static void MX_TIM6_Init(void)
 
 static void MX_UART4_Init(void)
 {
-
   huart4.Instance = UART4;
   huart4.Init.BaudRate = 9600;
   huart4.Init.WordLength = UART_WORDLENGTH_8B;
@@ -361,46 +313,44 @@ static void MX_USART1_UART_Init(void)
 
 }
 
+static void MX_DMA_Init(void) 
+{
+  __HAL_RCC_DMA1_CLK_ENABLE();
+  HAL_NVIC_SetPriority(DMA1_Channel1_IRQn, 0, 0);
+  HAL_NVIC_EnableIRQ(DMA1_Channel1_IRQn);
+
+}
+
 static void MX_GPIO_Init(void)
 {
 
   GPIO_InitTypeDef GPIO_InitStruct;
-
   __HAL_RCC_GPIOD_CLK_ENABLE();
   __HAL_RCC_GPIOC_CLK_ENABLE();
   __HAL_RCC_GPIOA_CLK_ENABLE();
   __HAL_RCC_GPIOB_CLK_ENABLE();
-
-  HAL_GPIO_WritePin(GPIOC, OLED_EN_Pin|STEP_UP_EN_Pin|LED1_Pin|LED2_Pin 
-                          |RS485_DIR_Pin, GPIO_PIN_RESET);
-
+  HAL_GPIO_WritePin(GPIOC, OLED_EN_Pin|STEP_UP_EN_Pin|LED1_Pin|LED2_Pin |RS485_DIR_Pin, GPIO_PIN_RESET);
   HAL_GPIO_WritePin(GPIOA, DOPLER_2_EN_Pin|DOPLER_1_EN_Pin|GPS_EN_Pin, GPIO_PIN_RESET);
-
-  HAL_GPIO_WritePin(GPIOB, RFM_RESET_Pin|SPI_CS_Pin, GPIO_PIN_RESET);
-
-  GPIO_InitStruct.Pin = OLED_EN_Pin|STEP_UP_EN_Pin|LED1_Pin|LED2_Pin 
-                          |RS485_DIR_Pin;
+  HAL_GPIO_WritePin(GPIOB, RFM_RESET_Pin|GPIO_PIN_12, GPIO_PIN_RESET);
+  GPIO_InitStruct.Pin = OLED_EN_Pin|STEP_UP_EN_Pin|LED1_Pin|LED2_Pin |RS485_DIR_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
-
   GPIO_InitStruct.Pin = DOPLER_2_EN_Pin|DOPLER_1_EN_Pin|GPS_EN_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
-
-  GPIO_InitStruct.Pin = RFM_IO0_Pin|RFM_IO1_Pin|RFM_IO2_Pin|RFM_IO3_Pin 
-                          |RFM_IO4_Pin|RFM_IO5_Pin;
+  GPIO_InitStruct.Pin = RFM_IO0_Pin|RFM_IO1_Pin|GPIO_PIN_2|RFM_IO3_Pin |RFM_IO4_Pin|RFM_IO5_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
-  GPIO_InitStruct.Pin = RFM_RESET_Pin|SPI_CS_Pin;
+  GPIO_InitStruct.Pin = RFM_RESET_Pin|GPIO_PIN_12;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
   GPIO_InitStruct.Pin = BUTTON_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Pull = GPIO_PULLUP;
   HAL_GPIO_Init(BUTTON_GPIO_Port, &GPIO_InitStruct);
   GPIO_InitStruct.Pin = PPS_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_IT_RISING;
@@ -409,7 +359,6 @@ static void MX_GPIO_Init(void)
   HAL_NVIC_SetPriority(EXTI15_10_IRQn, 0, 0);
   HAL_NVIC_EnableIRQ(EXTI15_10_IRQn);
 }
-
 
 void Error_Handler(void)
 {
@@ -420,11 +369,9 @@ void Error_Handler(void)
 
 #ifdef USE_FULL_ASSERT
 
-
 void assert_failed(uint8_t* file, uint32_t line)
 {
 
 }
 
 #endif
-

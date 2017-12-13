@@ -24,6 +24,10 @@ Public Class LoraController
         Dim th = New Threading.Thread(AddressOf RadioPolling)
         th.IsBackground = True
         th.Start()
+
+        Dim wdt As New Threading.Thread(AddressOf Watchdog)
+        wdt.IsBackground = True
+        wdt.Start()
     End Sub
 
     Public Function ReadReg(addr As Byte) As Byte
@@ -31,7 +35,8 @@ Public Class LoraController
             Dim response = _bus.Request(0, 3, {addr})
             Return response.Data(0)
         Catch ex As Exception
-            RaiseEvent Logger("ERR", ex.Message)
+            Console.ForegroundColor = ConsoleColor.Red
+            Console.WriteLine("LORA: " + ex.Message)
         End Try
         Return 0
     End Function
@@ -40,7 +45,8 @@ Public Class LoraController
         Try
             Dim response = _bus.Request(0, 4, {addr, val})
         Catch ex As Exception
-            RaiseEvent Logger("ERR", ex.Message)
+            Console.ForegroundColor = ConsoleColor.Red
+            Console.WriteLine("LORA: " + ex.Message)
         End Try
     End Sub
 
@@ -76,7 +82,6 @@ Public Class LoraController
                         packet.IrqFlags = irq
                         packet.ModemStatus = modemStatus
                         If irq.TxDone Then RaiseEvent OnTxComplite()
-
                         If irq.RxDone And irq.PayloadCrcError = False Then
                             If response.Data.Length > 3 Then
                                 packet.RxOnGoingRSSI = response.Data(2) - 137
@@ -91,31 +96,57 @@ Public Class LoraController
                         End If
                     End If
                 Catch ex As Exception
-                    RaiseEvent Logger("ERR", ex.Message)
+                    Console.ForegroundColor = ConsoleColor.Red
+                    Console.WriteLine("LORA: " + ex.Message)
                 End Try
                 Threading.Thread.Sleep(10)
             Else
                 Dim ports = IO.Ports.SerialPort.GetPortNames
+                Console.ForegroundColor = ConsoleColor.Green
+                Console.WriteLine("LORA: searching device...")
                 For Each port In ports
                     Try
                         Dim test = New SimplSerialBus(port)
                         test.SerialDevice.DeviceSpeed = 115200
                         test.Connect()
-                        If (test.RequestDeviceInfo(0).DeviceName.ToLower.Contains(_deviceId.ToLower)) Then
+                        Dim devName = test.RequestDeviceInfo(0).DeviceName
+                        If (devName.ToLower.Contains(_deviceId.ToLower)) Then
                             test.Disconnect()
                             _bus = New SimplSerialBus(port)
                             _bus.SerialDevice.DeviceSpeed = 115200
                             _bus.Connect()
                             _deviceFounded = True
+                            Console.ForegroundColor = ConsoleColor.Green
+                            Console.WriteLine("LORA: " + port)
                         End If
                     Catch ex As Exception
+
                     End Try
                 Next
+                Threading.Thread.Sleep(1000)
             End If
         End While
     End Sub
 
+    Private Sub Watchdog()
+        While True
+            Try
+                _bus.Request(New SSRequest(100, 1, {}), 3)
+                Console.ForegroundColor = ConsoleColor.DarkYellow
+                Console.WriteLine("WATCHDOG RESET")
+            Catch ex As Exception
+                Console.ForegroundColor = ConsoleColor.White
+                Console.WriteLine("WATCHDOG RESET FAILED")
+            End Try
+            Threading.Thread.Sleep(60000)
+        End While
+    End Sub
     Public Sub RadioWrite(data As Byte())
-        _bus.Request(0, 2, data)
+        Try
+            _bus.Request(0, 2, data)
+        Catch ex As Exception
+            Console.ForegroundColor = ConsoleColor.Red
+            Console.WriteLine("LORA: " + ex.Message)
+        End Try
     End Sub
 End Class

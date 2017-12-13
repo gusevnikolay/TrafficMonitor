@@ -1,14 +1,62 @@
+#include "stm32f1xx_hal.h"
 #include "nmea_decoder.h"
 #include <string.h>
 #include <math.h>
 #include <stdint.h>
 char          line[255];
 unsigned char cursor_pointer = 0;
+extern UART_HandleTypeDef huart4;
 
-extern GPS_t GPS;
-
-
+GPS_t GPS;
 int ps;
+char gps_state_line[20] = "Sat: 0 | 00:00:00";
+char gps_coordinates[20]= "                 ";
+extern uint8_t lora_data[19];
+
+void nmea_second_process(void)
+{
+	if(HAL_GPIO_ReadPin(GPS_EN_GPIO_Port, GPS_EN_Pin)==GPIO_PIN_SET){
+			gps_state_line[4] = (char)(GPS.sats/10 +0x30);
+			gps_state_line[5] = (char)(GPS.sats%10 +0x30);
+	} else {
+			GPS.ss += 1;
+			if(GPS.ss>59){GPS.ss = 0; GPS.mm+=1;}
+			if(GPS.mm>59){GPS.mm = 0; GPS.hh+=1;}
+			if(GPS.hh>23){GPS.hh = 0;}
+			gps_state_line[4] = '-';
+		  gps_state_line[5] = '-';
+	}	
+	gps_state_line[9]  = (char)(GPS.hh/10 +0x30);
+	gps_state_line[10] = (char)(GPS.hh%10 +0x30);
+	gps_state_line[12] = (char)(GPS.mm/10 +0x30);
+	gps_state_line[13] = (char)(GPS.mm%10 +0x30);
+	gps_state_line[15] = (char)(GPS.ss/10 +0x30);
+	gps_state_line[16] = (char)(GPS.ss%10 +0x30);
+	if(GPS.hh == 0 && GPS.mm<30){
+			HAL_GPIO_WritePin(GPS_EN_GPIO_Port, GPS_EN_Pin, GPIO_PIN_SET);
+	}else{
+			//HAL_GPIO_WritePin(GPS_EN_GPIO_Port, GPS_EN_Pin, GPIO_PIN_RESET);
+	}
+	lora_data[9] = GPS.hh;
+	lora_data[10] = GPS.mm;
+	lora_data[11] = GPS.ss;
+	if(GPS.latitude_string[0]>0){
+			for(int i=0;i<9;i++)
+			{
+					gps_coordinates[i] = GPS.longitude_string[i];
+					gps_coordinates[i+10] = GPS.latitude_string[i];
+			}
+			lora_data[13] = (GPS.latitude_string[0]-0x30)*10 + GPS.latitude_string[1]-0x30;
+			lora_data[14] = (GPS.latitude_string[2]-0x30)*10 + GPS.latitude_string[3]-0x30;;
+			lora_data[15] = (GPS.latitude_string[5]-0x30)*10 + GPS.latitude_string[6]-0x30;;
+			lora_data[16] = (GPS.latitude_string[7]-0x30)*10 + GPS.latitude_string[8]-0x30;;	
+			lora_data[17] = (GPS.longitude_string[1]-0x30)*10 + GPS.longitude_string[2]-0x30;
+			lora_data[18] = (GPS.longitude_string[3]-0x30)*10 + GPS.longitude_string[4]-0x30;;
+			lora_data[19] = (GPS.longitude_string[6]-0x30)*10 + GPS.longitude_string[7]-0x30;;
+			lora_data[20] = (GPS.longitude_string[8]-0x30)*10 + GPS.longitude_string[9]-0x30;;
+	}
+}
+
 void nmea_append(char ch)
 {
 	if(cursor_pointer>255)cursor_pointer = 0;
@@ -66,4 +114,10 @@ void nmea_append(char ch)
 	}else{
 			line[cursor_pointer++] = ch;
 	}
+}
+
+void UART4_IRQHandler(void)
+{
+	nmea_append(UART4->DR);
+  HAL_UART_IRQHandler(&huart4);
 }

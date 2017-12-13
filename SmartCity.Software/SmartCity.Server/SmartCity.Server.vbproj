@@ -5,12 +5,13 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{B3E5534D-76E5-4D08-9451-A92E8168F57D}</ProjectGuid>
-    <OutputType>Exe</OutputType>
-    <StartupObject>SmartCity.Server.App</StartupObject>
+    <OutputType>Library</OutputType>
+    <StartupObject>
+    </StartupObject>
     <RootNamespace>SmartCity.Server</RootNamespace>
     <AssemblyName>SmartCity.Server</AssemblyName>
     <FileAlignment>512</FileAlignment>
-    <MyType>Console</MyType>
+    <MyType>Windows</MyType>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <TargetFrameworkProfile />
   </PropertyGroup>
@@ -50,7 +51,10 @@
     <Reference Include="Bwl.Framework">
       <HintPath>..\refs\Bwl.Framework.dll</HintPath>
     </Reference>
-    <Reference Include="MySql.Data, Version=6.10.4.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
+    <Reference Include="MySql.Data, Version=6.10.5.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\refs\MySql.Data.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
@@ -67,13 +71,12 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="App.vb" />
-    <Compile Include="modules\AccessPointController.vb" />
-    <Compile Include="modules\ClientProcessor.vb" />
-    <Compile Include="Devices\Interfaces\BaseDevice.vb" />
-    <Compile Include="modules\DeviceController.vb" />
+    <Compile Include="ApplicationMonitor.vb" />
+    <Compile Include="Devices\DeviceManager.vb" />
+    <Compile Include="modules\DataBase.vb" />
+    <Compile Include="modules\server\ClientProcessor.vb" />
+    <Compile Include="modules\Tool.vb" />
     <Compile Include="Devices\Interfaces\IDevice.vb" />
-    <Compile Include="Devices\Interfaces\IDeviceDriver.vb" />
     <Compile Include="Devices\TrafficMonitor.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
@@ -90,7 +93,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="modules\TcpServer.vb" />
+    <Compile Include="modules\server\TcpServer.vb" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="My Project\Resources.resx">

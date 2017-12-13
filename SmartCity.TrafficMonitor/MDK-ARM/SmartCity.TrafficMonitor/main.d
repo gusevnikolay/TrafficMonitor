@@ -40,7 +40,4 @@ smartcity.trafficmonitor\main.o: ../Inc/usbd_conf.h
 smartcity.trafficmonitor\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
 smartcity.trafficmonitor\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
 smartcity.trafficmonitor\main.o: ../Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_def.h
-smartcity.trafficmonitor\main.o: ../Inc/ssd1306.h
-smartcity.trafficmonitor\main.o: ../Inc/fonts.h
-smartcity.trafficmonitor\main.o: ../Inc/nmea_decoder.h
-smartcity.trafficmonitor\main.o: ../Inc/speed.h
+smartcity.trafficmonitor\main.o: ../Inc/bwl_simplserial.h

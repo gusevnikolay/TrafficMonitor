@@ -30,7 +30,7 @@ function traffic_monitor_update() {
         var data_count = json.result.length;
         for (var i = 0; i < data_count; i++) {
             if (_lastid < parseInt(json.result[i].id)) _lastid = parseInt(json.result[i].id);
-            $("#traffic_monitor_table").prepend("<tr onclick='traffic_monitor_show_map(this)'><td>" + json.result[i].id+"</td><td>"+json.result[i].device_id + "</td><td>" + json.result[i].flow_speed + "</td><td>" + json.result[i].latitude + "</td><td>" + json.result[i].longitude + "</td><td>" + json.result[i].device_time + "</td><td>" + json.result[i].input_voltage + "</td><td>" + json.result[i].battery_voltage + "</td></tr>");
+            $("#traffic_monitor_table").prepend("<tr onclick='traffic_monitor_show_map(this)'><td>" + json.result[i].id + "</td><td>" + json.result[i].device_id + "</td><td>" + json.result[i].mean_speed + "</td><td>" + json.result[i].latitude + "</td><td>" + json.result[i].longitude + "</td><td>" + json.result[i].device_time + "</td><td>" + json.result[i].input_voltage + "</td><td>" + json.result[i].battery_voltage + "</td><td>" + json.result[i].rssi + "</td><td>" + json.result[i].rssi_packet + "</td></tr>");
         }
     });
 }

@@ -1,19 +1,20 @@
 ﻿Imports System.IO.Ports
+Imports Bwl.Framework
 Imports Bwl.Hardware.SimplSerial
 
 Public Class App
-    Private _ss As SimplSerialBus = New SimplSerialBus
-    Private _radio As LoraController
+    Private _ip As StringSetting = New StringSetting(_storage, "IP", "localhost")
+    Private _port As StringSetting = New StringSetting(_storage, "Port", "8520")
+    Private _key As StringSetting = New StringSetting(_storage, "key", "0000000001")
+    Private _ap As AccessPoint = Nothing
 
     Private Sub App_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Try
-            _radio = New LoraController()
-            _radio.Start()
-            AddHandler _radio.onRxLoraPacket, AddressOf onPacketHandler
-            AddHandler _radio.OnTxComplite, AddressOf onTxHandler
-            AddHandler _radio.onServicePacket, AddressOf onServiceRadioPacketHandler
-            _logger.AddMessage("Finded: " + _ss.SerialDevice.DeviceAddress)
-            _logger.CollectLogs(_ss)
+            _ap = New AccessPoint(_ip.Value, _port.Value, _key.Value)
+            _ap.Run()
+            AddHandler _ap.Lora.onRxLoraPacket, AddressOf onPacketHandler
+            AddHandler _ap.Lora.OnTxComplite, AddressOf onTxHandler
+            AddHandler _ap.Lora.onServicePacket, AddressOf onServiceRadioPacketHandler
         Catch ex As Exception
             _logger.AddError(ex.Message)
         End Try
@@ -82,7 +83,7 @@ Public Class App
     Private Sub bReadReg_Click(sender As Object, e As EventArgs) Handles bReadReg.Click
         Try
             Dim addr = Convert.ToByte(textRegister.Text, 16)
-            textRegValue.Text = (_radio.ReadReg(addr)).ToString()
+            textRegValue.Text = (_ap.Lora.ReadReg(addr)).ToString()
             _logger.AddMessage("Reading ok")
         Catch ex As Exception
             _logger.AddError(ex.Message)
@@ -97,7 +98,7 @@ Public Class App
         Try
             Dim addr = Convert.ToByte(textRegister.Text, 16)
             Dim value = Convert.ToByte(textRegValue.Text, 16)
-            _radio.WriteReg(addr, value)
+            _ap.Lora.WriteReg(addr, value)
             _logger.AddMessage("Writing ok")
         Catch ex As Exception
             _logger.AddError(ex.Message)
@@ -107,6 +108,6 @@ Public Class App
 
     Private Sub bSendLora_Click(sender As Object, e As EventArgs) Handles bSendLora.Click
         Dim bytes = StringToByteArray(textSendToLora.Text.Replace(" ", ""))
-        _radio.RadioWrite(bytes)
+        _ap.Lora.RadioWrite(bytes)
     End Sub
 End Class

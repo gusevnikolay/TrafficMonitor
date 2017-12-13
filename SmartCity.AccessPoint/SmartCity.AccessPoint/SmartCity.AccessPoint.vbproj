@@ -17,7 +17,7 @@
     <DebugType>full</DebugType>
     <DefineDebug>true</DefineDebug>
     <DefineTrace>true</DefineTrace>
-    <OutputPath>..\debug\dll\</OutputPath>
+    <OutputPath>..\debug\AccessPointApp.DLL\</OutputPath>
     <DocumentationFile>SmartCity.AccessPoint.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
   </PropertyGroup>
@@ -26,7 +26,7 @@
     <DefineDebug>false</DefineDebug>
     <DefineTrace>true</DefineTrace>
     <Optimize>true</Optimize>
-    <OutputPath>..\release\dll\</OutputPath>
+    <OutputPath>..\release\AccessPointApp.GUI\</OutputPath>
     <DocumentationFile>SmartCity.AccessPoint.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
   </PropertyGroup>
@@ -71,6 +71,8 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AccessPoint.vb" />
+    <Compile Include="Crc32.vb" />
     <Compile Include="LoraController.vb" />
     <Compile Include="LoraPacket.vb" />
     <Compile Include="MessageQueue.vb" />
@@ -90,6 +92,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="ServerConnector.vb" />
+    <Compile Include="Watchdog.vb" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="My Project\Resources.resx">
