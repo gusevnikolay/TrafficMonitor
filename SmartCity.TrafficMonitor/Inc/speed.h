@@ -12,4 +12,5 @@ typedef struct
 	uint16_t SENSOR_TWO_SPEED;	
 } Doppler_t;
 
+void TIM5_IRQHandler(void);
 void doppler_state_set(char sensor, char state);

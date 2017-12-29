@@ -54,7 +54,6 @@ Partial Class App
         Me.ListLoraReceived = New System.Windows.Forms.ListBox()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
-        Me.TabPage3 = New System.Windows.Forms.TabPage()
         Me.timer = New System.Windows.Forms.Timer(Me.components)
         Me.SmartPoll.SuspendLayout()
         Me.TabPage2.SuspendLayout()
@@ -289,7 +288,6 @@ Partial Class App
         '
         Me.SmartPoll.Controls.Add(Me.TabPage1)
         Me.SmartPoll.Controls.Add(Me.TabPage2)
-        Me.SmartPoll.Controls.Add(Me.TabPage3)
         Me.SmartPoll.Location = New System.Drawing.Point(2, 27)
         Me.SmartPoll.Name = "SmartPoll"
         Me.SmartPoll.SelectedIndex = 0
@@ -388,16 +386,6 @@ Partial Class App
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "RFM95 Flags"
         '
-        'TabPage3
-        '
-        Me.TabPage3.Location = New System.Drawing.Point(4, 22)
-        Me.TabPage3.Name = "TabPage3"
-        Me.TabPage3.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage3.Size = New System.Drawing.Size(682, 363)
-        Me.TabPage3.TabIndex = 2
-        Me.TabPage3.Text = "City Logs"
-        Me.TabPage3.UseVisualStyleBackColor = True
-        '
         'timer
         '
         Me.timer.Enabled = True
@@ -457,6 +445,5 @@ Partial Class App
     Friend WithEvents ListLoraReceived As ListBox
     Friend WithEvents GroupBox2 As GroupBox
     Friend WithEvents GroupBox1 As GroupBox
-    Friend WithEvents TabPage3 As TabPage
     Friend WithEvents timer As Timer
 End Class

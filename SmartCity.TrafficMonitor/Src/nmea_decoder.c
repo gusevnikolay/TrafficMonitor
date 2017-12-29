@@ -12,7 +12,7 @@ int ps;
 char gps_state_line[20] = "Sat: 0 | 00:00:00";
 char gps_coordinates[20]= "                 ";
 extern uint8_t lora_data[19];
-
+extern void planned_tasks();
 void nmea_second_process(void)
 {
 	if(HAL_GPIO_ReadPin(GPS_EN_GPIO_Port, GPS_EN_Pin)==GPIO_PIN_SET){
@@ -32,11 +32,6 @@ void nmea_second_process(void)
 	gps_state_line[13] = (char)(GPS.mm%10 +0x30);
 	gps_state_line[15] = (char)(GPS.ss/10 +0x30);
 	gps_state_line[16] = (char)(GPS.ss%10 +0x30);
-	if(GPS.hh == 0 && GPS.mm<30){
-			HAL_GPIO_WritePin(GPS_EN_GPIO_Port, GPS_EN_Pin, GPIO_PIN_SET);
-	}else{
-			//HAL_GPIO_WritePin(GPS_EN_GPIO_Port, GPS_EN_Pin, GPIO_PIN_RESET);
-	}
 	lora_data[9] = GPS.hh;
 	lora_data[10] = GPS.mm;
 	lora_data[11] = GPS.ss;

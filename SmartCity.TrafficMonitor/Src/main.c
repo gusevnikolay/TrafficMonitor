@@ -33,23 +33,35 @@ extern void Display(unsigned int state);
 extern void Lora_Init(void);
 extern void Lora_Polling(void);
 extern void Rfm_Send(uint8_t *data, uint8_t length);
+extern void speed_proccess(void);
+uint16_t    display_counter = 600;
+uint8_t lora_data[24] = {1,0,0,0,1,0,12,48,36,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
 
-uint16_t    display_counter = 10;
-
+unsigned char lora_delay = 0;
 void regular_processes(void)
 {
+		if(lora_delay++>120){Rfm_Send(lora_data, 24);lora_delay=0;}
 		nmea_second_process();
+		speed_proccess();
 		HAL_ADC_Start_IT(&hadc1);
 		if(display_counter>0)display_counter--;
+		Lora_Polling(); 
 }
 
-uint8_t lora_data[24] = {1,0,0,0,1,0,12,48,36,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+
+	
 void sserial_process_request(unsigned char port)
 {
 	
 }
 
+void planned_tasks()
+{
+			
+}
 
+
+unsigned char delay = 0;
 int main(void)
 {
   HAL_Init();
@@ -69,17 +81,18 @@ int main(void)
 	HAL_GPIO_WritePin(GPIOB, GPIO_PIN_11, GPIO_PIN_SET);	
 	Lora_Init();
 	__HAL_UART_ENABLE_IT(&huart4, UART_IT_RXNE);
-	unsigned int delay = 0;
+	HAL_GPIO_WritePin(DOPLER_2_EN_GPIO_Port, DOPLER_2_EN_Pin, GPIO_PIN_SET);
+	HAL_TIM_OC_Start_IT(&htim5, TIM_CHANNEL_1);
   while (1)
   {
 			if(HAL_GPIO_ReadPin(BUTTON_GPIO_Port, BUTTON_Pin)==GPIO_PIN_RESET){
-					display_counter = 300;
-					Rfm_Send(lora_data, 24);
+					display_counter = 600;
 					HAL_Delay(500);
-				  Lora_Polling(); 
+				  
 			}
-			HAL_Delay(1000);
-			if(delay++>4){Lora_Polling(); delay=0;}
+			if(display_counter>0)	HAL_GPIO_WritePin(GPS_EN_GPIO_Port, GPS_EN_Pin, GPIO_PIN_SET);
+			else 	HAL_GPIO_WritePin(GPS_EN_GPIO_Port, GPS_EN_Pin, GPIO_PIN_RESET);
+			HAL_Delay(500);		
 			Display(display_counter);	
   }
 }
@@ -139,7 +152,7 @@ static void MX_ADC1_Init(void)
   }
   sConfig.Channel = ADC_CHANNEL_4;
   sConfig.Rank = 1;
-  sConfig.SamplingTime = ADC_SAMPLETIME_55CYCLES_5;
+  sConfig.SamplingTime = ADC_SAMPLETIME_1CYCLE_5;
   if (HAL_ADC_ConfigChannel(&hadc1, &sConfig) != HAL_OK)
   {
     Error_Handler();
@@ -150,7 +163,7 @@ static void MX_ADC1_Init(void)
   {
     Error_Handler();
   }
-  sConfig.Channel = ADC_CHANNEL_4;
+  sConfig.Channel = ADC_CHANNEL_VREFINT;
   sConfig.Rank = 3;
   if (HAL_ADC_ConfigChannel(&hadc1, &sConfig) != HAL_OK)
   {
@@ -215,9 +228,9 @@ static void MX_TIM5_Init(void)
   TIM_IC_InitTypeDef sConfigIC;
 
   htim5.Instance = TIM5;
-  htim5.Init.Prescaler = 72;
+  htim5.Init.Prescaler = 12000;
   htim5.Init.CounterMode = TIM_COUNTERMODE_UP;
-  htim5.Init.Period = 0;
+  htim5.Init.Period = 65535;
   htim5.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
   if (HAL_TIM_Base_Init(&htim5) != HAL_OK)
   {

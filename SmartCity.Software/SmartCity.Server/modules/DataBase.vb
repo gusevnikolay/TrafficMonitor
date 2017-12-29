@@ -20,7 +20,7 @@ Public Class DataBase
 
     Public Sub Open()
         _con = New MySqlConnection()
-        Dim setting = "server=city.spacekennel.ru;uid=" + _user + ";pwd=" & _password & ";database=" + _base
+        Dim setting = "server=localhost;uid=" + _user + ";pwd=" & _password & ";database=" + _base
         _con.ConnectionString = setting
         Try
             _con.Open()
@@ -36,6 +36,8 @@ Public Class DataBase
             cmd.ExecuteNonQuery()
         Catch ex As Exception
             _logger.AddMessage(ex.Message)
+            _con.Dispose()
+            Open()
         End Try
     End Sub
 End Class

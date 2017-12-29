@@ -2,7 +2,8 @@
 #include "lora.h"
 #include <stdint.h>
 extern SPI_HandleTypeDef hspi2;
-char lora_status_line[18] = "Lora:TX. SQ:  -87";
+char lora_status_line[18] = "Lora:Wait  SQ: -87";
+
 
 void Rfm_Write(uint8_t reg, uint8_t data)
 {
@@ -32,7 +33,7 @@ void Rfm_Send(uint8_t *data, uint8_t length)
 		Rfm_Write(0xD, Rfm_Read(0xE));
 		for(int i=0; i<length;i++)Rfm_Write(0, data[i]);
 		Rfm_Write(0x1, 0x83);
-		lora_status_line[5] = 'T'; lora_status_line[6] = 'X'; lora_status_line[6] = ' ';
+		lora_status_line[5] = 'T'; lora_status_line[6] = 'X'; lora_status_line[7] = '-'; lora_status_line[8] = '>';
 }
 
 void Lora_Init(void)
@@ -64,7 +65,7 @@ void Lora_Polling()
 {
 		unsigned char irq = Rfm_Read(0x12);
 	  unsigned char mode = Rfm_Read(0x1);
-	  if((irq & 0x8)>0 && mode==0x83){lora_status_line[5] = 'T'; lora_status_line[6] = 'X'; lora_status_line[6] = '+'; 	Rfm_Write(0x12, irq);Rfm_Write(0x1, 0x81);}
-		if(mode == 0x81){lora_status_line[5] = 'I'; lora_status_line[6] = 'd'; lora_status_line[6] = 'l';}
+	  if((irq & 0x8)>0){lora_status_line[5] = 'T'; lora_status_line[6] = 'X'; lora_status_line[7] = '+'; lora_status_line[8] = '+';	Rfm_Write(0x12, irq);Rfm_Write(0x1, 0x81);}
+		else if(mode == 0x81){lora_status_line[5] = 'W'; lora_status_line[6] = 'a'; lora_status_line[7] = 'i'; lora_status_line[8] = 't';}
 		
 }

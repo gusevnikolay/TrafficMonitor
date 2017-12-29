@@ -5,7 +5,6 @@
 extern PCD_HandleTypeDef hpcd_USB_FS;
 extern DMA_HandleTypeDef hdma_adc1;
 extern ADC_HandleTypeDef hadc1;
-extern TIM_HandleTypeDef htim5;
 extern TIM_HandleTypeDef htim6;
 
 void NMI_Handler(void)
@@ -89,11 +88,6 @@ void USB_LP_CAN1_RX0_IRQHandler(void)
 void EXTI15_10_IRQHandler(void)
 {
   HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_15);
-}
-
-void TIM5_IRQHandler(void)
-{
-  HAL_TIM_IRQHandler(&htim5);
 }
 
 

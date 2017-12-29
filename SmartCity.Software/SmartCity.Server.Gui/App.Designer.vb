@@ -25,11 +25,12 @@ Partial Class App
         Me.components = New System.ComponentModel.Container()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
-        Me.TabPage2 = New System.Windows.Forms.TabPage()
-        Me.listAccessPoints = New System.Windows.Forms.ListBox()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.bUpdateAccessPointsList = New System.Windows.Forms.Button()
+        Me.listAccessPoints = New System.Windows.Forms.ListBox()
+        Me.TabPage2 = New System.Windows.Forms.TabPage()
         Me.timer = New System.Windows.Forms.Timer(Me.components)
+        Me.TabPage3 = New System.Windows.Forms.TabPage()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
@@ -44,6 +45,7 @@ Partial Class App
         '
         Me.TabControl1.Controls.Add(Me.TabPage1)
         Me.TabControl1.Controls.Add(Me.TabPage2)
+        Me.TabControl1.Controls.Add(Me.TabPage3)
         Me.TabControl1.Location = New System.Drawing.Point(2, 27)
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
@@ -60,24 +62,6 @@ Partial Class App
         Me.TabPage1.TabIndex = 0
         Me.TabPage1.Text = "TCP Clients"
         Me.TabPage1.UseVisualStyleBackColor = True
-        '
-        'TabPage2
-        '
-        Me.TabPage2.Location = New System.Drawing.Point(4, 22)
-        Me.TabPage2.Name = "TabPage2"
-        Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage2.Size = New System.Drawing.Size(662, 262)
-        Me.TabPage2.TabIndex = 1
-        Me.TabPage2.Text = "TabPage2"
-        Me.TabPage2.UseVisualStyleBackColor = True
-        '
-        'listAccessPoints
-        '
-        Me.listAccessPoints.FormattingEnabled = True
-        Me.listAccessPoints.Location = New System.Drawing.Point(6, 19)
-        Me.listAccessPoints.Name = "listAccessPoints"
-        Me.listAccessPoints.Size = New System.Drawing.Size(213, 199)
-        Me.listAccessPoints.TabIndex = 0
         '
         'GroupBox1
         '
@@ -99,10 +83,37 @@ Partial Class App
         Me.bUpdateAccessPointsList.Text = "Update"
         Me.bUpdateAccessPointsList.UseVisualStyleBackColor = True
         '
+        'listAccessPoints
+        '
+        Me.listAccessPoints.FormattingEnabled = True
+        Me.listAccessPoints.Location = New System.Drawing.Point(6, 19)
+        Me.listAccessPoints.Name = "listAccessPoints"
+        Me.listAccessPoints.Size = New System.Drawing.Size(213, 199)
+        Me.listAccessPoints.TabIndex = 0
+        '
+        'TabPage2
+        '
+        Me.TabPage2.Location = New System.Drawing.Point(4, 22)
+        Me.TabPage2.Name = "TabPage2"
+        Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
+        Me.TabPage2.Size = New System.Drawing.Size(662, 262)
+        Me.TabPage2.TabIndex = 1
+        Me.TabPage2.Text = "Devices"
+        Me.TabPage2.UseVisualStyleBackColor = True
+        '
         'timer
         '
         Me.timer.Enabled = True
         Me.timer.Interval = 2000
+        '
+        'TabPage3
+        '
+        Me.TabPage3.Location = New System.Drawing.Point(4, 22)
+        Me.TabPage3.Name = "TabPage3"
+        Me.TabPage3.Size = New System.Drawing.Size(662, 262)
+        Me.TabPage3.TabIndex = 2
+        Me.TabPage3.Text = "Data base"
+        Me.TabPage3.UseVisualStyleBackColor = True
         '
         'App
         '
@@ -111,7 +122,7 @@ Partial Class App
         Me.ClientSize = New System.Drawing.Size(672, 445)
         Me.Controls.Add(Me.TabControl1)
         Me.Name = "App"
-        Me.Text = "Form1"
+        Me.Text = "Smart City Server App"
         Me.Controls.SetChildIndex(Me.logWriter, 0)
         Me.Controls.SetChildIndex(Me.TabControl1, 0)
         Me.TabControl1.ResumeLayout(False)
@@ -129,4 +140,5 @@ Partial Class App
     Friend WithEvents listAccessPoints As ListBox
     Friend WithEvents TabPage2 As TabPage
     Friend WithEvents timer As Timer
+    Friend WithEvents TabPage3 As TabPage
 End Class

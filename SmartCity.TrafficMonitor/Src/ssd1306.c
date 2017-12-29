@@ -16,7 +16,7 @@ static SSD1306_t SSD1306;
 
 uint32_t ADC_RESULTS[3];
 extern char gps_state_line[20];
-extern char gps_coordinates[20];
+extern char speed_status_line[18];
 extern char lora_status_line[18];
 extern uint8_t lora_data[19];
 
@@ -36,20 +36,20 @@ void Display(unsigned int state)
 				SSD1306_GotoXY(0, 38);
 				SSD1306_Puts(lora_status_line, &Font_7x10, SSD1306_COLOR_WHITE);
 				SSD1306_GotoXY(0, 27);
-				SSD1306_Puts("USB(+) | RS485(-)", &Font_7x10, SSD1306_COLOR_WHITE);
+				SSD1306_Puts("USB(+)  | RS485(-)", &Font_7x10, SSD1306_COLOR_WHITE);
 				SSD1306_GotoXY(0, 16);
 				
-				SSD1306_Puts(gps_coordinates, &Font_7x10, SSD1306_COLOR_WHITE);
+				SSD1306_Puts(speed_status_line, &Font_7x10, SSD1306_COLOR_WHITE);
 				
 				SSD1306_GotoXY(0, 49);
-				uint16_t vbat = 14.7*2*ADC_RESULTS[0]/(ADC_RESULTS[2]+1);
+				uint16_t vbat = ADC_RESULTS[0];
 				lora_data[12] = (uint8_t)vbat;
 				power_line[5] = vbat/10 + 0x30;
 				power_line[7] = vbat%10 + 0x30;				
 				SSD1306_Puts(power_line, &Font_7x10, SSD1306_COLOR_WHITE);
-				__disable_irq();
+				//__disable_irq();
 				SSD1306_UpdateScreen();
-				__enable_irq();
+				//__enable_irq();
 		}else{
 				last_oled_state = 0;
 				HAL_GPIO_WritePin(OLED_EN_GPIO_Port, OLED_EN_Pin, GPIO_PIN_RESET);

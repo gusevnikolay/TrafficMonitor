@@ -35,3 +35,4 @@ smartcity.trafficmonitor\speed.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_
 smartcity.trafficmonitor\speed.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pcd.h
 smartcity.trafficmonitor\speed.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_ll_usb.h
 smartcity.trafficmonitor\speed.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pcd_ex.h
+smartcity.trafficmonitor\speed.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
