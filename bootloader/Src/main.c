@@ -100,9 +100,8 @@ void sserial_process_request(unsigned char portindex)
 	
 	if (sserial_request.command==3)
 	{
-			HAL_FLASH_Lock();
 			sserial_send_response();
-			JumpToApp();
+			Bootloader_start();
 	}
 }
 

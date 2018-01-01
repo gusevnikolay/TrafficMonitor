@@ -51,3 +51,29 @@ void Bootloader_erase(void)
 		 CLEAR_BIT (FLASH->CR, (FLASH_CR_PER));
 		 __HAL_FLASH_CLEAR_FLAG(FLASH_FLAG_EOP | FLASH_SR_PGERR | FLASH_FLAG_WRPERR | FLASH_FLAG_OPTVERR);
 }
+
+uint8_t Bootloader_Checksum(void)
+{
+    CRC_HandleTypeDef CrcHandle;
+    volatile uint32_t calculatedCrc = 0;   
+    __HAL_RCC_CRC_CLK_ENABLE();
+    CrcHandle.Instance = CRC;
+    CrcHandle.Init.DefaultPolynomialUse    = DEFAULT_POLYNOMIAL_ENABLE;
+    CrcHandle.Init.DefaultInitValueUse     = DEFAULT_INIT_VALUE_ENABLE;
+    CrcHandle.Init.InputDataInversionMode  = CRC_INPUTDATA_INVERSION_NONE;
+    CrcHandle.Init.OutputDataInversionMode = CRC_OUTPUTDATA_INVERSION_DISABLE;
+    CrcHandle.InputDataFormat              = CRC_INPUTDATA_FORMAT_WORDS;
+    if(HAL_CRC_Init(&CrcHandle) != HAL_OK)
+    {    
+        return 0;
+    }    
+    calculatedCrc = HAL_CRC_Calculate(&CrcHandle, (uint32_t*)APPLICATION_ADDRESS, APPLICATION_ADDRESS-APPLICATION_ADDRESS_END);
+    __HAL_RCC_CRC_FORCE_RESET();
+    __HAL_RCC_CRC_RELEASE_RESET();
+    
+    if( (*(uint32_t*)CRC_ADDRESS) == calculatedCrc )
+    {
+        return 1;
+    }
+    return 0;
+}
