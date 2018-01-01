@@ -1,5 +1,6 @@
 #include "stm32f1xx_hal.h"
 #include "bwl_simplserial.h"
+#include "bootloader.h"
 
 #define APPLICATION_ADDRESS         (uint32_t)0x08004000  
 #define APPLICATION_ADDRESS_END     (uint32_t)0x08010000 
@@ -80,20 +81,11 @@ void sserial_process_request(unsigned char portindex)
 	if(sserial_request.command==2)
 	{
 			uint32_t address = (sserial_request.data[0]*256 + sserial_request.data[1]) + (dataOffset<<16);
-			for(int i = 0; i<(sserial_request.datalength-3);i+=2)
-			{
-					if(HAL_FLASH_Program(TYPEPROGRAM_HALFWORD, address+i, sserial_request.data[3+i]+sserial_request.data[4+i]*256) != HAL_OK)
-					{
-								HAL_GPIO_WritePin(LED2_GPIO_Port, LED2_Pin, GPIO_PIN_SET);
-					}else{
-							  HAL_GPIO_WritePin(LED2_GPIO_Port, LED2_Pin, GPIO_PIN_RESET);
-					}
-				 		__HAL_FLASH_CLEAR_FLAG(FLASH_FLAG_EOP | FLASH_SR_PGERR | FLASH_FLAG_WRPERR | FLASH_FLAG_OPTVERR);
-					uint16_t read_data = (*(__IO uint16_t*)(address+i));
-					sserial_response.data[i] = flash_data >> 8;
-					sserial_response.data[i+1] = flash_data &  0xFF;
-			}	
-		
+			uint8_t data_hex[128];
+		  for(int i=0;i<sserial_request.datalength-3;i++){
+					data_hex[i] = sserial_request.data[i+3];
+			}
+			Bootloader_write(address, data_hex, sserial_request.datalength-3);
 			sserial_response.result = 128;
 			sserial_response.datalength = sserial_request.datalength-3;
 			sserial_send_response();
@@ -125,13 +117,7 @@ int main(void)
   MX_USART1_UART_Init();
 	HAL_GPIO_WritePin(RS485_DIR_GPIO_Port, RS485_DIR_Pin, GPIO_PIN_RESET);
 	sserial_set_devname("SmartCity.AccessPoint v1.0    ");
-	while(flash_ok != HAL_OK){
-		flash_ok = HAL_FLASH_Unlock();
-	}
-	flash_ok = HAL_ERROR;
-	__HAL_FLASH_CLEAR_FLAG(FLASH_FLAG_EOP | FLASH_SR_PGERR | FLASH_FLAG_WRPERR | FLASH_FLAG_OPTVERR);
-	Flash_Erase();
-		__HAL_FLASH_CLEAR_FLAG(FLASH_FLAG_EOP | FLASH_SR_PGERR | FLASH_FLAG_WRPERR | FLASH_FLAG_OPTVERR);
+	Bootloader_erase();
 	HAL_GPIO_WritePin(LED1_GPIO_Port, LED1_Pin, GPIO_PIN_SET);
   while (1)
   {

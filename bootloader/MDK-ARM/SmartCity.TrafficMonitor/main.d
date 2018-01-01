@@ -28,3 +28,4 @@ smartcity.trafficmonitor\main.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_h
 smartcity.trafficmonitor\main.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_spi.h
 smartcity.trafficmonitor\main.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h
 smartcity.trafficmonitor\main.o: ../Inc/bwl_simplserial.h
+smartcity.trafficmonitor\main.o: ../Inc/bootloader.h

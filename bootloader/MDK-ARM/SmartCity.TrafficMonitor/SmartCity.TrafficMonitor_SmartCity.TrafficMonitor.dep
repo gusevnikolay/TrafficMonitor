@@ -505,7 +505,7 @@ I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h)(0x59A27D03)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_spi.h)(0x59A27D03)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h)(0x59A27D04)
 I (../Inc/stm32f1xx_it.h)(0x5A469ED9)
-F (../Src/main.c)(0x5A49F8A3)(-c --cpu Cortex-M3 -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Include -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include --C99-I D:\work\Other\TrafficMonitor\bootloader\MDK-ARM\RTE-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include-I C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.1.0\Device\Include-D__UVISION_VERSION="520" -D_RTE_ -DSTM32F10X_HD -DUSE_HAL_DRIVER -DSTM32F103xE-o smartcity.trafficmonitor\main.o --omf_browse smartcity.trafficmonitor\main.crf --depend smartcity.trafficmonitor\main.d)
+F (../Src/main.c)(0x5A4A1C0E)(-c --cpu Cortex-M3 -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Include -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include --C99-I D:\work\Other\TrafficMonitor\bootloader\MDK-ARM\RTE-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include-I C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.1.0\Device\Include-D__UVISION_VERSION="520" -D_RTE_ -DSTM32F10X_HD -DUSE_HAL_DRIVER -DSTM32F103xE-o smartcity.trafficmonitor\main.o --omf_browse smartcity.trafficmonitor\main.crf --depend smartcity.trafficmonitor\main.d)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h)(0x59A27D03)
 I (../Inc/stm32f1xx_hal_conf.h)(0x5A469EDA)
 I (../Inc/mxconstants.h)(0x5A469EDA)
@@ -534,6 +534,7 @@ I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h)(0x59A27D03)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_spi.h)(0x59A27D03)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h)(0x59A27D04)
 I (../Inc/bwl_simplserial.h)(0x5A46A94B)
+I (../Inc/bootloader.h)(0x5A4A018B)
 F (../Src/stm32f1xx_hal_msp.c)(0x5A469EDA)(-c --cpu Cortex-M3 -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Include -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include --C99-I D:\work\Other\TrafficMonitor\bootloader\MDK-ARM\RTE-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include-I C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.1.0\Device\Include-D__UVISION_VERSION="520" -D_RTE_ -DSTM32F10X_HD -DUSE_HAL_DRIVER -DSTM32F103xE-o smartcity.trafficmonitor\stm32f1xx_hal_msp.o --omf_browse smartcity.trafficmonitor\stm32f1xx_hal_msp.crf --depend smartcity.trafficmonitor\stm32f1xx_hal_msp.d)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h)(0x59A27D03)
 I (../Inc/stm32f1xx_hal_conf.h)(0x5A469EDA)
@@ -565,7 +566,7 @@ I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h)(0x59A27D04)
 F (..\Src\bwl_simplserial.c)(0x5A46A916)(-c --cpu Cortex-M3 -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Include -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include --C99-I D:\work\Other\TrafficMonitor\bootloader\MDK-ARM\RTE-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include-I C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.1.0\Device\Include-D__UVISION_VERSION="520" -D_RTE_ -DSTM32F10X_HD -DUSE_HAL_DRIVER -DSTM32F103xE-o smartcity.trafficmonitor\bwl_simplserial.o --omf_browse smartcity.trafficmonitor\bwl_simplserial.crf --depend smartcity.trafficmonitor\bwl_simplserial.d)
 I (../Inc/bwl_simplserial.h)(0x5A46A94B)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x56FE7B1E)
-F (..\Src\bootloader.c)(0x5A49F6C0)(-c --cpu Cortex-M3 -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Include -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include --C99-I D:\work\Other\TrafficMonitor\bootloader\MDK-ARM\RTE-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include-I C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.1.0\Device\Include-D__UVISION_VERSION="520" -D_RTE_ -DSTM32F10X_HD -DUSE_HAL_DRIVER -DSTM32F103xE-o smartcity.trafficmonitor\bootloader.o --omf_browse smartcity.trafficmonitor\bootloader.crf --depend smartcity.trafficmonitor\bootloader.d)
+F (..\Src\bootloader.c)(0x5A4A18DF)(-c --cpu Cortex-M3 -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Include -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include --C99-I D:\work\Other\TrafficMonitor\bootloader\MDK-ARM\RTE-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include-I C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.1.0\Device\Include-D__UVISION_VERSION="520" -D_RTE_ -DSTM32F10X_HD -DUSE_HAL_DRIVER -DSTM32F103xE-o smartcity.trafficmonitor\bootloader.o --omf_browse smartcity.trafficmonitor\bootloader.crf --depend smartcity.trafficmonitor\bootloader.d)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h)(0x59A27D03)
 I (../Inc/stm32f1xx_hal_conf.h)(0x5A469EDA)
 I (../Inc/mxconstants.h)(0x5A469EDA)
@@ -593,4 +594,4 @@ I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_i2c.h)(0x59A27D03)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h)(0x59A27D03)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_spi.h)(0x59A27D03)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h)(0x59A27D04)
-I (../Inc/bootloader.h)(0x5A49F45E)
+I (../Inc/bootloader.h)(0x5A4A018B)
