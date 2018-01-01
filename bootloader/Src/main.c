@@ -1,11 +1,12 @@
 #include "stm32f1xx_hal.h"
 #include "bwl_simplserial.h"
 
-#define APPLICATION_ADDRESS         (uint32_t)0x08002000  
-#define APPLICATION_ADDRESS_END     (uint32_t)0x08008000 
+#define APPLICATION_ADDRESS         (uint32_t)0x08004000  
+#define APPLICATION_ADDRESS_END     (uint32_t)0x08010000 
 I2C_HandleTypeDef hi2c1;
 SPI_HandleTypeDef hspi2;
 UART_HandleTypeDef huart1;
+HAL_StatusTypeDef	flash_ok = HAL_ERROR;
 
 void SystemClock_Config(void);
 void Error_Handler(void);
@@ -38,16 +39,20 @@ unsigned char uart_received(unsigned char port)
 	return 1;
 }
 
+typedef void (*pFunction)(void);
+
 void JumpToApp(void)
 {
-			typedef void (*pFunction)(void);
-			pFunction Jump_To_Application;
-			uint32_t JumpAddress;
-      JumpAddress = *(__IO uint32_t*) (APPLICATION_ADDRESS + 4);
-      Jump_To_Application = (pFunction) JumpAddress;
-      __set_MSP(*(__IO uint32_t*) APPLICATION_ADDRESS);
-      HAL_DeInit();
-      Jump_To_Application();
+    uint32_t  JumpAddress = *(__IO uint32_t*)(APPLICATION_ADDRESS + 4);
+    pFunction Jump = (pFunction)JumpAddress;    
+    HAL_RCC_DeInit();
+    HAL_DeInit();   
+    SysTick->CTRL = 0;
+    SysTick->LOAD = 0;
+    SysTick->VAL  = 0;    
+    SCB->VTOR = APPLICATION_ADDRESS;
+    __set_MSP(*(__IO uint32_t*)APPLICATION_ADDRESS);
+    Jump();
 }
 
 void Flash_Erase()
@@ -60,26 +65,43 @@ void Flash_Erase()
 	   HAL_FLASHEx_Erase(&EraseInitStruct, &PageError);
 }
 
-uint32_t flash_data;
+uint32_t flash_data = 0;
+uint16_t dataOffset = 0x000;
+
 void sserial_process_request(unsigned char portindex)
 {
 	if (sserial_request.command==1)
 	{
-			HAL_FLASH_Unlock();
 			Flash_Erase();
+		  CLEAR_BIT (FLASH->CR, (FLASH_CR_PER));
 			sserial_send_response();
 	}
 	
 	if(sserial_request.command==2)
 	{
-			uint32_t address = (sserial_request.data[0]*256*256*256 + sserial_request.data[1]*256*256 + sserial_request.data[2]*256 + sserial_request.data[3]);
-			HAL_FLASH_Unlock();
-			__HAL_FLASH_CLEAR_FLAG(FLASH_FLAG_EOP|FLASH_FLAG_WRPERR | FLASH_FLAG_PGERR | FLASH_FLAG_BSY);
-			for(int i = 1; i<sserial_request.datalength/4;i++)
+			uint32_t address = (sserial_request.data[0]*256 + sserial_request.data[1]) + (dataOffset<<16);
+			for(int i = 0; i<(sserial_request.datalength-3);i+=2)
 			{
-					flash_data = sserial_request.data[i*4] + sserial_request.data[i*4+1]*256 + sserial_request.data[i*4+2]*256*256 + sserial_request.data[i*4+3]*256*256*256;
-					HAL_FLASH_Program(TYPEPROGRAM_WORD, address+(i-1)*4, flash_data);
+					if(HAL_FLASH_Program(TYPEPROGRAM_HALFWORD, address+i, sserial_request.data[3+i]+sserial_request.data[4+i]*256) != HAL_OK)
+					{
+								HAL_GPIO_WritePin(LED2_GPIO_Port, LED2_Pin, GPIO_PIN_SET);
+					}else{
+							  HAL_GPIO_WritePin(LED2_GPIO_Port, LED2_Pin, GPIO_PIN_RESET);
+					}
+				 		__HAL_FLASH_CLEAR_FLAG(FLASH_FLAG_EOP | FLASH_SR_PGERR | FLASH_FLAG_WRPERR | FLASH_FLAG_OPTVERR);
+					uint16_t read_data = (*(__IO uint16_t*)(address+i));
+					sserial_response.data[i] = flash_data >> 8;
+					sserial_response.data[i+1] = flash_data &  0xFF;
 			}	
+		
+			sserial_response.result = 128;
+			sserial_response.datalength = sserial_request.datalength-3;
+			sserial_send_response();
+	}
+	
+	if(sserial_request.command==4)
+	{
+			dataOffset = sserial_request.data[0] * 256 + sserial_request.data[1];
 			sserial_response.result = 128;
 			sserial_send_response();
 	}
@@ -103,10 +125,19 @@ int main(void)
   MX_USART1_UART_Init();
 	HAL_GPIO_WritePin(RS485_DIR_GPIO_Port, RS485_DIR_Pin, GPIO_PIN_RESET);
 	sserial_set_devname("SmartCity.AccessPoint v1.0    ");
+	while(flash_ok != HAL_OK){
+		flash_ok = HAL_FLASH_Unlock();
+	}
+	flash_ok = HAL_ERROR;
+	__HAL_FLASH_CLEAR_FLAG(FLASH_FLAG_EOP | FLASH_SR_PGERR | FLASH_FLAG_WRPERR | FLASH_FLAG_OPTVERR);
+	Flash_Erase();
+		__HAL_FLASH_CLEAR_FLAG(FLASH_FLAG_EOP | FLASH_SR_PGERR | FLASH_FLAG_WRPERR | FLASH_FLAG_OPTVERR);
+	HAL_GPIO_WritePin(LED1_GPIO_Port, LED1_Pin, GPIO_PIN_SET);
   while (1)
   {
 		if(HAL_UART_Receive(&huart1, data, 1, 1000)==HAL_OK){
-				sserial_poll_uart(0);
+			 
+				sserial_poll_uart(0);		
 		}
   }
 }

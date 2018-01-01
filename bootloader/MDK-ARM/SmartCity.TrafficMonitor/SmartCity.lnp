@@ -21,6 +21,7 @@
 "smartcity.trafficmonitor\main.o"
 "smartcity.trafficmonitor\stm32f1xx_hal_msp.o"
 "smartcity.trafficmonitor\bwl_simplserial.o"
+"smartcity.trafficmonitor\bootloader.o"
 --library_type=microlib --strict --scatter "SmartCity.TrafficMonitor\SmartCity.sct"
 --diag_suppress=L6329 --summary_stderr --info summarysizes --map --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers
