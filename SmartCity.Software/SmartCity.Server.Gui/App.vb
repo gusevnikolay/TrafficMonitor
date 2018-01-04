@@ -31,5 +31,32 @@ Public Class App
         For Each id In list
             listAccessPoints.Items.Add(id)
         Next
+
+        Dim bootStates = _app.GetBootloaderState
+        listBootloaderTasks.Items.Clear()
+        If bootStates.Count > 0 Then
+            For Each task In bootStates
+                listBootloaderTasks.Items.Add(task)
+            Next
+        Else
+            listBootloaderTasks.Items.Add("Tasks not found")
+        End If
+
+
+
+    End Sub
+
+    Private Sub pAddBootloaderTask_Click(sender As Object, e As EventArgs) Handles pAddBootloaderTask.Click
+        _app.SetBootloaderTask(textDeviceIdForBootloader.Text, textHexPath.Text)
+    End Sub
+
+    Private Sub pHexFileSearch_Click(sender As Object, e As EventArgs) Handles pHexFileSearch.Click
+        Dim fileDialog As New OpenFileDialog()
+        fileDialog.Filter = "All files (*.*)|*.*"
+        fileDialog.FilterIndex = 2
+        fileDialog.RestoreDirectory = True
+        If fileDialog.ShowDialog() = System.Windows.Forms.DialogResult.OK Then
+            textHexPath.Text = fileDialog.FileName
+        End If
     End Sub
 End Class

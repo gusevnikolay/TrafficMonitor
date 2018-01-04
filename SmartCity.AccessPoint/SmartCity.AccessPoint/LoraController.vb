@@ -106,12 +106,14 @@ Public Class LoraController
                 Console.WriteLine("LORA: searching device...")
                 For Each port In ports
                     Try
+                        port = "COM38"
                         Dim test = New SimplSerialBus(port)
                         test.SerialDevice.DeviceSpeed = 115200
                         test.Connect()
                         Dim devName = test.RequestDeviceInfo(0).DeviceName
+                        test.Disconnect()
                         If (devName.ToLower.Contains(_deviceId.ToLower)) Then
-                            test.Disconnect()
+
                             _bus = New SimplSerialBus(port)
                             _bus.SerialDevice.DeviceSpeed = 115200
                             _bus.Connect()

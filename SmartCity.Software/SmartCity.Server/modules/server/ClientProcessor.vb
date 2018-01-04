@@ -5,10 +5,9 @@ Public Class ClientProcessor
     Private _stream As NetworkStream
     Event onPacketReceived(packet As DevicePacket)
     Event onClinetDisconnectedEvent(client As ClientProcessor)
-
     Private _crc As New Tool
-
     Public Property LastTime As DateTime = Now
+
     Sub New(client As TcpClient)
         _tcp = client
         _stream = _tcp.GetStream
@@ -68,16 +67,19 @@ Public Class ClientProcessor
         packet.Client = Me
         packet.AccessPointId = Text.Encoding.ASCII.GetString(apId)
         packet.DeviceId = Tool.ByteArrayToString(DeviceId)
-
         RaiseEvent onPacketReceived(packet)
     End Sub
 
-    Public Sub Send(data As Byte())
-        Dim dataLength As UInt16 = data.Length
+    Public Sub Send(deviceId As String, data As Byte())
+        Dim devId = Tool.StringToByteArray(deviceId)
+        Dim packet(devId.Length + data.Length - 1) As Byte
+        Array.Copy(devId, 0, packet, 0, devId.Length)
+        Array.Copy(data, 0, packet, devId.Length, data.Length)
+        Dim dataLength As UInt16 = packet.Length
         Dim header As Byte() = {0, 0, 0, 0, 0, &H55, &HAA, &H47, &H7A, &HA7, dataLength >> 8, dataLength And &HFF}
-        Dim crc = BitConverter.GetBytes(_crc.ComputeChecksum(data))
+        Dim crc = BitConverter.GetBytes(_crc.ComputeChecksum(packet))
         _stream.Write(header, 0, header.Length)
-        _stream.Write(data, 0, data.Length)
+        _stream.Write(packet, 0, packet.Length)
         _stream.Write(crc, 0, crc.Length)
     End Sub
 

@@ -1,0 +1,10 @@
+D:\work\Other\TrafficMonitor\SmartCity.Software\debug\App\bin\SmartCity.FirmwareUploader.exe
+D:\work\Other\TrafficMonitor\SmartCity.Software\debug\App\bin\SmartCity.FirmwareUploader.pdb
+D:\work\Other\TrafficMonitor\SmartCity.Software\debug\App\bin\SmartCity.FirmwareUploader.xml
+D:\work\Other\TrafficMonitor\SmartCity.Software\SmartCity.FirmwareUploader\obj\Debug\SmartCity.FirmwareUploader.vbprojResolveAssemblyReference.cache
+D:\work\Other\TrafficMonitor\SmartCity.Software\SmartCity.FirmwareUploader\obj\Debug\SmartCity.FirmwareUploader.App.resources
+D:\work\Other\TrafficMonitor\SmartCity.Software\SmartCity.FirmwareUploader\obj\Debug\SmartCity.FirmwareUploader.Resources.resources
+D:\work\Other\TrafficMonitor\SmartCity.Software\SmartCity.FirmwareUploader\obj\Debug\SmartCity.FirmwareUploader.vbproj.GenerateResource.Cache
+D:\work\Other\TrafficMonitor\SmartCity.Software\SmartCity.FirmwareUploader\obj\Debug\SmartCity.FirmwareUploader.exe
+D:\work\Other\TrafficMonitor\SmartCity.Software\SmartCity.FirmwareUploader\obj\Debug\SmartCity.FirmwareUploader.xml
+D:\work\Other\TrafficMonitor\SmartCity.Software\SmartCity.FirmwareUploader\obj\Debug\SmartCity.FirmwareUploader.pdb

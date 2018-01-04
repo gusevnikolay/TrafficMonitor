@@ -19,15 +19,14 @@ Public Class TcpServer
 
     Private Sub ListenProcess()
         Dim localAddr As IPAddress = Dns.GetHostEntry(Dns.GetHostName()).AddressList(0)
-        Dim _server = New TcpListener(localAddr, _port)
+        Dim _server = New TcpListener(IPAddress.Parse("127.0.0.1"), _port)
         _server.Start()
         _logger.AddMessage("TCP server created on " + _port.ToString + " port")
         While True
             Try
                 Dim client As TcpClient = _server.AcceptTcpClient()
                 Dim cleintProcessor = New ClientProcessor(client)
-                AddHandler cleintProcessor.onPacketReceived, AddressOf PacketHandler
-                AddHandler cleintProcessor.onClinetDisconnectedEvent, AddressOf onClientDisconnectedHandelr
+                InsertProcess(cleintProcessor)
             Catch ex As Exception
                 _logger.AddError(ex.Message)
             End Try
@@ -36,10 +35,10 @@ Public Class TcpServer
 
     Private Sub PacketHandler(packet As DevicePacket)
         _logger.AddMessage("TCP received data from: " + packet.AccessPointId)
-        RaiseEvent onDevicePacketEvent(packet)
         If Not _tcpClients.ContainsKey(packet.AccessPointId) Then
             _tcpClients.Add(packet.AccessPointId, packet.Client)
         End If
+        RaiseEvent onDevicePacketEvent(packet)
     End Sub
 
     Public Function GetTcpClientsActivity() As List(Of String)
@@ -58,5 +57,24 @@ Public Class TcpServer
                 _tcpClients.Remove(key)
             End If
         Next
+    End Sub
+
+    Public Function ClientExist(apId As String) As Boolean
+        Return _tcpClients.ContainsKey(apId)
+    End Function
+
+    Public Function EjectProcess(apId As String) As ClientProcessor
+        apId = _tcpClients.Keys.ElementAt(0)
+        If _tcpClients.ContainsKey(apId) Then
+            Dim client = _tcpClients(apId)
+            RemoveHandler client.onPacketReceived, AddressOf PacketHandler
+            Return client
+        End If
+        Throw New Exception("Device ID not found")
+    End Function
+
+    Public Sub InsertProcess(proc As ClientProcessor)
+        AddHandler proc.onPacketReceived, AddressOf PacketHandler
+        AddHandler proc.onClinetDisconnectedEvent, AddressOf onClientDisconnectedHandelr
     End Sub
 End Class

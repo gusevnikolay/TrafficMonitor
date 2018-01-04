@@ -26,17 +26,20 @@
 
     Private Sub LoraQueueProcessor()
         While True
-            If _FifoToLora.Count > 0 Then
-                _loraLastPacketTxResult = False
-                _lora.RadioWrite(_FifoToLora.ElementAt(0))
-                Dim sendTime = Now
-                While _loraLastPacketTxResult <> True
-                    Threading.Thread.Sleep(20)
-                End While
-                _FifoToLora.RemoveAt(0)
-            Else
-                Threading.Thread.Sleep(100)
-            End If
+            Try
+                If _FifoToLora.Count > 0 Then
+                    _loraLastPacketTxResult = False
+                    _lora.RadioWrite(_FifoToLora.ElementAt(0))
+                    Dim sendTime = Now
+                    While _loraLastPacketTxResult <> True
+                        Threading.Thread.Sleep(20)
+                    End While
+                    _FifoToLora.RemoveAt(0)
+                Else
+                    Threading.Thread.Sleep(100)
+                End If
+            Catch ex As Exception
+            End Try
         End While
     End Sub
 

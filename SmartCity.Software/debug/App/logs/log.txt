@@ -1,0 +1,18 @@
+03.01.2018 20:44:09 ROOT [Msg] Application startup
+#CallFrom: ClassName=App, FullName=SmartCity.FirmwareUploader.App, Method=.ctor
+03.01.2018 20:44:09 ROOT [Inf] Application executable path: D:\work\Other\TrafficMonitor\SmartCity.Software\debug\App\bin\SmartCity.FirmwareUploader.EXE
+#CallFrom: ClassName=App, FullName=SmartCity.FirmwareUploader.App, Method=.ctor
+03.01.2018 20:44:09 ROOT [Inf] Application executable date: 03.01.2018 20:44:05
+#CallFrom: ClassName=App, FullName=SmartCity.FirmwareUploader.App, Method=.ctor
+03.01.2018 20:45:10 ROOT [Msg] Application startup
+#CallFrom: ClassName=App, FullName=SmartCity.FirmwareUploader.App, Method=.ctor
+03.01.2018 20:45:10 ROOT [Inf] Application executable path: D:\work\Other\TrafficMonitor\SmartCity.Software\debug\App\bin\SmartCity.FirmwareUploader.EXE
+#CallFrom: ClassName=App, FullName=SmartCity.FirmwareUploader.App, Method=.ctor
+03.01.2018 20:45:10 ROOT [Inf] Application executable date: 03.01.2018 20:45:08
+#CallFrom: ClassName=App, FullName=SmartCity.FirmwareUploader.App, Method=.ctor
+03.01.2018 20:45:32 ROOT [Msg] Application startup
+#CallFrom: ClassName=App, FullName=SmartCity.FirmwareUploader.App, Method=.ctor
+03.01.2018 20:45:32 ROOT [Inf] Application executable path: D:\work\Other\TrafficMonitor\SmartCity.Software\debug\App\bin\SmartCity.FirmwareUploader.EXE
+#CallFrom: ClassName=App, FullName=SmartCity.FirmwareUploader.App, Method=.ctor
+03.01.2018 20:45:32 ROOT [Inf] Application executable date: 03.01.2018 20:45:31
+#CallFrom: ClassName=App, FullName=SmartCity.FirmwareUploader.App, Method=.ctor
