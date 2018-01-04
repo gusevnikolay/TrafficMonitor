@@ -10,6 +10,7 @@ Public Class ApplicationMonitor
     Private _logger As Logger
     Private _deviceManager As DeviceManager
     Private _base As DataBase
+    Private _bootloader As BootloaderTasksMonitor
     Sub New(logger As Logger)
         _logger = logger
     End Sub
@@ -30,10 +31,20 @@ Public Class ApplicationMonitor
         _base.SetRootLogger(_logger)
         _base.Open()
         _deviceManager = New DeviceManager(_base)
+        _bootloader = New BootloaderTasksMonitor(_base, _server, _deviceManager)
+        _bootloader.Run()
         AddHandler _server.onDevicePacketEvent, AddressOf _deviceManager.DevicePacketHandler
     End Sub
 
     Public Function GetAccessPoints() As List(Of String)
         Return _server.GetTcpClientsActivity
     End Function
+
+    Public Function GetBootloaderState() As String()
+        Return _bootloader.GetStates
+    End Function
+
+    Public Sub SetBootloaderTask(device As String, hexPath As String)
+        _bootloader.AddTask(device, hexPath)
+    End Sub
 End Class

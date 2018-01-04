@@ -12,7 +12,7 @@ Public Class DeviceManager
     Public Sub DevicePacketHandler(packet As DevicePacket)
         For Each device In _supportedDevices
             If device.IsSupported(packet.DeviceId) Then
-                device.AppendDataToBase(packet, _db)
+                device.AppendData(packet, _db)
             End If
         Next
     End Sub

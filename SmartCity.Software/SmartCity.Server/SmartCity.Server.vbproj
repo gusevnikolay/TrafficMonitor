@@ -73,6 +73,8 @@
   <ItemGroup>
     <Compile Include="ApplicationMonitor.vb" />
     <Compile Include="Devices\DeviceManager.vb" />
+    <Compile Include="firmware\BootloaderTasksMonitor.vb" />
+    <Compile Include="firmware\FirmwareUpdateTask.vb" />
     <Compile Include="modules\DataBase.vb" />
     <Compile Include="modules\server\ClientProcessor.vb" />
     <Compile Include="modules\Tool.vb" />

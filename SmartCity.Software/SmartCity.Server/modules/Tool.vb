@@ -30,4 +30,13 @@
         Dim hex As String = BitConverter.ToString(ba)
         Return hex.Replace("-", "")
     End Function
+
+    Public Shared Function StringToByteArray(ByVal hex As String) As Byte()
+        Dim NumberChars As Integer = hex.Length
+        Dim bytes As Byte() = New Byte(NumberChars / 2 - 1) {}
+        For i As Integer = 0 To NumberChars - 1 Step 2
+            bytes(i / 2) = Convert.ToByte(hex.Substring(i, 2), 16)
+        Next
+        Return bytes
+    End Function
 End Class

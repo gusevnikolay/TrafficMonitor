@@ -8,7 +8,7 @@ Public Class TrafficMonitor
     Sub New()
     End Sub
 
-    Public Sub AppendDataToBase(packet As DevicePacket, db As DataBase) Implements IDevice.AppendDataToBase
+    Public Sub AppendData(packet As DevicePacket, db As DataBase) Implements IDevice.AppendData
         If packet.Data.Length > 15 Then
             Dim minSpeed = packet.Data(1)
             Dim maxSpeed = packet.Data(2)

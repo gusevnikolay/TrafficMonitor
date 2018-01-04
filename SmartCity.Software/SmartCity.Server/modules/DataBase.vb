@@ -40,4 +40,27 @@ Public Class DataBase
             Open()
         End Try
     End Sub
+
+    Public Function GetData(sql As String) As List(Of Dictionary(Of String, String))
+        Dim result As New List(Of Dictionary(Of String, String))
+        Try
+            Dim cmd As New MySqlCommand
+            cmd.Connection = _con
+            cmd.CommandText = sql
+            Dim reader As MySqlDataReader
+            reader = cmd.ExecuteReader()
+            While reader.Read()
+                Dim row = New Dictionary(Of String, String)
+                For i = 0 To reader.VisibleFieldCount - 1
+                    row.Add(reader.GetName(i), reader.GetValue(i).ToString)
+                Next
+                result.Add(row)
+            End While
+            reader.Close()
+            cmd.Dispose()
+        Catch ex As Exception
+
+        End Try
+        Return result
+    End Function
 End Class
