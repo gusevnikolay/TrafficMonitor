@@ -13,7 +13,8 @@
         _key = key
         Server = New ServerConnector(_ip, _port, _key)
         Lora = New LoraController()
-        Queue = New MessageQueue(Server, Lora)
+        Lora.OpenFirstPort()
+        Queue = New MessageQueue(Server, Lora, _key)
     End Sub
 
     Public Sub Run()

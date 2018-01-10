@@ -2340,3 +2340,449 @@
 #CallFrom: ClassName=TcpServer, FullName=SmartCity.Server.TcpServer, Method=PacketHandler
 04.01.2018 22:33:22 ROOT [Msg] TCP received data from: 0000000001
 #CallFrom: ClassName=TcpServer, FullName=SmartCity.Server.TcpServer, Method=PacketHandler
+07.01.2018 22:17:17 ROOT [Msg] Application startup
+#CallFrom: ClassName=App, FullName=SmartCity.Server.Gui.App, Method=.ctor
+07.01.2018 22:17:17 ROOT [Inf] Application executable path: D:\work\Other\TrafficMonitor\SmartCity.Software\SmartCity.Server.Gui\bin\Debug\SmartCity.Server.Gui.EXE
+#CallFrom: ClassName=App, FullName=SmartCity.Server.Gui.App, Method=.ctor
+07.01.2018 22:17:17 ROOT [Inf] Application executable date: 07.01.2018 22:17:13
+#CallFrom: ClassName=App, FullName=SmartCity.Server.Gui.App, Method=.ctor
+07.01.2018 22:17:17 ROOT [Msg] TCP server created on 8520 port
+#CallFrom: ClassName=TcpServer, FullName=SmartCity.Server.TcpServer, Method=ListenProcess
+07.01.2018 22:17:17 ROOT [Msg] Authentication to host 'localhost' for user 'smartcity' using method 'mysql_native_password' failed with message: Access denied for user 'smartcity'@'localhost' (using password: YES)
+#CallFrom: ClassName=DataBase, FullName=SmartCity.Server.DataBase, Method=Open
+07.01.2018 23:22:39 ROOT [Msg] Application startup
+#CallFrom: ClassName=App, FullName=SmartCity.Server.Gui.App, Method=.ctor
+07.01.2018 23:22:39 ROOT [Inf] Application executable path: D:\work\Other\TrafficMonitor\SmartCity.Software\SmartCity.Server.Gui\bin\Debug\SmartCity.Server.Gui.EXE
+#CallFrom: ClassName=App, FullName=SmartCity.Server.Gui.App, Method=.ctor
+07.01.2018 23:22:39 ROOT [Inf] Application executable date: 07.01.2018 23:22:36
+#CallFrom: ClassName=App, FullName=SmartCity.Server.Gui.App, Method=.ctor
+07.01.2018 23:22:40 ROOT [Msg] TCP server created on 8520 port
+#CallFrom: ClassName=TcpServer, FullName=SmartCity.Server.TcpServer, Method=ListenProcess
+07.01.2018 23:22:40 ROOT [Msg] Authentication to host 'localhost' for user 'smartcity' using method 'mysql_native_password' failed with message: Access denied for user 'smartcity'@'localhost' (using password: YES)
+#CallFrom: ClassName=DataBase, FullName=SmartCity.Server.DataBase, Method=Open
+08.01.2018 0:22:23 ROOT [Msg] Application startup
+#CallFrom: ClassName=App, FullName=SmartCity.Server.Gui.App, Method=.ctor
+08.01.2018 0:22:23 ROOT [Inf] Application executable path: D:\work\Other\TrafficMonitor\SmartCity.Software\SmartCity.Server.Gui\bin\Debug\SmartCity.Server.Gui.EXE
+#CallFrom: ClassName=App, FullName=SmartCity.Server.Gui.App, Method=.ctor
+08.01.2018 0:22:23 ROOT [Inf] Application executable date: 08.01.2018 0:22:18
+#CallFrom: ClassName=App, FullName=SmartCity.Server.Gui.App, Method=.ctor
+08.01.2018 0:22:23 ROOT [Msg] TCP server created on 8520 port
+#CallFrom: ClassName=TcpServer, FullName=SmartCity.Server.TcpServer, Method=ListenProcess
+08.01.2018 0:22:24 ROOT [Msg] Authentication to host 'localhost' for user 'smartcity' using method 'mysql_native_password' failed with message: Access denied for user 'smartcity'@'localhost' (using password: YES)
+#CallFrom: ClassName=DataBase, FullName=SmartCity.Server.DataBase, Method=Open
+08.01.2018 0:34:24 ROOT [Msg] Application startup
+#CallFrom: ClassName=App, FullName=SmartCity.Server.Gui.App, Method=.ctor
+08.01.2018 0:34:24 ROOT [Inf] Application executable path: D:\work\Other\TrafficMonitor\SmartCity.Software\SmartCity.Server.Gui\bin\Debug\SmartCity.Server.Gui.EXE
+#CallFrom: ClassName=App, FullName=SmartCity.Server.Gui.App, Method=.ctor
+08.01.2018 0:34:24 ROOT [Inf] Application executable date: 08.01.2018 0:34:22
+#CallFrom: ClassName=App, FullName=SmartCity.Server.Gui.App, Method=.ctor
+08.01.2018 0:34:25 ROOT [Msg] TCP server created on 8520 port
+#CallFrom: ClassName=TcpServer, FullName=SmartCity.Server.TcpServer, Method=ListenProcess
+08.01.2018 0:34:25 ROOT [Msg] Authentication to host 'localhost' for user 'smartcity' using method 'mysql_native_password' failed with message: Access denied for user 'smartcity'@'localhost' (using password: YES)
+#CallFrom: ClassName=DataBase, FullName=SmartCity.Server.DataBase, Method=Open
+08.01.2018 0:36:24 ROOT [Msg] Application startup
+#CallFrom: ClassName=App, FullName=SmartCity.Server.Gui.App, Method=.ctor
+08.01.2018 0:36:24 ROOT [Inf] Application executable path: D:\work\Other\TrafficMonitor\SmartCity.Software\SmartCity.Server.Gui\bin\Debug\SmartCity.Server.Gui.EXE
+#CallFrom: ClassName=App, FullName=SmartCity.Server.Gui.App, Method=.ctor
+08.01.2018 0:36:24 ROOT [Inf] Application executable date: 08.01.2018 0:36:20
+#CallFrom: ClassName=App, FullName=SmartCity.Server.Gui.App, Method=.ctor
+08.01.2018 0:36:24 ROOT [Msg] TCP server created on 8520 port
+#CallFrom: ClassName=TcpServer, FullName=SmartCity.Server.TcpServer, Method=ListenProcess
+08.01.2018 0:36:25 ROOT [Msg] Authentication to host 'localhost' for user 'smartcity' using method 'mysql_native_password' failed with message: Access denied for user 'smartcity'@'localhost' (using password: YES)
+#CallFrom: ClassName=DataBase, FullName=SmartCity.Server.DataBase, Method=Open
+08.01.2018 0:38:33 ROOT [Msg] Application startup
+#CallFrom: ClassName=App, FullName=SmartCity.Server.Gui.App, Method=.ctor
+08.01.2018 0:44:44 ROOT [Msg] Application startup
+#CallFrom: ClassName=App, FullName=SmartCity.Server.Gui.App, Method=.ctor
+08.01.2018 0:44:44 ROOT [Inf] Application executable path: D:\work\Other\TrafficMonitor\SmartCity.Software\SmartCity.Server.Gui\bin\Debug\SmartCity.Server.Gui.EXE
+#CallFrom: ClassName=App, FullName=SmartCity.Server.Gui.App, Method=.ctor
+08.01.2018 0:44:44 ROOT [Inf] Application executable date: 08.01.2018 0:44:41
+#CallFrom: ClassName=App, FullName=SmartCity.Server.Gui.App, Method=.ctor
+08.01.2018 0:44:44 ROOT [Msg] TCP server created on 8520 port
+#CallFrom: ClassName=TcpServer, FullName=SmartCity.Server.TcpServer, Method=ListenProcess
+08.01.2018 0:44:45 ROOT [Msg] Authentication to host 'localhost' for user 'smartcity' using method 'mysql_native_password' failed with message: Access denied for user 'smartcity'@'localhost' (using password: YES)
+#CallFrom: ClassName=DataBase, FullName=SmartCity.Server.DataBase, Method=Open
+09.01.2018 15:22:59 ROOT [Msg] Application startup
+#CallFrom: ClassName=App, FullName=SmartCity.Server.Gui.App, Method=.ctor
+09.01.2018 15:22:59 ROOT [Inf] Application executable path: D:\work\Other\TrafficMonitor\SmartCity.Software\SmartCity.Server.Gui\bin\Debug\SmartCity.Server.Gui.EXE
+#CallFrom: ClassName=App, FullName=SmartCity.Server.Gui.App, Method=.ctor
+09.01.2018 15:22:59 ROOT [Inf] Application executable date: 09.01.2018 15:22:54
+#CallFrom: ClassName=App, FullName=SmartCity.Server.Gui.App, Method=.ctor
+09.01.2018 15:23:00 ROOT [Msg] TCP server created on 8520 port
+#CallFrom: ClassName=TcpServer, FullName=SmartCity.Server.TcpServer, Method=ListenProcess
+09.01.2018 15:23:02 ROOT [Msg] Authentication to host 'localhost' for user 'smartcity' using method 'mysql_native_password' failed with message: Access denied for user 'smartcity'@'localhost' (using password: YES)
+#CallFrom: ClassName=DataBase, FullName=SmartCity.Server.DataBase, Method=Open
+09.01.2018 16:21:43 ROOT [Msg] Application startup
+#CallFrom: ClassName=App, FullName=SmartCity.Server.Gui.App, Method=.ctor
+09.01.2018 16:22:21 ROOT [Msg] Application startup
+#CallFrom: ClassName=App, FullName=SmartCity.Server.Gui.App, Method=.ctor
+09.01.2018 16:22:21 ROOT [Inf] Application executable path: D:\work\Other\TrafficMonitor\SmartCity.Software\SmartCity.Server.Gui\bin\Debug\SmartCity.Server.Gui.EXE
+#CallFrom: ClassName=App, FullName=SmartCity.Server.Gui.App, Method=.ctor
+09.01.2018 16:22:21 ROOT [Inf] Application executable date: 09.01.2018 16:22:17
+#CallFrom: ClassName=App, FullName=SmartCity.Server.Gui.App, Method=.ctor
+09.01.2018 16:22:21 ROOT [Msg] TCP server created on 8520 port
+#CallFrom: ClassName=TcpServer, FullName=SmartCity.Server.TcpServer, Method=ListenProcess
+09.01.2018 16:22:22 ROOT [Msg] Authentication to host 'localhost' for user 'smartcity' using method 'mysql_native_password' failed with message: Access denied for user 'smartcity'@'localhost' (using password: YES)
+#CallFrom: ClassName=DataBase, FullName=SmartCity.Server.DataBase, Method=Open
+09.01.2018 16:23:54 ROOT [Msg] TCP received data from: 0000000001
+#CallFrom: ClassName=TcpServer, FullName=SmartCity.Server.TcpServer, Method=PacketHandler
+09.01.2018 16:26:05 ROOT [Msg] TCP received data from: 0000000001
+#CallFrom: ClassName=TcpServer, FullName=SmartCity.Server.TcpServer, Method=PacketHandler
+09.01.2018 16:29:27 ROOT [Msg] TCP received data from: 0000000001
+#CallFrom: ClassName=TcpServer, FullName=SmartCity.Server.TcpServer, Method=PacketHandler
+09.01.2018 16:29:31 ROOT [Msg] TCP received data from: 0000000001
+#CallFrom: ClassName=TcpServer, FullName=SmartCity.Server.TcpServer, Method=PacketHandler
+09.01.2018 21:27:23 ROOT [Msg] Application startup
+#CallFrom: ClassName=App, FullName=SmartCity.Server.Gui.App, Method=.ctor
+09.01.2018 21:27:23 ROOT [Inf] Application executable path: D:\work\Other\TrafficMonitor\SmartCity.Software\SmartCity.Server.Gui\bin\Debug\SmartCity.Server.Gui.EXE
+#CallFrom: ClassName=App, FullName=SmartCity.Server.Gui.App, Method=.ctor
+09.01.2018 21:27:23 ROOT [Inf] Application executable date: 09.01.2018 21:27:19
+#CallFrom: ClassName=App, FullName=SmartCity.Server.Gui.App, Method=.ctor
+09.01.2018 21:27:24 ROOT [Msg] TCP server created on 8520 port
+#CallFrom: ClassName=TcpServer, FullName=SmartCity.Server.TcpServer, Method=ListenProcess
+09.01.2018 21:27:24 ROOT [Msg] Authentication to host 'localhost' for user 'smartcity' using method 'mysql_native_password' failed with message: Access denied for user 'smartcity'@'localhost' (using password: YES)
+#CallFrom: ClassName=DataBase, FullName=SmartCity.Server.DataBase, Method=Open
+10.01.2018 19:34:48 ROOT [Msg] Application startup
+#CallFrom: ClassName=App, FullName=SmartCity.Server.Gui.App, Method=.ctor
+10.01.2018 19:34:48 ROOT [Inf] Application executable path: D:\work\Other\TrafficMonitor\SmartCity.Software\SmartCity.Server.Gui\bin\Debug\SmartCity.Server.Gui.EXE
+#CallFrom: ClassName=App, FullName=SmartCity.Server.Gui.App, Method=.ctor
+10.01.2018 19:34:48 ROOT [Inf] Application executable date: 10.01.2018 19:34:44
+#CallFrom: ClassName=App, FullName=SmartCity.Server.Gui.App, Method=.ctor
+10.01.2018 19:34:49 ROOT [Msg] TCP server created on 8520 port
+#CallFrom: ClassName=TcpServer, FullName=SmartCity.Server.TcpServer, Method=ListenProcess
+10.01.2018 19:34:49 ROOT [Msg] Authentication to host 'localhost' for user 'smartcity' using method 'mysql_native_password' failed with message: Access denied for user 'smartcity'@'localhost' (using password: YES)
+#CallFrom: ClassName=DataBase, FullName=SmartCity.Server.DataBase, Method=Open
+10.01.2018 19:55:53 ROOT [Msg] Application startup
+#CallFrom: ClassName=App, FullName=SmartCity.Server.Gui.App, Method=.ctor
+10.01.2018 19:55:53 ROOT [Inf] Application executable path: D:\work\Other\TrafficMonitor\SmartCity.Software\SmartCity.Server.Gui\bin\Debug\SmartCity.Server.Gui.EXE
+#CallFrom: ClassName=App, FullName=SmartCity.Server.Gui.App, Method=.ctor
+10.01.2018 19:55:53 ROOT [Inf] Application executable date: 10.01.2018 19:55:51
+#CallFrom: ClassName=App, FullName=SmartCity.Server.Gui.App, Method=.ctor
+10.01.2018 19:55:53 ROOT [Msg] TCP server created on 8520 port
+#CallFrom: ClassName=TcpServer, FullName=SmartCity.Server.TcpServer, Method=ListenProcess
+10.01.2018 19:55:54 ROOT [Msg] Authentication to host 'localhost' for user 'smartcity' using method 'mysql_native_password' failed with message: Access denied for user 'smartcity'@'localhost' (using password: YES)
+#CallFrom: ClassName=DataBase, FullName=SmartCity.Server.DataBase, Method=Open
+10.01.2018 20:00:04 ROOT [Msg] Application startup
+#CallFrom: ClassName=App, FullName=SmartCity.Server.Gui.App, Method=.ctor
+10.01.2018 20:00:04 ROOT [Inf] Application executable path: D:\work\Other\TrafficMonitor\SmartCity.Software\SmartCity.Server.Gui\bin\Debug\SmartCity.Server.Gui.EXE
+#CallFrom: ClassName=App, FullName=SmartCity.Server.Gui.App, Method=.ctor
+10.01.2018 20:00:04 ROOT [Inf] Application executable date: 10.01.2018 20:00:03
+#CallFrom: ClassName=App, FullName=SmartCity.Server.Gui.App, Method=.ctor
+10.01.2018 20:00:05 ROOT [Msg] TCP server created on 8520 port
+#CallFrom: ClassName=TcpServer, FullName=SmartCity.Server.TcpServer, Method=ListenProcess
+10.01.2018 20:00:05 ROOT [Msg] Authentication to host 'localhost' for user 'smartcity' using method 'mysql_native_password' failed with message: Access denied for user 'smartcity'@'localhost' (using password: YES)
+#CallFrom: ClassName=DataBase, FullName=SmartCity.Server.DataBase, Method=Open
+10.01.2018 20:07:25 ROOT [Msg] Application startup
+#CallFrom: ClassName=App, FullName=SmartCity.Server.Gui.App, Method=.ctor
+10.01.2018 20:07:25 ROOT [Inf] Application executable path: D:\work\Other\TrafficMonitor\SmartCity.Software\SmartCity.Server.Gui\bin\Debug\SmartCity.Server.Gui.EXE
+#CallFrom: ClassName=App, FullName=SmartCity.Server.Gui.App, Method=.ctor
+10.01.2018 20:07:25 ROOT [Inf] Application executable date: 10.01.2018 20:07:23
+#CallFrom: ClassName=App, FullName=SmartCity.Server.Gui.App, Method=.ctor
+10.01.2018 20:07:26 ROOT [Msg] TCP server created on 8520 port
+#CallFrom: ClassName=TcpServer, FullName=SmartCity.Server.TcpServer, Method=ListenProcess
+10.01.2018 20:07:26 ROOT [Msg] Authentication to host 'localhost' for user 'smartcity' using method 'mysql_native_password' failed with message: Access denied for user 'smartcity'@'localhost' (using password: YES)
+#CallFrom: ClassName=DataBase, FullName=SmartCity.Server.DataBase, Method=Open
+10.01.2018 20:22:51 ROOT [Msg] Application startup
+#CallFrom: ClassName=App, FullName=SmartCity.Server.Gui.App, Method=.ctor
+10.01.2018 20:22:51 ROOT [Inf] Application executable path: D:\work\Other\TrafficMonitor\SmartCity.Software\SmartCity.Server.Gui\bin\Debug\SmartCity.Server.Gui.EXE
+#CallFrom: ClassName=App, FullName=SmartCity.Server.Gui.App, Method=.ctor
+10.01.2018 20:22:51 ROOT [Inf] Application executable date: 10.01.2018 20:22:47
+#CallFrom: ClassName=App, FullName=SmartCity.Server.Gui.App, Method=.ctor
+10.01.2018 20:22:51 ROOT [Msg] TCP server created on 8520 port
+#CallFrom: ClassName=TcpServer, FullName=SmartCity.Server.TcpServer, Method=ListenProcess
+10.01.2018 20:22:51 ROOT [Msg] Authentication to host 'localhost' for user 'smartcity' using method 'mysql_native_password' failed with message: Access denied for user 'smartcity'@'localhost' (using password: YES)
+#CallFrom: ClassName=DataBase, FullName=SmartCity.Server.DataBase, Method=Open
+10.01.2018 20:27:57 ROOT [Msg] Application startup
+#CallFrom: ClassName=App, FullName=SmartCity.Server.Gui.App, Method=.ctor
+10.01.2018 20:27:57 ROOT [Inf] Application executable path: D:\work\Other\TrafficMonitor\SmartCity.Software\SmartCity.Server.Gui\bin\Debug\SmartCity.Server.Gui.EXE
+#CallFrom: ClassName=App, FullName=SmartCity.Server.Gui.App, Method=.ctor
+10.01.2018 20:27:57 ROOT [Inf] Application executable date: 10.01.2018 20:27:55
+#CallFrom: ClassName=App, FullName=SmartCity.Server.Gui.App, Method=.ctor
+10.01.2018 20:27:58 ROOT [Msg] TCP server created on 8520 port
+#CallFrom: ClassName=TcpServer, FullName=SmartCity.Server.TcpServer, Method=ListenProcess
+10.01.2018 20:27:59 ROOT [Msg] Authentication to host 'localhost' for user 'smartcity' using method 'mysql_native_password' failed with message: Access denied for user 'smartcity'@'localhost' (using password: YES)
+#CallFrom: ClassName=DataBase, FullName=SmartCity.Server.DataBase, Method=Open
+10.01.2018 20:35:31 ROOT [Msg] Application startup
+#CallFrom: ClassName=App, FullName=SmartCity.Server.Gui.App, Method=.ctor
+10.01.2018 20:35:31 ROOT [Inf] Application executable path: D:\work\Other\TrafficMonitor\SmartCity.Software\SmartCity.Server.Gui\bin\Debug\SmartCity.Server.Gui.EXE
+#CallFrom: ClassName=App, FullName=SmartCity.Server.Gui.App, Method=.ctor
+10.01.2018 20:35:31 ROOT [Inf] Application executable date: 10.01.2018 20:35:29
+#CallFrom: ClassName=App, FullName=SmartCity.Server.Gui.App, Method=.ctor
+10.01.2018 20:35:31 ROOT [Msg] TCP server created on 8520 port
+#CallFrom: ClassName=TcpServer, FullName=SmartCity.Server.TcpServer, Method=ListenProcess
+10.01.2018 20:35:32 ROOT [Msg] Authentication to host 'localhost' for user 'smartcity' using method 'mysql_native_password' failed with message: Access denied for user 'smartcity'@'localhost' (using password: YES)
+#CallFrom: ClassName=DataBase, FullName=SmartCity.Server.DataBase, Method=Open
+10.01.2018 20:40:55 ROOT [Msg] Application startup
+#CallFrom: ClassName=App, FullName=SmartCity.Server.Gui.App, Method=.ctor
+10.01.2018 20:40:55 ROOT [Inf] Application executable path: D:\work\Other\TrafficMonitor\SmartCity.Software\SmartCity.Server.Gui\bin\Debug\SmartCity.Server.Gui.EXE
+#CallFrom: ClassName=App, FullName=SmartCity.Server.Gui.App, Method=.ctor
+10.01.2018 20:40:55 ROOT [Inf] Application executable date: 10.01.2018 20:40:52
+#CallFrom: ClassName=App, FullName=SmartCity.Server.Gui.App, Method=.ctor
+10.01.2018 20:40:55 ROOT [Msg] TCP server created on 8520 port
+#CallFrom: ClassName=TcpServer, FullName=SmartCity.Server.TcpServer, Method=ListenProcess
+10.01.2018 20:40:56 ROOT [Msg] Authentication to host 'localhost' for user 'smartcity' using method 'mysql_native_password' failed with message: Access denied for user 'smartcity'@'localhost' (using password: YES)
+#CallFrom: ClassName=DataBase, FullName=SmartCity.Server.DataBase, Method=Open
+10.01.2018 20:51:08 ROOT [Msg] Application startup
+#CallFrom: ClassName=App, FullName=SmartCity.Server.Gui.App, Method=.ctor
+10.01.2018 20:51:08 ROOT [Inf] Application executable path: D:\work\Other\TrafficMonitor\SmartCity.Software\SmartCity.Server.Gui\bin\Debug\SmartCity.Server.Gui.EXE
+#CallFrom: ClassName=App, FullName=SmartCity.Server.Gui.App, Method=.ctor
+10.01.2018 20:51:08 ROOT [Inf] Application executable date: 10.01.2018 20:51:05
+#CallFrom: ClassName=App, FullName=SmartCity.Server.Gui.App, Method=.ctor
+10.01.2018 20:51:08 ROOT [Msg] TCP server created on 8520 port
+#CallFrom: ClassName=TcpServer, FullName=SmartCity.Server.TcpServer, Method=ListenProcess
+10.01.2018 20:51:09 ROOT [Msg] Authentication to host 'localhost' for user 'smartcity' using method 'mysql_native_password' failed with message: Access denied for user 'smartcity'@'localhost' (using password: YES)
+#CallFrom: ClassName=DataBase, FullName=SmartCity.Server.DataBase, Method=Open
+10.01.2018 21:00:24 ROOT [Msg] Application startup
+#CallFrom: ClassName=App, FullName=SmartCity.Server.Gui.App, Method=.ctor
+10.01.2018 21:00:24 ROOT [Inf] Application executable path: D:\work\Other\TrafficMonitor\SmartCity.Software\SmartCity.Server.Gui\bin\Debug\SmartCity.Server.Gui.EXE
+#CallFrom: ClassName=App, FullName=SmartCity.Server.Gui.App, Method=.ctor
+10.01.2018 21:00:24 ROOT [Inf] Application executable date: 10.01.2018 21:00:22
+#CallFrom: ClassName=App, FullName=SmartCity.Server.Gui.App, Method=.ctor
+10.01.2018 21:00:24 ROOT [Msg] TCP server created on 8520 port
+#CallFrom: ClassName=TcpServer, FullName=SmartCity.Server.TcpServer, Method=ListenProcess
+10.01.2018 21:00:25 ROOT [Msg] Authentication to host 'localhost' for user 'smartcity' using method 'mysql_native_password' failed with message: Access denied for user 'smartcity'@'localhost' (using password: YES)
+#CallFrom: ClassName=DataBase, FullName=SmartCity.Server.DataBase, Method=Open
+10.01.2018 21:06:35 ROOT [Msg] Application startup
+#CallFrom: ClassName=App, FullName=SmartCity.Server.Gui.App, Method=.ctor
+10.01.2018 21:06:35 ROOT [Inf] Application executable path: D:\work\Other\TrafficMonitor\SmartCity.Software\SmartCity.Server.Gui\bin\Debug\SmartCity.Server.Gui.EXE
+#CallFrom: ClassName=App, FullName=SmartCity.Server.Gui.App, Method=.ctor
+10.01.2018 21:06:35 ROOT [Inf] Application executable date: 10.01.2018 21:06:31
+#CallFrom: ClassName=App, FullName=SmartCity.Server.Gui.App, Method=.ctor
+10.01.2018 21:06:36 ROOT [Msg] TCP server created on 8520 port
+#CallFrom: ClassName=TcpServer, FullName=SmartCity.Server.TcpServer, Method=ListenProcess
+10.01.2018 21:06:36 ROOT [Msg] Authentication to host 'localhost' for user 'smartcity' using method 'mysql_native_password' failed with message: Access denied for user 'smartcity'@'localhost' (using password: YES)
+#CallFrom: ClassName=DataBase, FullName=SmartCity.Server.DataBase, Method=Open
+10.01.2018 21:10:50 ROOT [Msg] Application startup
+#CallFrom: ClassName=App, FullName=SmartCity.Server.Gui.App, Method=.ctor
+10.01.2018 21:10:50 ROOT [Inf] Application executable path: D:\work\Other\TrafficMonitor\SmartCity.Software\SmartCity.Server.Gui\bin\Debug\SmartCity.Server.Gui.EXE
+#CallFrom: ClassName=App, FullName=SmartCity.Server.Gui.App, Method=.ctor
+10.01.2018 21:10:50 ROOT [Inf] Application executable date: 10.01.2018 21:10:47
+#CallFrom: ClassName=App, FullName=SmartCity.Server.Gui.App, Method=.ctor
+10.01.2018 21:10:50 ROOT [Msg] TCP server created on 8520 port
+#CallFrom: ClassName=TcpServer, FullName=SmartCity.Server.TcpServer, Method=ListenProcess
+10.01.2018 21:29:15 ROOT [Msg] Application startup
+#CallFrom: ClassName=App, FullName=SmartCity.Server.Gui.App, Method=.ctor
+10.01.2018 21:29:15 ROOT [Inf] Application executable path: D:\work\Other\TrafficMonitor\SmartCity.Software\SmartCity.Server.Gui\bin\Debug\SmartCity.Server.Gui.EXE
+#CallFrom: ClassName=App, FullName=SmartCity.Server.Gui.App, Method=.ctor
+10.01.2018 21:29:15 ROOT [Inf] Application executable date: 10.01.2018 21:29:12
+#CallFrom: ClassName=App, FullName=SmartCity.Server.Gui.App, Method=.ctor
+10.01.2018 21:29:15 ROOT [Msg] TCP server created on 8520 port
+#CallFrom: ClassName=TcpServer, FullName=SmartCity.Server.TcpServer, Method=ListenProcess
+10.01.2018 21:29:16 ROOT [Msg] Authentication to host 'localhost' for user 'smartcity' using method 'mysql_native_password' failed with message: Access denied for user 'smartcity'@'localhost' (using password: YES)
+#CallFrom: ClassName=DataBase, FullName=SmartCity.Server.DataBase, Method=Open
+10.01.2018 21:29:47 ROOT [Msg] Application startup
+#CallFrom: ClassName=App, FullName=SmartCity.Server.Gui.App, Method=.ctor
+10.01.2018 21:29:47 ROOT [Inf] Application executable path: D:\work\Other\TrafficMonitor\SmartCity.Software\SmartCity.Server.Gui\bin\Debug\SmartCity.Server.Gui.EXE
+#CallFrom: ClassName=App, FullName=SmartCity.Server.Gui.App, Method=.ctor
+10.01.2018 21:29:47 ROOT [Inf] Application executable date: 10.01.2018 21:29:44
+#CallFrom: ClassName=App, FullName=SmartCity.Server.Gui.App, Method=.ctor
+10.01.2018 21:29:47 ROOT [Msg] TCP server created on 8520 port
+#CallFrom: ClassName=TcpServer, FullName=SmartCity.Server.TcpServer, Method=ListenProcess
+10.01.2018 21:29:48 ROOT [Msg] Authentication to host 'localhost' for user 'smartcity' using method 'mysql_native_password' failed with message: Access denied for user 'smartcity'@'localhost' (using password: YES)
+#CallFrom: ClassName=DataBase, FullName=SmartCity.Server.DataBase, Method=Open
+10.01.2018 21:30:35 ROOT [Msg] Application startup
+#CallFrom: ClassName=App, FullName=SmartCity.Server.Gui.App, Method=.ctor
+10.01.2018 21:30:35 ROOT [Inf] Application executable path: D:\work\Other\TrafficMonitor\SmartCity.Software\SmartCity.Server.Gui\bin\Debug\SmartCity.Server.Gui.EXE
+#CallFrom: ClassName=App, FullName=SmartCity.Server.Gui.App, Method=.ctor
+10.01.2018 21:30:35 ROOT [Inf] Application executable date: 10.01.2018 21:29:44
+#CallFrom: ClassName=App, FullName=SmartCity.Server.Gui.App, Method=.ctor
+10.01.2018 21:30:36 ROOT [Msg] TCP server created on 8520 port
+#CallFrom: ClassName=TcpServer, FullName=SmartCity.Server.TcpServer, Method=ListenProcess
+10.01.2018 21:30:37 ROOT [Msg] Authentication to host 'localhost' for user 'smartcity' using method 'mysql_native_password' failed with message: Access denied for user 'smartcity'@'localhost' (using password: YES)
+#CallFrom: ClassName=DataBase, FullName=SmartCity.Server.DataBase, Method=Open
+10.01.2018 21:41:18 ROOT [Msg] Application startup
+#CallFrom: ClassName=App, FullName=SmartCity.Server.Gui.App, Method=.ctor
+10.01.2018 21:41:18 ROOT [Inf] Application executable path: D:\work\Other\TrafficMonitor\SmartCity.Software\SmartCity.Server.Gui\bin\Debug\SmartCity.Server.Gui.EXE
+#CallFrom: ClassName=App, FullName=SmartCity.Server.Gui.App, Method=.ctor
+10.01.2018 21:41:18 ROOT [Inf] Application executable date: 10.01.2018 21:41:14
+#CallFrom: ClassName=App, FullName=SmartCity.Server.Gui.App, Method=.ctor
+10.01.2018 21:45:33 ROOT [Msg] Application startup
+#CallFrom: ClassName=App, FullName=SmartCity.Server.Gui.App, Method=.ctor
+10.01.2018 21:45:33 ROOT [Inf] Application executable path: D:\work\Other\TrafficMonitor\SmartCity.Software\SmartCity.Server.Gui\bin\Debug\SmartCity.Server.Gui.EXE
+#CallFrom: ClassName=App, FullName=SmartCity.Server.Gui.App, Method=.ctor
+10.01.2018 21:45:33 ROOT [Inf] Application executable date: 10.01.2018 21:45:31
+#CallFrom: ClassName=App, FullName=SmartCity.Server.Gui.App, Method=.ctor
+10.01.2018 21:45:34 ROOT [Msg] TCP server created on 8520 port
+#CallFrom: ClassName=TcpServer, FullName=SmartCity.Server.TcpServer, Method=ListenProcess
+10.01.2018 21:45:36 ROOT [Msg] Authentication to host 'localhost' for user 'smartcity' using method 'mysql_native_password' failed with message: Access denied for user 'smartcity'@'localhost' (using password: YES)
+#CallFrom: ClassName=DataBase, FullName=SmartCity.Server.DataBase, Method=Open
+10.01.2018 21:50:26 ROOT [Msg] Application startup
+#CallFrom: ClassName=App, FullName=SmartCity.Server.Gui.App, Method=.ctor
+10.01.2018 21:50:26 ROOT [Inf] Application executable path: D:\work\Other\TrafficMonitor\SmartCity.Software\SmartCity.Server.Gui\bin\Debug\SmartCity.Server.Gui.EXE
+#CallFrom: ClassName=App, FullName=SmartCity.Server.Gui.App, Method=.ctor
+10.01.2018 21:50:26 ROOT [Inf] Application executable date: 10.01.2018 21:50:22
+#CallFrom: ClassName=App, FullName=SmartCity.Server.Gui.App, Method=.ctor
+10.01.2018 21:50:26 ROOT [Msg] TCP server created on 8520 port
+#CallFrom: ClassName=TcpServer, FullName=SmartCity.Server.TcpServer, Method=ListenProcess
+10.01.2018 21:50:27 ROOT [Msg] Authentication to host 'localhost' for user 'smartcity' using method 'mysql_native_password' failed with message: Access denied for user 'smartcity'@'localhost' (using password: YES)
+#CallFrom: ClassName=DataBase, FullName=SmartCity.Server.DataBase, Method=Open
+10.01.2018 21:55:09 ROOT [Msg] Application startup
+#CallFrom: ClassName=App, FullName=SmartCity.Server.Gui.App, Method=.ctor
+10.01.2018 21:55:09 ROOT [Inf] Application executable path: D:\work\Other\TrafficMonitor\SmartCity.Software\SmartCity.Server.Gui\bin\Debug\SmartCity.Server.Gui.EXE
+#CallFrom: ClassName=App, FullName=SmartCity.Server.Gui.App, Method=.ctor
+10.01.2018 21:55:09 ROOT [Inf] Application executable date: 10.01.2018 21:55:07
+#CallFrom: ClassName=App, FullName=SmartCity.Server.Gui.App, Method=.ctor
+10.01.2018 21:55:10 ROOT [Msg] TCP server created on 8520 port
+#CallFrom: ClassName=TcpServer, FullName=SmartCity.Server.TcpServer, Method=ListenProcess
+10.01.2018 21:55:10 ROOT [Msg] Authentication to host 'localhost' for user 'smartcity' using method 'mysql_native_password' failed with message: Access denied for user 'smartcity'@'localhost' (using password: YES)
+#CallFrom: ClassName=DataBase, FullName=SmartCity.Server.DataBase, Method=Open
+10.01.2018 21:57:21 ROOT [Msg] Application startup
+#CallFrom: ClassName=App, FullName=SmartCity.Server.Gui.App, Method=.ctor
+10.01.2018 21:57:21 ROOT [Inf] Application executable path: D:\work\Other\TrafficMonitor\SmartCity.Software\SmartCity.Server.Gui\bin\Debug\SmartCity.Server.Gui.EXE
+#CallFrom: ClassName=App, FullName=SmartCity.Server.Gui.App, Method=.ctor
+10.01.2018 21:57:21 ROOT [Inf] Application executable date: 10.01.2018 21:57:18
+#CallFrom: ClassName=App, FullName=SmartCity.Server.Gui.App, Method=.ctor
+10.01.2018 21:57:21 ROOT [Msg] TCP server created on 8520 port
+#CallFrom: ClassName=TcpServer, FullName=SmartCity.Server.TcpServer, Method=ListenProcess
+10.01.2018 21:57:23 ROOT [Msg] Authentication to host 'localhost' for user 'smartcity' using method 'mysql_native_password' failed with message: Access denied for user 'smartcity'@'localhost' (using password: YES)
+#CallFrom: ClassName=DataBase, FullName=SmartCity.Server.DataBase, Method=Open
+10.01.2018 22:01:53 ROOT [Msg] Application startup
+#CallFrom: ClassName=App, FullName=SmartCity.Server.Gui.App, Method=.ctor
+10.01.2018 22:01:53 ROOT [Inf] Application executable path: D:\work\Other\TrafficMonitor\SmartCity.Software\SmartCity.Server.Gui\bin\Debug\SmartCity.Server.Gui.EXE
+#CallFrom: ClassName=App, FullName=SmartCity.Server.Gui.App, Method=.ctor
+10.01.2018 22:01:53 ROOT [Inf] Application executable date: 10.01.2018 22:01:51
+#CallFrom: ClassName=App, FullName=SmartCity.Server.Gui.App, Method=.ctor
+10.01.2018 22:01:53 ROOT [Msg] TCP server created on 8520 port
+#CallFrom: ClassName=TcpServer, FullName=SmartCity.Server.TcpServer, Method=ListenProcess
+10.01.2018 22:01:54 ROOT [Msg] Authentication to host 'localhost' for user 'smartcity' using method 'mysql_native_password' failed with message: Access denied for user 'smartcity'@'localhost' (using password: YES)
+#CallFrom: ClassName=DataBase, FullName=SmartCity.Server.DataBase, Method=Open
+10.01.2018 22:03:38 ROOT [Msg] Application startup
+#CallFrom: ClassName=App, FullName=SmartCity.Server.Gui.App, Method=.ctor
+10.01.2018 22:03:38 ROOT [Inf] Application executable path: D:\work\Other\TrafficMonitor\SmartCity.Software\SmartCity.Server.Gui\bin\Debug\SmartCity.Server.Gui.EXE
+#CallFrom: ClassName=App, FullName=SmartCity.Server.Gui.App, Method=.ctor
+10.01.2018 22:03:39 ROOT [Inf] Application executable date: 10.01.2018 22:03:36
+#CallFrom: ClassName=App, FullName=SmartCity.Server.Gui.App, Method=.ctor
+10.01.2018 22:03:39 ROOT [Msg] TCP server created on 8520 port
+#CallFrom: ClassName=TcpServer, FullName=SmartCity.Server.TcpServer, Method=ListenProcess
+10.01.2018 22:03:39 ROOT [Msg] Authentication to host 'localhost' for user 'smartcity' using method 'mysql_native_password' failed with message: Access denied for user 'smartcity'@'localhost' (using password: YES)
+#CallFrom: ClassName=DataBase, FullName=SmartCity.Server.DataBase, Method=Open
+10.01.2018 22:26:33 ROOT [Msg] Application startup
+#CallFrom: ClassName=App, FullName=SmartCity.Server.Gui.App, Method=.ctor
+10.01.2018 22:26:33 ROOT [Inf] Application executable path: D:\work\Other\TrafficMonitor\SmartCity.Software\SmartCity.Server.Gui\bin\Debug\SmartCity.Server.Gui.EXE
+#CallFrom: ClassName=App, FullName=SmartCity.Server.Gui.App, Method=.ctor
+10.01.2018 22:26:33 ROOT [Inf] Application executable date: 10.01.2018 22:26:30
+#CallFrom: ClassName=App, FullName=SmartCity.Server.Gui.App, Method=.ctor
+10.01.2018 22:26:33 ROOT [Msg] TCP server created on 8520 port
+#CallFrom: ClassName=TcpServer, FullName=SmartCity.Server.TcpServer, Method=ListenProcess
+10.01.2018 22:26:34 ROOT [Msg] Authentication to host 'localhost' for user 'smartcity' using method 'mysql_native_password' failed with message: Access denied for user 'smartcity'@'localhost' (using password: YES)
+#CallFrom: ClassName=DataBase, FullName=SmartCity.Server.DataBase, Method=Open
+10.01.2018 22:32:02 ROOT [Msg] Application startup
+#CallFrom: ClassName=App, FullName=SmartCity.Server.Gui.App, Method=.ctor
+10.01.2018 22:32:03 ROOT [Inf] Application executable path: D:\work\Other\TrafficMonitor\SmartCity.Software\SmartCity.Server.Gui\bin\Debug\SmartCity.Server.Gui.EXE
+#CallFrom: ClassName=App, FullName=SmartCity.Server.Gui.App, Method=.ctor
+10.01.2018 22:32:03 ROOT [Inf] Application executable date: 10.01.2018 22:32:00
+#CallFrom: ClassName=App, FullName=SmartCity.Server.Gui.App, Method=.ctor
+10.01.2018 22:32:03 ROOT [Msg] TCP server created on 8520 port
+#CallFrom: ClassName=TcpServer, FullName=SmartCity.Server.TcpServer, Method=ListenProcess
+10.01.2018 22:32:03 ROOT [Msg] Authentication to host 'localhost' for user 'smartcity' using method 'mysql_native_password' failed with message: Access denied for user 'smartcity'@'localhost' (using password: YES)
+#CallFrom: ClassName=DataBase, FullName=SmartCity.Server.DataBase, Method=Open
+10.01.2018 23:12:40 ROOT [Msg] Application startup
+#CallFrom: ClassName=App, FullName=SmartCity.Server.Gui.App, Method=.ctor
+10.01.2018 23:12:40 ROOT [Inf] Application executable path: D:\work\Other\TrafficMonitor\SmartCity.Software\SmartCity.Server.Gui\bin\Debug\SmartCity.Server.Gui.EXE
+#CallFrom: ClassName=App, FullName=SmartCity.Server.Gui.App, Method=.ctor
+10.01.2018 23:12:40 ROOT [Inf] Application executable date: 10.01.2018 23:12:37
+#CallFrom: ClassName=App, FullName=SmartCity.Server.Gui.App, Method=.ctor
+10.01.2018 23:12:40 ROOT [Msg] TCP server created on 8520 port
+#CallFrom: ClassName=TcpServer, FullName=SmartCity.Server.TcpServer, Method=ListenProcess
+10.01.2018 23:12:41 ROOT [Msg] Authentication to host 'localhost' for user 'smartcity' using method 'mysql_native_password' failed with message: Access denied for user 'smartcity'@'localhost' (using password: YES)
+#CallFrom: ClassName=DataBase, FullName=SmartCity.Server.DataBase, Method=Open
+10.01.2018 23:13:05 ROOT [Msg] Application startup
+#CallFrom: ClassName=App, FullName=SmartCity.Server.Gui.App, Method=.ctor
+10.01.2018 23:13:05 ROOT [Inf] Application executable path: D:\work\Other\TrafficMonitor\SmartCity.Software\SmartCity.Server.Gui\bin\Debug\SmartCity.Server.Gui.EXE
+#CallFrom: ClassName=App, FullName=SmartCity.Server.Gui.App, Method=.ctor
+10.01.2018 23:13:05 ROOT [Inf] Application executable date: 10.01.2018 23:13:01
+#CallFrom: ClassName=App, FullName=SmartCity.Server.Gui.App, Method=.ctor
+10.01.2018 23:13:06 ROOT [Msg] TCP server created on 8520 port
+#CallFrom: ClassName=TcpServer, FullName=SmartCity.Server.TcpServer, Method=ListenProcess
+10.01.2018 23:13:08 ROOT [Msg] Authentication to host 'localhost' for user 'smartcity' using method 'mysql_native_password' failed with message: Access denied for user 'smartcity'@'localhost' (using password: YES)
+#CallFrom: ClassName=DataBase, FullName=SmartCity.Server.DataBase, Method=Open
+10.01.2018 23:15:50 ROOT [Msg] Application startup
+#CallFrom: ClassName=App, FullName=SmartCity.Server.Gui.App, Method=.ctor
+10.01.2018 23:15:50 ROOT [Inf] Application executable path: D:\work\Other\TrafficMonitor\SmartCity.Software\SmartCity.Server.Gui\bin\Debug\SmartCity.Server.Gui.EXE
+#CallFrom: ClassName=App, FullName=SmartCity.Server.Gui.App, Method=.ctor
+10.01.2018 23:15:50 ROOT [Inf] Application executable date: 10.01.2018 23:15:47
+#CallFrom: ClassName=App, FullName=SmartCity.Server.Gui.App, Method=.ctor
+10.01.2018 23:15:50 ROOT [Msg] TCP server created on 8520 port
+#CallFrom: ClassName=TcpServer, FullName=SmartCity.Server.TcpServer, Method=ListenProcess
+10.01.2018 23:15:51 ROOT [Msg] Authentication to host 'localhost' for user 'smartcity' using method 'mysql_native_password' failed with message: Access denied for user 'smartcity'@'localhost' (using password: YES)
+#CallFrom: ClassName=DataBase, FullName=SmartCity.Server.DataBase, Method=Open
+10.01.2018 23:52:32 ROOT [Msg] Application startup
+#CallFrom: ClassName=App, FullName=SmartCity.Server.Gui.App, Method=.ctor
+10.01.2018 23:52:32 ROOT [Inf] Application executable path: D:\work\Other\TrafficMonitor\SmartCity.Software\SmartCity.Server.Gui\bin\Debug\SmartCity.Server.Gui.EXE
+#CallFrom: ClassName=App, FullName=SmartCity.Server.Gui.App, Method=.ctor
+10.01.2018 23:52:32 ROOT [Inf] Application executable date: 10.01.2018 23:52:30
+#CallFrom: ClassName=App, FullName=SmartCity.Server.Gui.App, Method=.ctor
+10.01.2018 23:52:33 ROOT [Msg] TCP server created on 8520 port
+#CallFrom: ClassName=TcpServer, FullName=SmartCity.Server.TcpServer, Method=ListenProcess
+10.01.2018 23:52:33 ROOT [Msg] Authentication to host 'localhost' for user 'smartcity' using method 'mysql_native_password' failed with message: Access denied for user 'smartcity'@'localhost' (using password: YES)
+#CallFrom: ClassName=DataBase, FullName=SmartCity.Server.DataBase, Method=Open
+11.01.2018 0:31:35 ROOT [Msg] Application startup
+#CallFrom: ClassName=App, FullName=SmartCity.Server.Gui.App, Method=.ctor
+11.01.2018 0:31:35 ROOT [Inf] Application executable path: D:\work\Other\TrafficMonitor\SmartCity.Software\SmartCity.Server.Gui\bin\Debug\SmartCity.Server.Gui.EXE
+#CallFrom: ClassName=App, FullName=SmartCity.Server.Gui.App, Method=.ctor
+11.01.2018 0:31:35 ROOT [Inf] Application executable date: 11.01.2018 0:31:32
+#CallFrom: ClassName=App, FullName=SmartCity.Server.Gui.App, Method=.ctor
+11.01.2018 0:31:35 ROOT [Msg] TCP server created on 8520 port
+#CallFrom: ClassName=TcpServer, FullName=SmartCity.Server.TcpServer, Method=ListenProcess
+11.01.2018 0:31:36 ROOT [Msg] Authentication to host 'localhost' for user 'smartcity' using method 'mysql_native_password' failed with message: Access denied for user 'smartcity'@'localhost' (using password: YES)
+#CallFrom: ClassName=DataBase, FullName=SmartCity.Server.DataBase, Method=Open
+11.01.2018 0:32:48 ROOT [Msg] Application startup
+#CallFrom: ClassName=App, FullName=SmartCity.Server.Gui.App, Method=.ctor
+11.01.2018 0:32:48 ROOT [Inf] Application executable path: D:\work\Other\TrafficMonitor\SmartCity.Software\SmartCity.Server.Gui\bin\Debug\SmartCity.Server.Gui.EXE
+#CallFrom: ClassName=App, FullName=SmartCity.Server.Gui.App, Method=.ctor
+11.01.2018 0:32:48 ROOT [Inf] Application executable date: 11.01.2018 0:32:47
+#CallFrom: ClassName=App, FullName=SmartCity.Server.Gui.App, Method=.ctor
+11.01.2018 0:32:49 ROOT [Msg] TCP server created on 8520 port
+#CallFrom: ClassName=TcpServer, FullName=SmartCity.Server.TcpServer, Method=ListenProcess
+11.01.2018 0:32:49 ROOT [Msg] Authentication to host 'localhost' for user 'smartcity' using method 'mysql_native_password' failed with message: Access denied for user 'smartcity'@'localhost' (using password: YES)
+#CallFrom: ClassName=DataBase, FullName=SmartCity.Server.DataBase, Method=Open
+11.01.2018 0:43:46 ROOT [Msg] Application startup
+#CallFrom: ClassName=App, FullName=SmartCity.Server.Gui.App, Method=.ctor
+11.01.2018 0:43:46 ROOT [Inf] Application executable path: D:\work\Other\TrafficMonitor\SmartCity.Software\SmartCity.Server.Gui\bin\Debug\SmartCity.Server.Gui.EXE
+#CallFrom: ClassName=App, FullName=SmartCity.Server.Gui.App, Method=.ctor
+11.01.2018 0:43:46 ROOT [Inf] Application executable date: 11.01.2018 0:43:44
+#CallFrom: ClassName=App, FullName=SmartCity.Server.Gui.App, Method=.ctor
+11.01.2018 0:43:47 ROOT [Msg] TCP server created on 8520 port
+#CallFrom: ClassName=TcpServer, FullName=SmartCity.Server.TcpServer, Method=ListenProcess
+11.01.2018 0:43:48 ROOT [Msg] Authentication to host 'localhost' for user 'smartcity' using method 'mysql_native_password' failed with message: Access denied for user 'smartcity'@'localhost' (using password: YES)
+#CallFrom: ClassName=DataBase, FullName=SmartCity.Server.DataBase, Method=Open
+11.01.2018 0:51:14 ROOT [Msg] Application startup
+#CallFrom: ClassName=App, FullName=SmartCity.Server.Gui.App, Method=.ctor
+11.01.2018 0:51:14 ROOT [Inf] Application executable path: D:\work\Other\TrafficMonitor\SmartCity.Software\SmartCity.Server.Gui\bin\Debug\SmartCity.Server.Gui.EXE
+#CallFrom: ClassName=App, FullName=SmartCity.Server.Gui.App, Method=.ctor
+11.01.2018 0:51:14 ROOT [Inf] Application executable date: 11.01.2018 0:51:11
+#CallFrom: ClassName=App, FullName=SmartCity.Server.Gui.App, Method=.ctor
+11.01.2018 0:51:14 ROOT [Msg] TCP server created on 8520 port
+#CallFrom: ClassName=TcpServer, FullName=SmartCity.Server.TcpServer, Method=ListenProcess
+11.01.2018 0:51:14 ROOT [Msg] Authentication to host 'localhost' for user 'smartcity' using method 'mysql_native_password' failed with message: Access denied for user 'smartcity'@'localhost' (using password: YES)
+#CallFrom: ClassName=DataBase, FullName=SmartCity.Server.DataBase, Method=Open
+11.01.2018 0:54:28 ROOT [Msg] Application startup
+#CallFrom: ClassName=App, FullName=SmartCity.Server.Gui.App, Method=.ctor
+11.01.2018 0:54:28 ROOT [Inf] Application executable path: D:\work\Other\TrafficMonitor\SmartCity.Software\SmartCity.Server.Gui\bin\Debug\SmartCity.Server.Gui.EXE
+#CallFrom: ClassName=App, FullName=SmartCity.Server.Gui.App, Method=.ctor
+11.01.2018 0:54:28 ROOT [Inf] Application executable date: 11.01.2018 0:54:27
+#CallFrom: ClassName=App, FullName=SmartCity.Server.Gui.App, Method=.ctor
+11.01.2018 0:54:29 ROOT [Msg] TCP server created on 8520 port
+#CallFrom: ClassName=TcpServer, FullName=SmartCity.Server.TcpServer, Method=ListenProcess
+11.01.2018 0:54:30 ROOT [Msg] Authentication to host 'localhost' for user 'smartcity' using method 'mysql_native_password' failed with message: Access denied for user 'smartcity'@'localhost' (using password: YES)
+#CallFrom: ClassName=DataBase, FullName=SmartCity.Server.DataBase, Method=Open
+11.01.2018 1:02:39 ROOT [Msg] Application startup
+#CallFrom: ClassName=App, FullName=SmartCity.Server.Gui.App, Method=.ctor
+11.01.2018 1:02:39 ROOT [Inf] Application executable path: D:\work\Other\TrafficMonitor\SmartCity.Software\SmartCity.Server.Gui\bin\Debug\SmartCity.Server.Gui.EXE
+#CallFrom: ClassName=App, FullName=SmartCity.Server.Gui.App, Method=.ctor
+11.01.2018 1:02:39 ROOT [Inf] Application executable date: 11.01.2018 1:02:37
+#CallFrom: ClassName=App, FullName=SmartCity.Server.Gui.App, Method=.ctor
+11.01.2018 1:02:39 ROOT [Msg] TCP server created on 8520 port
+#CallFrom: ClassName=TcpServer, FullName=SmartCity.Server.TcpServer, Method=ListenProcess
+11.01.2018 1:02:40 ROOT [Msg] Authentication to host 'localhost' for user 'smartcity' using method 'mysql_native_password' failed with message: Access denied for user 'smartcity'@'localhost' (using password: YES)
+#CallFrom: ClassName=DataBase, FullName=SmartCity.Server.DataBase, Method=Open
+11.01.2018 1:04:19 ROOT [Msg] Application startup
+#CallFrom: ClassName=App, FullName=SmartCity.Server.Gui.App, Method=.ctor
+11.01.2018 1:04:19 ROOT [Inf] Application executable path: D:\work\Other\TrafficMonitor\SmartCity.Software\SmartCity.Server.Gui\bin\Debug\SmartCity.Server.Gui.EXE
+#CallFrom: ClassName=App, FullName=SmartCity.Server.Gui.App, Method=.ctor
+11.01.2018 1:04:19 ROOT [Inf] Application executable date: 11.01.2018 1:04:17
+#CallFrom: ClassName=App, FullName=SmartCity.Server.Gui.App, Method=.ctor
+11.01.2018 1:04:19 ROOT [Msg] TCP server created on 8520 port
+#CallFrom: ClassName=TcpServer, FullName=SmartCity.Server.TcpServer, Method=ListenProcess
+11.01.2018 1:04:20 ROOT [Msg] Authentication to host 'localhost' for user 'smartcity' using method 'mysql_native_password' failed with message: Access denied for user 'smartcity'@'localhost' (using password: YES)
+#CallFrom: ClassName=DataBase, FullName=SmartCity.Server.DataBase, Method=Open

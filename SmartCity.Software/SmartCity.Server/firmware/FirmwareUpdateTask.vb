@@ -1,24 +1,31 @@
-﻿Public Class FirmwareUpdateTask
+﻿Imports System.Windows.Forms
+
+Public Class FirmwareUpdateTask
     Private _ap As ClientProcessor = Nothing
     Public Property DeviceId As String = ""
     Private _hexFile As String = ""
-    Public Property Status As String = "Wait queue"
-
+    Private _hexPath As String = ""
+    Private _status As String = "Wait queue"
     Private _bootMode As Boolean = False
     Private _currentFlashAddress As UInt16 = 0
-
     Private _flashedAddress As UInt16 = 0
     Private _flashAddressShift As UInt16 = 0
     Private _subTaskProcess As Boolean = False
-
-    Sub New(deviceId As String, ap As ClientProcessor)
+    Private _hashId As String = ""
+    Sub New(deviceId As String, ap As ClientProcessor, hexPath As String)
         _ap = ap
+        _hexPath = hexPath
         Me.DeviceId = deviceId
+        _hashId = Tool.GenerateRandomString(30)
     End Sub
 
-    Public Sub LoadHex(hexPath As String)
+    Public Function GetTaskHash() As String
+        Return _hashId
+    End Function
+
+    Private Sub LoadHex()
         Try
-            Using sr As IO.StreamReader = New IO.StreamReader(hexPath)
+            Using sr As IO.StreamReader = New IO.StreamReader(_hexPath)
                 _hexFile = sr.ReadToEnd()
             End Using
         Catch e As Exception
@@ -26,7 +33,7 @@
     End Sub
 
     Public Sub EnterBootModeRequest()
-        Status = "Wait bootloader"
+        _status = "Wait bootloader"
         While (_bootMode = False)
             Dim data(2) As Byte
             data(0) = 38
@@ -34,7 +41,7 @@
             data(2) = 245
             _subTaskProcess = False
             _ap.Send(DeviceId, data)
-            Threading.Thread.Sleep(3000)
+            Threading.Thread.Sleep(1000)
         End While
     End Sub
 
@@ -47,12 +54,10 @@
     End Function
 
     Public Sub Run()
+        LoadHex()
         AddHandler _ap.onPacketReceived, AddressOf PacketHandler
         _bootMode = False
         EnterBootModeRequest()
-        While _bootMode = False
-            Threading.Thread.Sleep(100)
-        End While
         Dim lines = _hexFile.Split(Environment.NewLine)
         For i = 0 To lines.Length - 1
             Dim hexLine = lines(i)
@@ -64,9 +69,9 @@
                     Dim hexType As UInt16 = Convert.ToInt16(hexData.Substring(6, 2), 16)
                     If hexType = 0 Then
                         Dim flashData = DecodeHexData(hexData.Substring(8, dataLength * 2))
-                        Threading.Thread.Sleep(1000)
+                        Threading.Thread.Sleep(100)
                         SendHex(address, flashData)
-                        'Status = "Loading: "(lines.Count * 100 / (i+1)).ToString
+                        _status = "Loading: " + Math.Round(i * 100 / lines.Count, 1).ToString
                     End If
 
                     If hexType = 2 Then
@@ -104,7 +109,7 @@
         _subTaskProcess = False
         While _subTaskProcess <> True
             _ap.Send(DeviceId, data)
-            Threading.Thread.Sleep(500)
+            Threading.Thread.Sleep(1000)
         End While
     End Sub
 
@@ -135,12 +140,12 @@
         End While
     End Sub
 
+
     Private Sub PacketHandler(pack As DevicePacket)
         If pack.DeviceId = DeviceId Then
             Try
                 If pack.Data(0) = 48 And pack.Data(1) = 85 And pack.Data(2) = 127 Then
                     _bootMode = True
-                    Status = "Device in boot mode."
                 End If
 
                 If pack.Data(0) = 148 And pack.Data(1) = 185 And pack.Data(2) = 27 Then
@@ -159,8 +164,12 @@
                     _subTaskProcess = True
                 End If
             Catch ex As Exception
-                Status = ex.Message
+                _status = ex.Message
             End Try
         End If
     End Sub
+
+    Public Function GetInfo() As String
+        Return DeviceId + ": " + _status
+    End Function
 End Class

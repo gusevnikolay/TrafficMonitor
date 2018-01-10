@@ -31,7 +31,7 @@ Public Class ApplicationMonitor
         _base.SetRootLogger(_logger)
         _base.Open()
         _deviceManager = New DeviceManager(_base)
-        _bootloader = New BootloaderTasksMonitor(_base, _server, _deviceManager)
+        _bootloader = New BootloaderTasksMonitor(_base, _server, _deviceManager, _logger)
         _bootloader.Run()
         AddHandler _server.onDevicePacketEvent, AddressOf _deviceManager.DevicePacketHandler
     End Sub
@@ -47,4 +47,10 @@ Public Class ApplicationMonitor
     Public Sub SetBootloaderTask(device As String, hexPath As String)
         _bootloader.AddTask(device, hexPath)
     End Sub
+
+    Public Function GetDevicesList() As List(Of String)
+        Return _base.GetDeviceIdList("traffic_monitor")
+    End Function
+
+
 End Class

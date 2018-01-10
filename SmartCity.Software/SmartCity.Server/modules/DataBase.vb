@@ -63,4 +63,23 @@ Public Class DataBase
         End Try
         Return result
     End Function
+
+    Public Function GetDeviceIdList(tableName As String) As List(Of String)
+        Dim sql = "SELECT DISTINCT device_id FROM " + tableName + ";"
+        Dim result As New List(Of String)
+        Try
+            Dim cmd As New MySqlCommand
+            cmd.Connection = _con
+            cmd.CommandText = sql
+            Dim reader As MySqlDataReader
+            reader = cmd.ExecuteReader()
+            While reader.Read()
+                result.Add(reader.GetValue(0).ToString)
+            End While
+            reader.Close()
+            cmd.Dispose()
+        Catch ex As Exception
+        End Try
+        Return result
+    End Function
 End Class

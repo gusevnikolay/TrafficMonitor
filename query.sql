@@ -13,3 +13,12 @@ CREATE TABLE traffic_monitor (
     time TIMESTAMP,
     battery_voltage DOUBLE(10,2)
 );
+
+CREATE TABLE `firmware_tasks` (
+	ID int PRIMARY KEY AUTO_INCREMENT,
+    device_id varchar(20) NOT NULL,
+    base_station varchar(20) NOT NULL,
+    hex_file varchar(10),
+    state varchar(10),
+    time TIMESTAMP
+)

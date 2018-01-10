@@ -15,7 +15,7 @@ Public Class TrafficMonitor
             End If
         End If
         If id IsNot Nothing Then
-            context.Response.Write(Global_asax.SQL.GetJsonResult("SELECT * FROM traffic_monitor where id>" + id + " LIMIT 0, 10;"))
+            context.Response.Write(Global_asax.SQL.GetJsonResult("SELECT * FROM traffic_monitor where id>" + id + " LIMIT 0, 30;"))
         End If
 
     End Sub

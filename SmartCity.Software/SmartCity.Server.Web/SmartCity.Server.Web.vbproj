@@ -133,6 +133,12 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="api\FirmwareUpdate.ashx.vb">
+      <DependentUpon>FirmwareUpdate.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="api\AccessPointsStates.ashx.vb">
+      <DependentUpon>AccessPointsStates.ashx</DependentUpon>
+    </Compile>
     <Compile Include="api\TrafficMonitor.ashx.vb">
       <DependentUpon>TrafficMonitor.ashx</DependentUpon>
     </Compile>
@@ -180,6 +186,8 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="api\TrafficMonitor.ashx" />
+    <Content Include="api\FirmwareUpdate.ashx" />
+    <Content Include="api\AccessPointsStates.ashx" />
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>

@@ -27,19 +27,19 @@
           <span class="navbar-toggler-icon"></span>
         </button>
 
-        <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+        <div class="collapse navbar-collapse" id="header_navbar">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-              <a class="nav-link" href="#">Конечные устройства<span class="sr-only">(current)</span></a>
+              <a class="nav-link" href="#smart_devices">Конечные устройства<span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Базовые станции</a>
+              <a class="nav-link" href="#access_points">Базовые станции</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Статистика</a>
+              <a class="nav-link" href="#firmware_update_tasks">Обновления устройств</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Логирование</a>
+              <a class="nav-link" href="#logs">Логирование</a>
             </li>
           </ul>
         </div>
@@ -48,7 +48,7 @@
 
     <div class="container-fluid">
       <div class="row">
-        <nav class="col-sm-3 col-md-2 d-none d-sm-block bg-light sidebar">
+          <nav class="col-sm-3 col-md-2 d-none d-sm-block bg-light sidebar">
 
           <ul class="nav nav-pills flex-column">
             <li class="nav-item">
@@ -75,39 +75,87 @@
               <a class="nav-link" href="#">Датчик среды</a>
             </li>
           </ul>
-        </nav>   
-        <main role="main" class="col-sm-9 ml-sm-auto col-md-10 pt-3">
-          <h1>Датчики транспортного потока</h1>
-           <div class="form-row">                
-                <div class="col-sm-2">
-                    <input type="id_filter" class="form-control" id="id_filter" placeholder="ID">
-                </div>
-                <button id="button_clear_traffic_monitor_base" type="button" class="btn btn-danger" style>Очистить базу данных</button>
-          </div>          
-          <div class="table-responsive">
-            <table class="table table-striped" id="traffic_monitor_table">
-              <thead>
-                <tr id="traffic_monitor_row">
-                  <th>#ID</th>
-                  <th>Адрес</th>
-                  <th>Скорость</th>
-                  <th>Широта</th>
-                  <th>Долгота</th>
-                  <th>Время</th>
-                  <th>Питание</th>
-                  <th>Аккумулятор</th>
-                  <th>RX RSSI</th>
-                  <th>RXP RSSI</th>
-                </tr>
-              </thead>
-              <tbody>              
-              </tbody>
-            </table>
-          </div>
-        </main>
+        </nav> 
+
+
+        <div class="tab-content   col-sm-9 ml-sm-auto col-md-10 pt-3">
+            <div class="tab-pane active" id="smart_devices" role="tabpanel">
+                  <main role="main">
+                      
+                    <h1>Датчики транспортного потока</h1>
+                    <div class="form-row">                
+                        <div class="col-sm-2">
+                            <input type="text" class="form-control" id="id_filter" placeholder="ID"/>
+                        </div>
+                        <button id="button_clear_traffic_monitor_base" type="button" class="btn btn-danger" style>Очистить базу данных</button>
+                    </div>          
+                      <div class="table-responsive">
+                        <table class="table table-striped" id="traffic_monitor_table">
+                          <thead>
+                            <tr id="traffic_monitor_row">
+                              <th>#ID</th>
+                              <th>Адрес</th>
+                              <th>Скорость</th>
+                              <th>Широта</th>
+                              <th>Долгота</th>
+                              <th>Время</th>
+                              <th>Питание</th>
+                              <th>Аккумулятор</th>
+                              <th>RX RSSI</th>
+                              <th>RXP RSSI</th>
+                            </tr>
+                          </thead>
+                          <tbody>              
+                          </tbody>
+                        </table>
+                      </div>
+                   </main>
+            </div>
+            <div class="tab-pane" id="access_points" role="tabpanel">
+                <h1>Точки доступа LoRa</h1>       
+                    <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                        <tr id="access_points_row">
+                            <th>ID</th>
+                            <th>Номер точки</th>
+                            <th>Последняя активность</th>
+                            <th>Версия ПО</th>                    
+                        </tr>
+                        </thead>
+                        <tbody id="access_points_table"> 
+                                         
+                        </tbody>
+                    </table>
+                    </div>
+            </div>
+
+            <div class="tab-pane" id="firmware_update_tasks" role="tabpanel">
+                   <h1>Текущие задачи планировщика</h1>       
+                    <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Номер устройства</th>
+                            <th>Базовая станция</th>
+                            <th>HEX файл</th>      
+                            <th>Статус</th>     
+                            <th>Создано</th>              
+                        </tr>
+                        </thead>
+                        <tbody id="firmware_update_table"> 
+                                         
+                        </tbody>
+                    </table>
+                    </div>
+            </div>
+            <div class="tab-pane" id="settings" role="tabpanel">
+                <h1>Вкладка 4</h1>
+            </div>
+        </div>    
+
       </div>
-    </div>  
-</div>      
+    </div>      
 </body>
 </html>
-

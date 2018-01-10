@@ -7,7 +7,7 @@ Public Class ClientProcessor
     Event onClinetDisconnectedEvent(client As ClientProcessor)
     Private _crc As New Tool
     Public Property LastTime As DateTime = Now
-
+    Public Property AccessPointid As String = ""
     Sub New(client As TcpClient)
         _tcp = client
         _stream = _tcp.GetStream
@@ -52,6 +52,7 @@ Public Class ClientProcessor
         End While
     End Sub
 
+
     Private Sub LowLevelPacketHandler(data As Byte())
         Dim packet As New DevicePacket
         Dim apId(9) As Byte
@@ -67,6 +68,9 @@ Public Class ClientProcessor
         packet.Client = Me
         packet.AccessPointId = Text.Encoding.ASCII.GetString(apId)
         packet.DeviceId = Tool.ByteArrayToString(DeviceId)
+        If AccessPointid.Length = 0 Then
+            AccessPointid = packet.AccessPointId
+        End If
         RaiseEvent onPacketReceived(packet)
     End Sub
 

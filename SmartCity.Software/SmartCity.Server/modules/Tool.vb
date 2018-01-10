@@ -39,4 +39,20 @@
         Next
         Return bytes
     End Function
+
+    Public Shared Function GenerateRandomString(ByRef len As Integer) As String
+        Using hasher As Security.Cryptography.MD5 = Security.Cryptography.MD5.Create()
+            Dim dbytes As Byte() = hasher.ComputeHash(Text.Encoding.UTF8.GetBytes(CLng((DateTime.UtcNow - New DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc)).TotalMilliseconds).ToString))
+            Dim sBuilder As New Text.StringBuilder()
+            For n As Integer = 0 To dbytes.Length - 1
+                sBuilder.Append(dbytes(n).ToString("X2"))
+            Next n
+            Dim str = sBuilder.ToString()
+            If str.Length > len Then
+                str = str.Substring(0, len)
+            End If
+            Return str
+        End Using
+
+    End Function
 End Class

@@ -26,13 +26,19 @@ Public Class SqlTool
     End Sub
 
     Public Function GetJsonResult(sql As String) As String
-        Dim result = "{ ""result"":["
+        Dim result = "{ ""time"":""" + Now.ToString + """, ""result"":["
         Dim res = Global_asax.SQL.Execute(sql)
         If res.Count > 0 Then
             For i = 0 To res.Count - 1
                 result += " {"
                 Dim row = res(i)
                 For Each key In row.Keys
+                    Dim row_value = row(key).ToString
+                    If row_value.Length > 0 Then
+                        While row_value.Substring(row_value.Length - 1, 1).Contains(" ")
+                            row_value = row_value.Substring(0, row_value.Length - 1)
+                        End While
+                    End If
                     result += (Chr(34) + key + Chr(34) + ":" + Chr(34) + row(key) + Chr(34) + ",")
                 Next
                 result = result.Substring(0, result.Length - 1)
@@ -47,6 +53,7 @@ Public Class SqlTool
     Public Function Execute(sql As String) As List(Of Dictionary(Of String, String))
         Connect()
         Dim result As New List(Of Dictionary(Of String, String))
+
         Try
             Dim cmd As New MySqlCommand
             cmd.Connection = _con

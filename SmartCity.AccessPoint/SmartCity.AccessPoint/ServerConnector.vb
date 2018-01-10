@@ -1,4 +1,5 @@
-﻿Imports System.Net.Sockets
+﻿Imports System.Net
+Imports System.Net.Sockets
 Imports System.Text
 
 Public Class ServerConnector
@@ -9,6 +10,9 @@ Public Class ServerConnector
     Private _stream As NetworkStream = Nothing
     Private _id(9) As Byte
     Private _crc As New Crc32
+
+
+
     Event onReceiveHandler(data As Byte())
 
     Sub New(ip As String, port As Integer, serverKey As String)
@@ -31,6 +35,7 @@ Public Class ServerConnector
         While True
             Try
                 If _tcp Is Nothing Then
+                    Console.WriteLine("SERVER {0}:{1}", _ip, _port)
                     _tcp = New TcpClient(_ip, _port)
                     _stream = _tcp.GetStream()
                     Send({1, 1, 1, 1})
@@ -38,30 +43,30 @@ Public Class ServerConnector
                     Console.WriteLine("SERVER CONNECTED {0}:{1}", _ip, _port)
                 Else
                     If _tcp.Available > 0 Then
-                            Dim buffer(10) As Byte
-                            _stream.Read(buffer, 0, 1)
-                            For j = 0 To headerBuffer.Length - 2
-                                headerBuffer(j) = headerBuffer(j + 1)
-                            Next
-                            headerBuffer(4) = buffer(0)
-                            If headerBuffer(0) = &H55 And headerBuffer(1) = &HAA And headerBuffer(2) = &H47 And headerBuffer(3) = &H7A And headerBuffer(4) = &HA7 Then
-                                _stream.Read(buffer, 0, 2)
-                                Dim datalength As Integer = buffer(0) * 256 + buffer(1)
-                                Dim packetBuffer(datalength - 1) As Byte
-                                _stream.Read(packetBuffer, 0, packetBuffer.Length)
-                                Dim crcBuffer(3) As Byte
-                                _stream.Read(crcBuffer, 0, crcBuffer.Length)
-                                If (_crc.ComputeChecksum(packetBuffer) = BitConverter.ToUInt32(crcBuffer, 0)) Then
-                                    Console.ForegroundColor = ConsoleColor.DarkGreen
-                                    Console.WriteLine("CLIENT <- SERVER: {0} bytes", packetBuffer.Length)
-                                    RaiseEvent onReceiveHandler(packetBuffer)
-                                End If
-                                _stream.Write(crcBuffer, 0, crcBuffer.Length)
+                        Dim buffer(10) As Byte
+                        _stream.Read(buffer, 0, 1)
+                        For j = 0 To headerBuffer.Length - 2
+                            headerBuffer(j) = headerBuffer(j + 1)
+                        Next
+                        headerBuffer(4) = buffer(0)
+                        If headerBuffer(0) = &H55 And headerBuffer(1) = &HAA And headerBuffer(2) = &H47 And headerBuffer(3) = &H7A And headerBuffer(4) = &HA7 Then
+                            _stream.Read(buffer, 0, 2)
+                            Dim datalength As Integer = buffer(0) * 256 + buffer(1)
+                            Dim packetBuffer(datalength - 1) As Byte
+                            _stream.Read(packetBuffer, 0, packetBuffer.Length)
+                            Dim crcBuffer(3) As Byte
+                            _stream.Read(crcBuffer, 0, crcBuffer.Length)
+                            If (_crc.ComputeChecksum(packetBuffer) = BitConverter.ToUInt32(crcBuffer, 0)) Then
+                                Console.ForegroundColor = ConsoleColor.DarkGreen
+                                Console.WriteLine("CLIENT <- SERVER: {0} bytes", packetBuffer.Length)
+                                RaiseEvent onReceiveHandler(packetBuffer)
                             End If
-                        Else
-                            Threading.Thread.Sleep(50)
+                            _stream.Write(crcBuffer, 0, crcBuffer.Length)
                         End If
+                    Else
+                        Threading.Thread.Sleep(50)
                     End If
+                End If
             Catch ex As Exception
                 Console.ForegroundColor = ConsoleColor.Red
                 Console.WriteLine("SERVER -> " + ex.Message)
@@ -83,7 +88,10 @@ Public Class ServerConnector
         Catch ex As Exception
             If (_tcp IsNot Nothing) Then _tcp.Close()
             _tcp = Nothing
+            Throw New Exception("TCP sending failed")
         End Try
 
     End Sub
+
+
 End Class

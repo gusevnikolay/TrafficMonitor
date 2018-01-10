@@ -23316,3 +23316,19 @@
 #CallFrom: ClassName=_Closure$__7-0, FullName=SmartCity.AccessPoint.App.App+_Closure$__7-0, Method=_Lambda$__0
 05.01.2018 0:45:44 ROOT [Msg] RxRssi: -100 OnGoRssi:-104
 #CallFrom: ClassName=_Closure$__7-0, FullName=SmartCity.AccessPoint.App.App+_Closure$__7-0, Method=_Lambda$__0
+09.01.2018 15:41:13 ROOT [Msg] Application startup
+#CallFrom: ClassName=App, FullName=SmartCity.AccessPoint.App.App, Method=.ctor
+09.01.2018 15:41:13 ROOT [Inf] Application executable path: D:\work\Other\TrafficMonitor\SmartCity.AccessPoint\debug\AccessPointApp.GUI\SmartCity.AccessPoint.App.EXE
+#CallFrom: ClassName=App, FullName=SmartCity.AccessPoint.App.App, Method=.ctor
+09.01.2018 15:41:13 ROOT [Inf] Application executable date: 09.01.2018 15:41:09
+#CallFrom: ClassName=App, FullName=SmartCity.AccessPoint.App.App, Method=.ctor
+09.01.2018 22:02:16 ROOT [Msg] Application startup
+#CallFrom: ClassName=App, FullName=SmartCity.AccessPoint.App.App, Method=.ctor
+09.01.2018 22:02:16 ROOT [Inf] Application executable path: D:\work\Other\TrafficMonitor\SmartCity.AccessPoint\debug\AccessPointApp.GUI\SmartCity.AccessPoint.App.EXE
+#CallFrom: ClassName=App, FullName=SmartCity.AccessPoint.App.App, Method=.ctor
+09.01.2018 22:04:45 ROOT [Msg] Application startup
+#CallFrom: ClassName=App, FullName=SmartCity.AccessPoint.App.App, Method=.ctor
+09.01.2018 22:04:45 ROOT [Inf] Application executable path: D:\work\Other\TrafficMonitor\SmartCity.AccessPoint\debug\AccessPointApp.GUI\SmartCity.AccessPoint.App.EXE
+#CallFrom: ClassName=App, FullName=SmartCity.AccessPoint.App.App, Method=.ctor
+09.01.2018 22:04:45 ROOT [Inf] Application executable date: 09.01.2018 22:04:37
+#CallFrom: ClassName=App, FullName=SmartCity.AccessPoint.App.App, Method=.ctor

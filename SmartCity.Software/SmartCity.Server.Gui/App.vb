@@ -41,9 +41,6 @@ Public Class App
         Else
             listBootloaderTasks.Items.Add("Tasks not found")
         End If
-
-
-
     End Sub
 
     Private Sub pAddBootloaderTask_Click(sender As Object, e As EventArgs) Handles pAddBootloaderTask.Click
@@ -59,4 +56,18 @@ Public Class App
             textHexPath.Text = fileDialog.FileName
         End If
     End Sub
+
+    Private Sub bUpdateDevicesList_Click(sender As Object, e As EventArgs) Handles bUpdateDevicesList.Click
+        Dim list = _app.GetDevicesList()
+        listDevicesId.Items.Clear()
+        listDevicesId.Items.AddRange(list.ToArray)
+    End Sub
+
+    Private Sub listDevicesId_SelectedIndexChanged(sender As Object, e As EventArgs) Handles listDevicesId.SelectedIndexChanged
+        If listDevicesId.SelectedItem IsNot Nothing Then
+            textDeviceIdForBootloader.Text = listDevicesId.SelectedItem.ToString
+        End If
+    End Sub
+
+
 End Class

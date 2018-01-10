@@ -19,7 +19,7 @@ Public Class TcpServer
 
     Private Sub ListenProcess()
         Dim localAddr As IPAddress = Dns.GetHostEntry(Dns.GetHostName()).AddressList(0)
-        Dim _server = New TcpListener(IPAddress.Parse("127.0.0.1"), _port)
+        Dim _server = New TcpListener(localAddr, _port)
         _server.Start()
         _logger.AddMessage("TCP server created on " + _port.ToString + " port")
         While True
@@ -64,13 +64,13 @@ Public Class TcpServer
     End Function
 
     Public Function EjectProcess(apId As String) As ClientProcessor
-        apId = _tcpClients.Keys.ElementAt(0)
         If _tcpClients.ContainsKey(apId) Then
             Dim client = _tcpClients(apId)
-            RemoveHandler client.onPacketReceived, AddressOf PacketHandler
+            'RemoveHandler client.onPacketReceived, AddressOf PacketHandler
+            'RemoveHandler client.onClinetDisconnectedEvent, AddressOf onClientDisconnectedHandelr
             Return client
         End If
-        Throw New Exception("Device ID not found")
+        Throw New Exception("Access point not found")
     End Function
 
     Public Sub InsertProcess(proc As ClientProcessor)

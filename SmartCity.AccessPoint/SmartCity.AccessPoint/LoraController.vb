@@ -50,6 +50,19 @@ Public Class LoraController
         End Try
     End Sub
 
+    Public Sub OpenFirstPort()
+        Try
+            Dim port = IO.Ports.SerialPort.GetPortNames()(0)
+            _bus = New SimplSerialBus(port)
+            _bus.SerialDevice.DeviceSpeed = 115200
+            _bus.Connect()
+            _deviceFounded = True
+            Console.ForegroundColor = ConsoleColor.Green
+            Console.WriteLine("LORA: " + port)
+        Catch ex As Exception
+
+        End Try
+    End Sub
 
     Private Sub RadioPolling()
 
@@ -125,7 +138,7 @@ Public Class LoraController
 
                     End Try
                 Next
-                Threading.Thread.Sleep(1000)
+                Threading.Thread.Sleep(5000)
             End If
         End While
     End Sub

@@ -7,6 +7,7 @@ Public Class DeviceManager
     Sub New(db As DataBase)
         _db = db
         _supportedDevices.Add(New TrafficMonitor)
+        _supportedDevices.Add(New AccessPoint)
     End Sub
 
     Public Sub DevicePacketHandler(packet As DevicePacket)
