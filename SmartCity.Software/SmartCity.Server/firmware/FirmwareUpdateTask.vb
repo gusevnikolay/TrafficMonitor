@@ -1,82 +1,74 @@
 ﻿Imports System.Windows.Forms
 
 Public Class FirmwareUpdateTask
-    Private _ap As ClientProcessor = Nothing
+    Private _accessPoint As AccessPointProcessor = Nothing
     Public Property DeviceId As String = ""
-    Private _hexFile As String = ""
-    Private _hexPath As String = ""
-    Private _status As String = "Wait queue"
-    Private _bootMode As Boolean = False
-    Private _currentFlashAddress As UInt16 = 0
-    Private _flashedAddress As UInt16 = 0
-    Private _flashAddressShift As UInt16 = 0
-    Private _subTaskProcess As Boolean = False
-    Private _hashId As String = ""
-    Sub New(deviceId As String, ap As ClientProcessor, hexPath As String)
-        _ap = ap
-        _hexPath = hexPath
-        Me.DeviceId = deviceId
-        _hashId = Tool.GenerateRandomString(30)
+    Public Property Status As String = "Wait queue"
+    Private _helper As BootloadrAuxiliaryProccess
+    Private _task As BootloaderTasksMonitor.BootloaderTask
+
+    Sub New(ap As AccessPointProcessor, task As BootloaderTasksMonitor.BootloaderTask)
+        _accessPoint = ap
+        _task = task
+        _helper = New BootloadrAuxiliaryProccess(task.DeviceId)
     End Sub
 
-    Public Function GetTaskHash() As String
-        Return _hashId
+    ''' <summary>
+    ''' Проверка завершения работы загрузчика
+    ''' </summary>
+    ''' <returns></returns>
+    Public Function isComplete() As Boolean
+        Return _helper.MainAppIsRunned
     End Function
-
-    Private Sub LoadHex()
-        Try
-            Using sr As IO.StreamReader = New IO.StreamReader(_hexPath)
-                _hexFile = sr.ReadToEnd()
-            End Using
-        Catch e As Exception
-        End Try
-    End Sub
-
-    Public Sub EnterBootModeRequest()
-        _status = "Wait bootloader"
-        While (_bootMode = False)
+    ''' <summary>
+    ''' Вводим устройство в режим загрузчика, отправляя ключевую пследоавтельность раз в секунду
+    ''' </summary>
+    Private Sub EnterBootMode()
+        Status = "Waiting for bootloader mode"
+        While (_helper.IsBootMode = False)
             Dim data(2) As Byte
             data(0) = 38
             data(1) = 1
             data(2) = 245
-            _subTaskProcess = False
-            _ap.Send(DeviceId, data)
+            _accessPoint.Send(DeviceId, data)
             Threading.Thread.Sleep(1000)
         End While
     End Sub
 
-    Private Function DecodeHexData(hex As String) As Byte()
-        Dim data(hex.Length / 2 - 1) As Byte
-        For i = 0 To data.Length - 1
-            data(i) = Convert.ToInt16(hex.Substring(i * 2, 2), 16)
-        Next
-        Return data
-    End Function
+    Public Sub Start()
+        Dim th = New Threading.Thread(AddressOf Run)
+        th.IsBackground = True
+        th.Start()
+    End Sub
 
-    Public Sub Run()
-        LoadHex()
-        AddHandler _ap.onPacketReceived, AddressOf PacketHandler
-        _bootMode = False
-        EnterBootModeRequest()
-        Dim lines = _hexFile.Split(Environment.NewLine)
+    Private Sub Run()
+        Dim hexFile = ""
+        Using sr As IO.StreamReader = New IO.StreamReader(_task.HexPath)
+            hexFile = sr.ReadToEnd()
+        End Using
+        Me.DeviceId = _task.DeviceId
+        AddHandler _accessPoint.onPacketReceived, AddressOf _helper.PacketHandler
+        EnterBootMode()
+        Dim lines = hexFile.Split(Environment.NewLine)
         For i = 0 To lines.Length - 1
             Dim hexLine = lines(i)
             If hexLine.Contains(":") Then
                 Dim hexData = hexLine.Split(":")(1)
                 If (hexData.Length > 8) Then
+
                     Dim dataLength As UInt16 = Convert.ToInt16(hexData.Substring(0, 2), 16)
                     Dim address As UInt16 = Convert.ToInt16(hexData.Substring(2, 4), 16)
                     Dim hexType As UInt16 = Convert.ToInt16(hexData.Substring(6, 2), 16)
+
                     If hexType = 0 Then
-                        Dim flashData = DecodeHexData(hexData.Substring(8, dataLength * 2))
-                        Threading.Thread.Sleep(100)
-                        SendHex(address, flashData)
-                        _status = "Loading: " + Math.Round(i * 100 / lines.Count, 1).ToString
+                        Dim flashData = Tool.DecodeHexData(hexData.Substring(8, dataLength * 2))
+                        SendHexToDevice(address, flashData)
+                        Status = "Download firmware: " + Math.Round(i * 100 / lines.Count, 1).ToString + "%"
                     End If
 
                     If hexType = 2 Then
-                        Dim sh = Tool.StringToByteArray(hexLine.Substring(8, 4))
-                        SetAddressShift(sh(0) * 256 + sh(1))
+                        Dim memoryShift = Tool.StringToByteArray(hexLine.Substring(8, 4))
+                        SetDeviceAddressShift(memoryShift(0) * 256 + memoryShift(1))
                     End If
 
                     If hexType = 1 Then
@@ -85,13 +77,15 @@ Public Class FirmwareUpdateTask
                 End If
             End If
         Next
+        RemoveHandler _accessPoint.onPacketReceived, AddressOf _helper.PacketHandler
     End Sub
 
-    Public Function GetAccessPointProccess() As ClientProcessor
-        Return _ap
-    End Function
-
-    Private Sub SendHex(address As UInt16, prog As Byte())
+    ''' <summary>
+    ''' Прошивает память
+    ''' </summary>
+    ''' <param name="address">Целевой адрес памяти</param>
+    ''' <param name="prog">Данные для записи в память</param>
+    Private Sub SendHexToDevice(address As UInt16, prog As Byte())
         Dim data(prog.Length + 6) As Byte
         data(0) = 76
         data(1) = 74
@@ -105,71 +99,40 @@ Public Class FirmwareUpdateTask
         data(5) = CByte(prog.Length)
         data(6) = CByte(crc Mod 256)
         Array.Copy(prog, 0, data, 7, prog.Length)
-        _currentFlashAddress = address
-        _subTaskProcess = False
-        While _subTaskProcess <> True
-            _ap.Send(DeviceId, data)
-            Threading.Thread.Sleep(1000)
+        While _helper.FlashWriteIsComplete(address) <> True
+            _accessPoint.Send(DeviceId, data)
+            Threading.Thread.Sleep(2000)
         End While
     End Sub
 
-    Private Sub SetAddressShift(shift As UInt16)
+    ''' <summary>
+    ''' Устанавливаем смещение адреса прошивки
+    ''' </summary>
+    ''' <param name="shift">Смещение</param>
+    Private Sub SetDeviceAddressShift(shift As UInt16)
         Dim data(4) As Byte
         data(0) = 26
         data(1) = 126
         data(2) = 76
         data(3) = CByte(shift >> 8)
         data(4) = CByte(shift Mod 256)
-        _flashAddressShift = shift
-        _subTaskProcess = False
-        _ap.Send(DeviceId, data)
-        While _subTaskProcess <> True
+        While _helper.FlashShiftIsComplete(shift) <> True
+            _accessPoint.Send(DeviceId, data)
             Threading.Thread.Sleep(100)
         End While
     End Sub
 
+    ''' <summary>
+    ''' Запускаем основной код
+    ''' </summary>
     Private Sub StartMainApplication()
         Dim data(2) As Byte
         data(0) = 1
         data(1) = 241
         data(2) = 38
-        _subTaskProcess = False
-        _ap.Send(DeviceId, data)
-        While _subTaskProcess <> True
+        While _helper.MainAppIsRunned <> True
+            _accessPoint.Send(DeviceId, data)
             Threading.Thread.Sleep(100)
         End While
     End Sub
-
-
-    Private Sub PacketHandler(pack As DevicePacket)
-        If pack.DeviceId = DeviceId Then
-            Try
-                If pack.Data(0) = 48 And pack.Data(1) = 85 And pack.Data(2) = 127 Then
-                    _bootMode = True
-                End If
-
-                If pack.Data(0) = 148 And pack.Data(1) = 185 And pack.Data(2) = 27 Then
-                    If _flashAddressShift = (pack.Data(3) * 256 + pack.Data(4)) Then
-                        _subTaskProcess = True
-                    End If
-                End If
-
-                If pack.Data(0) = 24 And pack.Data(1) = 42 And pack.Data(2) = 64 Then
-                    If _currentFlashAddress = (pack.Data(3) * 256 + pack.Data(4)) Then
-                        _subTaskProcess = True
-                    End If
-                End If
-
-                If pack.Data(0) = 87 And pack.Data(1) = 24 And pack.Data(2) = 73 Then
-                    _subTaskProcess = True
-                End If
-            Catch ex As Exception
-                _status = ex.Message
-            End Try
-        End If
-    End Sub
-
-    Public Function GetInfo() As String
-        Return DeviceId + ": " + _status
-    End Function
 End Class

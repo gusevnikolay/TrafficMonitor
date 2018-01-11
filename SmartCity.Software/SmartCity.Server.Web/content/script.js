@@ -64,13 +64,16 @@ function refresh_device_update_page()
         $("#firmware_update_table tr").remove();
         for (var i = 0; i < data_count; i++) {
             if (_lastBootloaderTaskId < parseInt(json.result[i].ID)) _lastBootloaderTaskId = parseInt(json.result[i].ID);
-            var color = "#e8fff7";
+            var color = "#D6DCFF";
             var ap_time = Date.parse(json.result[i].last_active);
             if (json.result[i].state.toLowerCase().indexOf("error") >= 0) {
                 color = "#ffcccd";
             }
             if (json.result[i].state.toLowerCase().indexOf("queue") >= 0) {
                 color = "#ffffbb";
+            }
+            if (json.result[i].state.toLowerCase().indexOf("complete") >= 0) {
+                color = "#e8fff7";
             }
             $("#firmware_update_table").prepend("<tr style='background-color:" + color + ";'><td>" + json.result[i].ID + "</td><td>" + json.result[i].device_id + "</td><td>" + json.result[i].base_station + "</td><td>" + json.result[i].hex_file + "</td><td>" + json.result[i].state + "</td><td>" + json.result[i].time + "</td></tr>");
         }

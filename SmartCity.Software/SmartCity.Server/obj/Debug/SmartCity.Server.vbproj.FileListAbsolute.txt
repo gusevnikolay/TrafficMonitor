@@ -22,3 +22,7 @@ D:\work\Other\TrafficMonitor\SmartCity.Software\SmartCity.Server\obj\Debug\Smart
 D:\work\Other\TrafficMonitor\SmartCity.Software\debug\Server.App\bin\SmartCity.Server.dll.config
 D:\work\Other\TrafficMonitor\SmartCity.Software\debug\Server.App\bin\SmartCity.Server.dll
 D:\work\Other\TrafficMonitor\SmartCity.Software\SmartCity.Server\obj\Debug\SmartCity.Server.dll
+D:\work\Other\TrafficMonitor\SmartCity.Software\debug\Server.App\Server.DLL\SmartCity.Server.dll.config
+D:\work\Other\TrafficMonitor\SmartCity.Software\debug\Server.App\Server.DLL\SmartCity.Server.dll
+D:\work\Other\TrafficMonitor\SmartCity.Software\debug\Server.App\Server.DLL\SmartCity.Server.pdb
+D:\work\Other\TrafficMonitor\SmartCity.Software\debug\Server.App\Server.DLL\SmartCity.Server.xml

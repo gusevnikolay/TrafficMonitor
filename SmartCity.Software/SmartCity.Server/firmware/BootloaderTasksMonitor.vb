@@ -6,22 +6,38 @@ Public Class BootloaderTasksMonitor
     Private _db As DataBase = Nothing
     Private _tcpServer As TcpServer = Nothing
     Private _deviceManager As DeviceManager = Nothing
-    Private _tasks As List(Of FirmwareUpdateTask) = New List(Of FirmwareUpdateTask)
+    Private _tasks As List(Of BootloaderTask) = New List(Of BootloaderTask)
     Private _logger As Logger
+
     Sub New(db As DataBase, tcpServer As TcpServer, deviceManager As DeviceManager, logger As Logger)
         _db = db
         _tcpServer = tcpServer
         _deviceManager = deviceManager
+        _logger = logger
     End Sub
 
+    ''' <summary>
+    ''' Добавить задачу обновления в очередь
+    ''' </summary>
+    ''' <param name="deviceId">Целевое устройство</param>
+    ''' <param name="hexPath">Путь до HEX файла</param>
     Public Sub AddTask(deviceId As String, hexPath As String)
-        Dim baseId = GetAccessPoint(deviceId)
-        Dim ap = _tcpServer.EjectProcess(baseId)
-        Dim newTask = New FirmwareUpdateTask(deviceId, ap, hexPath)
-        _tasks.Add(newTask)
-        _db.Execute("INSERT INTO firmware_tasks (device_id, base_station, hex_file, hash, state, time) VALUES('" + deviceId + "', '" + baseId + "', '" + IO.Path.GetFileName(hexPath) + "', '" + newTask.GetTaskHash + "', 'In queue', NOW());")
+        Try
+            Dim task As New BootloaderTask
+            task.DeviceId = deviceId
+            task.HexPath = hexPath
+            _tasks.Add(task)
+            _db.Execute("INSERT INTO firmware_tasks (device_id, hex_file, hash, state, time) VALUES('" + deviceId + "', '" + IO.Path.GetFileName(hexPath) + "', '" + task.TaskHashId + "', 'In queue', NOW());")
+        Catch ex As Exception
+            _logger.AddError(ex.Message)
+        End Try
     End Sub
 
+    ''' <summary>
+    ''' Возвращает ID точки доступа с максимальным уровнем сигнала
+    ''' </summary>
+    ''' <param name="deviceId">Идентификатор устройства</param>
+    ''' <returns>Идентификатор точки доступа</returns>
     Private Function GetAccessPoint(deviceId As String) As String
         Dim sql = "select base_station from traffic_monitor where device_id='" + deviceId + "' ORDER BY rssi_packet ASC LIMIT 1;"
         Dim sqlResult = _db.GetData(sql)
@@ -42,13 +58,22 @@ Public Class BootloaderTasksMonitor
             If _tasks.Count > 0 Then
                 Try
                     Dim task = _tasks.First()
-                    _db.Execute("UPDATE firmware_tasks SET state = 'In process' WHERE device_id='" + task.DeviceId + "' and hash='" + task.GetTaskHash + "'")
-                    task.Run()
-                    '_tcpServer.InsertProcess(task.GetAccessPointProccess)
+                    Dim accessPointId = GetAccessPoint(task.DeviceId)
+                    Dim accessPointProcess = _tcpServer.EjectProcess(accessPointId)
+                    Dim bootloder = New FirmwareUpdateTask(accessPointProcess, task)
+                    _db.Execute("UPDATE firmware_tasks SET state = 'In process', base_station='" + accessPointId + "' WHERE device_id='" + task.DeviceId + "' and hash='" + task.TaskHashId + "'")
+                    bootloder.Start()
+                    While bootloder.isComplete <> True
+                        Threading.Thread.Sleep(5000)
+                        _db.Execute("UPDATE firmware_tasks SET state = '" + bootloder.Status + "' WHERE device_id='" + task.DeviceId + "' and hash='" + task.TaskHashId + "'")
+                    End While
+                    Threading.Thread.Sleep(10000)
+                    _tcpServer.InsertProcess(accessPointProcess)
                     _tasks.Remove(task)
-                    _db.Execute("UPDATE firmware_tasks SET state = 'Complete' WHERE device_id='" + task.DeviceId + "' and hash='" + task.GetTaskHash + "'")
+                    _db.Execute("UPDATE firmware_tasks SET state = 'Complete' WHERE device_id='" + task.DeviceId + "' and hash='" + task.TaskHashId + "'")
                 Catch ex As Exception
-
+                    _logger.AddError(ex.Message)
+                    Threading.Thread.Sleep(1000)
                 End Try
             Else
                 Threading.Thread.Sleep(1000)
@@ -59,9 +84,18 @@ Public Class BootloaderTasksMonitor
     Public Function GetStates() As String()
         Dim list = New List(Of String)
         For Each task In _tasks
-            list.Add(task.GetInfo)
+            list.Add(task.DeviceId + ": " + IO.Path.GetFileName(task.HexPath).ToString)
         Next
         Return list.ToArray()
     End Function
+
+    Public Class BootloaderTask
+        Public Property DeviceId As String = ""
+        Public Property DateTime As String = ""
+        Public Property HexPath As String = ""
+        Public Property TaskHashId As String = Tool.GenerateRandomString(40)
+    End Class
 End Class
+
+
 

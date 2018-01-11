@@ -21,7 +21,7 @@
     <DebugType>full</DebugType>
     <DefineDebug>true</DefineDebug>
     <DefineTrace>true</DefineTrace>
-    <OutputPath>..\debug\Server.App\bin\</OutputPath>
+    <OutputPath>..\debug\Server.App\Server.DLL\</OutputPath>
     <DocumentationFile>SmartCity.Server.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
   </PropertyGroup>
@@ -31,7 +31,7 @@
     <DefineDebug>false</DefineDebug>
     <DefineTrace>true</DefineTrace>
     <Optimize>true</Optimize>
-    <OutputPath>..\release\Server.App\bin\</OutputPath>
+    <OutputPath>..\release\Server.App\Server.DLL\</OutputPath>
     <DocumentationFile>SmartCity.Server.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
   </PropertyGroup>
@@ -73,15 +73,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApplicationMonitor.vb" />
-    <Compile Include="Devices\AccessPoint.vb" />
-    <Compile Include="Devices\DeviceManager.vb" />
+    <Compile Include="devices\AccessPoint.vb" />
+    <Compile Include="devices\DeviceManager.vb" />
     <Compile Include="firmware\BootloaderTasksMonitor.vb" />
+    <Compile Include="firmware\BootloadrAuxiliaryProccess.vb" />
     <Compile Include="firmware\FirmwareUpdateTask.vb" />
-    <Compile Include="modules\DataBase.vb" />
-    <Compile Include="modules\server\ClientProcessor.vb" />
-    <Compile Include="modules\Tool.vb" />
-    <Compile Include="Devices\Interfaces\IDevice.vb" />
-    <Compile Include="Devices\TrafficMonitor.vb" />
+    <Compile Include="DataBase.vb" />
+    <Compile Include="server\AccessPointProcessor.vb" />
+    <Compile Include="Tool.vb" />
+    <Compile Include="devices\Interfaces\IDevice.vb" />
+    <Compile Include="devices\TrafficMonitor.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -97,7 +98,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="modules\server\TcpServer.vb" />
+    <Compile Include="server\TcpServer.vb" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="My Project\Resources.resx">
