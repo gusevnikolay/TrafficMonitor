@@ -35,17 +35,17 @@ extern void Lora_Polling(void);
 extern void Rfm_Send(uint8_t *data, uint8_t length);
 extern void speed_proccess(void);
 uint16_t    display_counter = 600;
-uint8_t lora_data[24] = {1,0,0,0,1,0,12,48,36,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+uint8_t lora_data[19] = {0,12,48,36,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
 
 unsigned char lora_delay = 0;
+	
 void regular_processes(void)
 {
-		if(lora_delay++>120){Rfm_Send(lora_data, 24);lora_delay=0;}
+		if(lora_delay++>120){Rfm_Send(lora_data, 19);lora_delay=0;}
 		nmea_second_process();
 		speed_proccess();
 		HAL_ADC_Start_IT(&hadc1);
 		if(display_counter>0)display_counter--;
-		Lora_Polling(); 
 }
 
 
@@ -60,7 +60,14 @@ void planned_tasks()
 			
 }
 
-
+void Lora_Rx_Handler(uint8_t *data, uint8_t data_length)
+{			
+		uint32_t address = 0;	
+	  uint8_t buffer[256];
+		if(data[0] == 38 && data[1] == 1 && data[2] == 245){
+				NVIC_SystemReset();  
+		}
+}
 unsigned char delay = 0;
 int main(void)
 {
@@ -86,14 +93,19 @@ int main(void)
   while (1)
   {
 			if(HAL_GPIO_ReadPin(BUTTON_GPIO_Port, BUTTON_Pin)==GPIO_PIN_RESET){
-					display_counter = 600;
-					HAL_Delay(500);
-				  
+					display_counter = 60000;
+					
 			}
-			if(display_counter>0)	HAL_GPIO_WritePin(GPS_EN_GPIO_Port, GPS_EN_Pin, GPIO_PIN_SET);
-			else 	HAL_GPIO_WritePin(GPS_EN_GPIO_Port, GPS_EN_Pin, GPIO_PIN_RESET);
-			HAL_Delay(500);		
-			Display(display_counter);	
+			HAL_GPIO_TogglePin(LED1_GPIO_Port, LED1_Pin);
+			HAL_Delay(200);
+			if(display_counter>0){
+					HAL_GPIO_WritePin(GPS_EN_GPIO_Port, GPS_EN_Pin, GPIO_PIN_SET); 
+					display_counter--;
+			}else{
+					HAL_GPIO_WritePin(GPS_EN_GPIO_Port, GPS_EN_Pin, GPIO_PIN_RESET);
+			}
+			Lora_Polling(); 
+			//Display(display_counter);	
   }
 }
 

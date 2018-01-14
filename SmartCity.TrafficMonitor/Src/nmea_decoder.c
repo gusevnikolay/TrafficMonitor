@@ -32,23 +32,23 @@ void nmea_second_process(void)
 	gps_state_line[13] = (char)(GPS.mm%10 +0x30);
 	gps_state_line[15] = (char)(GPS.ss/10 +0x30);
 	gps_state_line[16] = (char)(GPS.ss%10 +0x30);
-	lora_data[9] = GPS.hh;
-	lora_data[10] = GPS.mm;
-	lora_data[11] = GPS.ss;
+	lora_data[4] = GPS.hh;
+	lora_data[5] = GPS.mm;
+	lora_data[6] = GPS.ss;
 	if(GPS.latitude_string[0]>0){
 			for(int i=0;i<9;i++)
 			{
 					gps_coordinates[i] = GPS.longitude_string[i];
 					gps_coordinates[i+10] = GPS.latitude_string[i];
 			}
-			lora_data[13] = (GPS.latitude_string[0]-0x30)*10 + GPS.latitude_string[1]-0x30;
-			lora_data[14] = (GPS.latitude_string[2]-0x30)*10 + GPS.latitude_string[3]-0x30;;
-			lora_data[15] = (GPS.latitude_string[5]-0x30)*10 + GPS.latitude_string[6]-0x30;;
-			lora_data[16] = (GPS.latitude_string[7]-0x30)*10 + GPS.latitude_string[8]-0x30;;	
-			lora_data[17] = (GPS.longitude_string[1]-0x30)*10 + GPS.longitude_string[2]-0x30;
-			lora_data[18] = (GPS.longitude_string[3]-0x30)*10 + GPS.longitude_string[4]-0x30;;
-			lora_data[19] = (GPS.longitude_string[6]-0x30)*10 + GPS.longitude_string[7]-0x30;;
-			lora_data[20] = (GPS.longitude_string[8]-0x30)*10 + GPS.longitude_string[9]-0x30;;
+			lora_data[8] = (GPS.latitude_string[0]-0x30)*10 + GPS.latitude_string[1]-0x30;
+			lora_data[9] = (GPS.latitude_string[2]-0x30)*10 + GPS.latitude_string[3]-0x30;;
+			lora_data[10] = (GPS.latitude_string[5]-0x30)*10 + GPS.latitude_string[6]-0x30;;
+			lora_data[11] = (GPS.latitude_string[7]-0x30)*10 + GPS.latitude_string[8]-0x30;;	
+			lora_data[12] = (GPS.longitude_string[1]-0x30)*10 + GPS.longitude_string[2]-0x30;
+			lora_data[13] = (GPS.longitude_string[3]-0x30)*10 + GPS.longitude_string[4]-0x30;;
+			lora_data[14] = (GPS.longitude_string[6]-0x30)*10 + GPS.longitude_string[7]-0x30;;
+			lora_data[15] = (GPS.longitude_string[8]-0x30)*10 + GPS.longitude_string[9]-0x30;;
 	}
 }
 

@@ -1,0 +1,4 @@
+[Application]
+SQL Base name=database
+SQL User=user
+SQL Password=password

@@ -59,7 +59,7 @@ Public Class DataBase
             reader.Close()
             cmd.Dispose()
         Catch ex As Exception
-
+            _logger.AddError(ex.Message)
         End Try
         Return result
     End Function
@@ -79,7 +79,30 @@ Public Class DataBase
             reader.Close()
             cmd.Dispose()
         Catch ex As Exception
+            _logger.AddError(ex.Message)
         End Try
         Return result
     End Function
+
+    Private Sub AppendLogger(accessPointId As String, deviceId As String, data As String, dataType As String)
+        Dim query = String.Format("INSERT INTO system_logs (base_id, device_id, message, message_type, time) VALUES('{0}','{1}','{2}','{3}',NOW());", accessPointId, deviceId, data, dataType)
+        _logger.AddDebug(query)
+        Execute(query)
+    End Sub
+
+    Public Sub AppendLoggerData(accessPointId As String, deviceId As String, data As Byte())
+        AppendLogger(accessPointId, deviceId, BitConverter.ToString(data).Replace("-", " "), "data")
+    End Sub
+
+    Public Sub AppendLoggerInfo(accessPointId As String, deviceId As String, message As String)
+        AppendLogger(accessPointId, deviceId, message, "info")
+    End Sub
+
+    Public Sub AppendLoggerError(accessPointId As String, deviceId As String, message As String)
+        AppendLogger(accessPointId, deviceId, message, "error")
+    End Sub
+
+    Public Sub AppendLoggerPacket(packet As DevicePacket)
+        AppendLogger(packet.AccessPointId, packet.DeviceId + " [" + packet.Rssi.ToString + "dBi]", BitConverter.ToString(packet.Data).Replace("-", " "), "data")
+    End Sub
 End Class

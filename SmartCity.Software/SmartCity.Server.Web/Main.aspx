@@ -150,8 +150,34 @@
                     </table>
                     </div>
             </div>
-            <div class="tab-pane" id="settings" role="tabpanel">
-                <h1>Вкладка 4</h1>
+            <div class="tab-pane" id="logs" role="tabpanel">
+                <h1>Системный лог</h1>  
+                <div class="custom-control custom-radio">
+                    <input type="radio" id="system_log_load_updated" name="customRadio" class="custom-control-input" checked>
+                    <label class="custom-control-label" for="system_log_load_updated">Только обновления</label>
+                </div>
+                <div class="custom-control custom-radio">
+                    <input type="radio" id="system_log_load_all" name="customRadio" class="custom-control-input"/>
+                    <label class="custom-control-label" for="system_log_load_all">Все записи</label>
+                </div>   
+                <button id="system_log_clear" type="button" class="btn btn-danger">Очистить</button>  
+                    <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                        <tr id="system_log_row">
+                            <th>ID</th>
+                            <th>Базовая станция</th>
+                            <th>Конечное устройство</th>
+                            <th>Информация</th>      
+                            <th>Тип</th>     
+                            <th>Время</th>              
+                        </tr>
+                        </thead>
+                        <tbody id="logs_table"> 
+                                         
+                        </tbody>
+                    </table>
+                    </div>
             </div>
         </div>    
 

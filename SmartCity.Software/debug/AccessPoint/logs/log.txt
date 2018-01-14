@@ -1,0 +1,6 @@
+14.01.2018 19:38:34 ROOT [Msg] Application startup
+#CallFrom: ClassName=App, FullName=SmartCity.AccessPoint.App.App, Method=.ctor
+14.01.2018 19:38:34 ROOT [Inf] Application executable path: D:\work\Other\TrafficMonitor\SmartCity.Software\debug\AccessPoint\App.GUI\SmartCity.AccessPoint.App.EXE
+#CallFrom: ClassName=App, FullName=SmartCity.AccessPoint.App.App, Method=.ctor
+14.01.2018 19:38:34 ROOT [Inf] Application executable date: 14.01.2018 19:38:31
+#CallFrom: ClassName=App, FullName=SmartCity.AccessPoint.App.App, Method=.ctor

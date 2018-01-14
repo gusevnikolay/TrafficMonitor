@@ -21,4 +21,13 @@ CREATE TABLE `firmware_tasks` (
     hex_file varchar(10),
     state varchar(10),
     time TIMESTAMP
-)
+);
+
+CREATE TABLE `system_logs` (
+	ID int PRIMARY KEY AUTO_INCREMENT,
+    base_id varchar(20),
+    device_id varchar(20),
+    message text,
+    message_type varchar(10),
+    time TIMESTAMP
+);

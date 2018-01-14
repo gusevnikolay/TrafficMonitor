@@ -60,17 +60,17 @@ Public Class BootloaderTasksMonitor
                     Dim task = _tasks.First()
                     Dim accessPointId = GetAccessPoint(task.DeviceId)
                     Dim accessPointProcess = _tcpServer.EjectProcess(accessPointId)
-                    Dim bootloder = New FirmwareUpdateTask(accessPointProcess, task)
+                    Dim bootloder = New FirmwareUpdateTask(accessPointProcess, task, _logger)
                     _db.Execute("UPDATE firmware_tasks SET state = 'In process', base_station='" + accessPointId + "' WHERE device_id='" + task.DeviceId + "' and hash='" + task.TaskHashId + "'")
                     bootloder.Start()
                     While bootloder.isComplete <> True
                         Threading.Thread.Sleep(5000)
                         _db.Execute("UPDATE firmware_tasks SET state = '" + bootloder.Status + "' WHERE device_id='" + task.DeviceId + "' and hash='" + task.TaskHashId + "'")
                     End While
-                    Threading.Thread.Sleep(10000)
+                    _db.Execute("UPDATE firmware_tasks SET state = '" + bootloder.Status + "' WHERE device_id='" + task.DeviceId + "' and hash='" + task.TaskHashId + "'")
+                    Threading.Thread.Sleep(1000)
                     _tcpServer.InsertProcess(accessPointProcess)
                     _tasks.Remove(task)
-                    _db.Execute("UPDATE firmware_tasks SET state = 'Complete' WHERE device_id='" + task.DeviceId + "' and hash='" + task.TaskHashId + "'")
                 Catch ex As Exception
                     _logger.AddError(ex.Message)
                     Threading.Thread.Sleep(1000)

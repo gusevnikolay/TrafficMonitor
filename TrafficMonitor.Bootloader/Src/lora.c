@@ -42,16 +42,18 @@ void Rfm_Send(uint8_t *data, uint8_t length)
 		Rfm_Write(0x1, 0x83);
 		while((Rfm_Read(0x12) & 0x8) == 0);
 		Rfm_Write(0x1, 0x85);
-		Rfm_Write(0x12, 0xFF);
-		
+		Rfm_Write(0x12, 0xFF);	
 }
 
 void Lora_Init(void)
 {
-		Rfm_Write(0x01, 0);
+		HAL_GPIO_WritePin(RFM_RESET_GPIO_Port, RFM_RESET_Pin, GPIO_PIN_RESET);
+	  HAL_Delay(100);
+		HAL_GPIO_WritePin(RFM_RESET_GPIO_Port, RFM_RESET_Pin, GPIO_PIN_SET);
 		while(Rfm_Read(0x01) != 0)
 		{
-				HAL_Delay(1);
+				HAL_Delay(100);
+				Rfm_Write(0x01, 0);
 		}
 		Rfm_Write(0x1, 0x80);
 		Rfm_Write(0x1, 0x81);
@@ -72,7 +74,7 @@ void Lora_Init(void)
 }
 
 unsigned char mode;
-void Lora_Polling()
+void Lora_Polling(void)
 {
 		unsigned char irq = Rfm_Read(0x12);
 	  mode = Rfm_Read(0x1);
@@ -80,7 +82,6 @@ void Lora_Polling()
 		uint8_t data_len = 0;	
 		if ((irq & 0x40)){
 			Rfm_Write(0x12, 0xFF);
-			HAL_GPIO_TogglePin(LED2_GPIO_Port, LED2_Pin);
 			data_len = Rfm_Read(0x13);
 			Rfm_Write(0xD, Rfm_Read(0x10));
 			for(int i=0;i<data_len;i++){
@@ -90,7 +91,7 @@ void Lora_Polling()
 			for (int i=0;i<5;i++){if(addr[i]==buffer[i])is_my_address = 1;}
 			uint8_t data[255];
 			for (int i=0;i<data_len-5;i++){data[i]=buffer[i+5];}
-			Lora_Rx_Handler(data, data_len-5);
+			if(is_my_address)Lora_Rx_Handler(data, data_len-5);
 		}
 		Rfm_Write(0x1, 0x85);
 }

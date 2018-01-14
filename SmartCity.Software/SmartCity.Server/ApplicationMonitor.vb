@@ -26,10 +26,12 @@ Public Class ApplicationMonitor
     End Sub
 
     Public Sub Run()
-        _server = New TcpServer(_logger, _tcpPort)
+
         _base = New DataBase(_sqlUser, _sqlPassword, _sqlBase)
         _base.SetRootLogger(_logger)
         _base.Open()
+        _base.AppendLoggerInfo("server", "", "Started")
+        _server = New TcpServer(_logger, _base, _tcpPort)
         _deviceManager = New DeviceManager(_base)
         _bootloader = New BootloaderTasksMonitor(_base, _server, _deviceManager, _logger)
         _bootloader.Run()

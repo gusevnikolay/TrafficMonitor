@@ -1,0 +1,72 @@
+13.01.2018 19:49:55 ROOT [Err] Переполнение в результате выполнения арифметической операции.
+#CallFrom: ClassName=FirmwareUpdateTask, FullName=SmartCity.Server.FirmwareUpdateTask, Method=Run
+13.01.2018 23:18:30 ROOT [Err] Ссылка на объект не указывает на экземпляр объекта.
+#CallFrom: ClassName=FirmwareUpdateTask, FullName=SmartCity.Server.FirmwareUpdateTask, Method=Run
+13.01.2018 23:58:58 ROOT [Err] Переполнение в результате выполнения арифметической операции.
+#CallFrom: ClassName=BootloaderTasksMonitor, FullName=SmartCity.Server.BootloaderTasksMonitor, Method=WorkProcess
+13.01.2018 23:58:59 ROOT [Err] Переполнение в результате выполнения арифметической операции.
+#CallFrom: ClassName=BootloaderTasksMonitor, FullName=SmartCity.Server.BootloaderTasksMonitor, Method=WorkProcess
+13.01.2018 23:59:00 ROOT [Err] Переполнение в результате выполнения арифметической операции.
+#CallFrom: ClassName=BootloaderTasksMonitor, FullName=SmartCity.Server.BootloaderTasksMonitor, Method=WorkProcess
+13.01.2018 23:59:01 ROOT [Err] Переполнение в результате выполнения арифметической операции.
+#CallFrom: ClassName=BootloaderTasksMonitor, FullName=SmartCity.Server.BootloaderTasksMonitor, Method=WorkProcess
+13.01.2018 23:59:02 ROOT [Err] Переполнение в результате выполнения арифметической операции.
+#CallFrom: ClassName=BootloaderTasksMonitor, FullName=SmartCity.Server.BootloaderTasksMonitor, Method=WorkProcess
+13.01.2018 23:59:03 ROOT [Err] Переполнение в результате выполнения арифметической операции.
+#CallFrom: ClassName=BootloaderTasksMonitor, FullName=SmartCity.Server.BootloaderTasksMonitor, Method=WorkProcess
+13.01.2018 23:59:04 ROOT [Err] Переполнение в результате выполнения арифметической операции.
+#CallFrom: ClassName=BootloaderTasksMonitor, FullName=SmartCity.Server.BootloaderTasksMonitor, Method=WorkProcess
+13.01.2018 23:59:05 ROOT [Err] Переполнение в результате выполнения арифметической операции.
+#CallFrom: ClassName=BootloaderTasksMonitor, FullName=SmartCity.Server.BootloaderTasksMonitor, Method=WorkProcess
+13.01.2018 23:59:06 ROOT [Err] Переполнение в результате выполнения арифметической операции.
+#CallFrom: ClassName=BootloaderTasksMonitor, FullName=SmartCity.Server.BootloaderTasksMonitor, Method=WorkProcess
+13.01.2018 23:59:07 ROOT [Err] Переполнение в результате выполнения арифметической операции.
+#CallFrom: ClassName=BootloaderTasksMonitor, FullName=SmartCity.Server.BootloaderTasksMonitor, Method=WorkProcess
+13.01.2018 23:59:24 ROOT [Err] Переполнение в результате выполнения арифметической операции.
+#CallFrom: ClassName=BootloaderTasksMonitor, FullName=SmartCity.Server.BootloaderTasksMonitor, Method=WorkProcess
+13.01.2018 23:59:25 ROOT [Err] Переполнение в результате выполнения арифметической операции.
+#CallFrom: ClassName=BootloaderTasksMonitor, FullName=SmartCity.Server.BootloaderTasksMonitor, Method=WorkProcess
+13.01.2018 23:59:26 ROOT [Err] Переполнение в результате выполнения арифметической операции.
+#CallFrom: ClassName=BootloaderTasksMonitor, FullName=SmartCity.Server.BootloaderTasksMonitor, Method=WorkProcess
+13.01.2018 23:59:27 ROOT [Err] Переполнение в результате выполнения арифметической операции.
+#CallFrom: ClassName=BootloaderTasksMonitor, FullName=SmartCity.Server.BootloaderTasksMonitor, Method=WorkProcess
+13.01.2018 23:59:28 ROOT [Err] Переполнение в результате выполнения арифметической операции.
+#CallFrom: ClassName=BootloaderTasksMonitor, FullName=SmartCity.Server.BootloaderTasksMonitor, Method=WorkProcess
+13.01.2018 23:59:29 ROOT [Err] Переполнение в результате выполнения арифметической операции.
+#CallFrom: ClassName=BootloaderTasksMonitor, FullName=SmartCity.Server.BootloaderTasksMonitor, Method=WorkProcess
+13.01.2018 23:59:30 ROOT [Err] Переполнение в результате выполнения арифметической операции.
+#CallFrom: ClassName=BootloaderTasksMonitor, FullName=SmartCity.Server.BootloaderTasksMonitor, Method=WorkProcess
+13.01.2018 23:59:31 ROOT [Err] Переполнение в результате выполнения арифметической операции.
+#CallFrom: ClassName=BootloaderTasksMonitor, FullName=SmartCity.Server.BootloaderTasksMonitor, Method=WorkProcess
+13.01.2018 23:59:32 ROOT [Err] Переполнение в результате выполнения арифметической операции.
+#CallFrom: ClassName=BootloaderTasksMonitor, FullName=SmartCity.Server.BootloaderTasksMonitor, Method=WorkProcess
+13.01.2018 23:59:33 ROOT [Err] Переполнение в результате выполнения арифметической операции.
+#CallFrom: ClassName=BootloaderTasksMonitor, FullName=SmartCity.Server.BootloaderTasksMonitor, Method=WorkProcess
+13.01.2018 23:59:34 ROOT [Err] Переполнение в результате выполнения арифметической операции.
+#CallFrom: ClassName=BootloaderTasksMonitor, FullName=SmartCity.Server.BootloaderTasksMonitor, Method=WorkProcess
+13.01.2018 23:59:35 ROOT [Err] Переполнение в результате выполнения арифметической операции.
+#CallFrom: ClassName=BootloaderTasksMonitor, FullName=SmartCity.Server.BootloaderTasksMonitor, Method=WorkProcess
+14.01.2018 0:00:33 ROOT [Err] Переполнение в результате выполнения арифметической операции.
+#CallFrom: ClassName=BootloaderTasksMonitor, FullName=SmartCity.Server.BootloaderTasksMonitor, Method=WorkProcess
+14.01.2018 0:00:34 ROOT [Err] Переполнение в результате выполнения арифметической операции.
+#CallFrom: ClassName=BootloaderTasksMonitor, FullName=SmartCity.Server.BootloaderTasksMonitor, Method=WorkProcess
+14.01.2018 0:00:35 ROOT [Err] Переполнение в результате выполнения арифметической операции.
+#CallFrom: ClassName=BootloaderTasksMonitor, FullName=SmartCity.Server.BootloaderTasksMonitor, Method=WorkProcess
+14.01.2018 0:00:36 ROOT [Err] Переполнение в результате выполнения арифметической операции.
+#CallFrom: ClassName=BootloaderTasksMonitor, FullName=SmartCity.Server.BootloaderTasksMonitor, Method=WorkProcess
+14.01.2018 0:00:37 ROOT [Err] Переполнение в результате выполнения арифметической операции.
+#CallFrom: ClassName=BootloaderTasksMonitor, FullName=SmartCity.Server.BootloaderTasksMonitor, Method=WorkProcess
+14.01.2018 0:00:38 ROOT [Err] Переполнение в результате выполнения арифметической операции.
+#CallFrom: ClassName=BootloaderTasksMonitor, FullName=SmartCity.Server.BootloaderTasksMonitor, Method=WorkProcess
+14.01.2018 0:00:39 ROOT [Err] Переполнение в результате выполнения арифметической операции.
+#CallFrom: ClassName=BootloaderTasksMonitor, FullName=SmartCity.Server.BootloaderTasksMonitor, Method=WorkProcess
+14.01.2018 0:00:40 ROOT [Err] Переполнение в результате выполнения арифметической операции.
+#CallFrom: ClassName=BootloaderTasksMonitor, FullName=SmartCity.Server.BootloaderTasksMonitor, Method=WorkProcess
+14.01.2018 0:03:50 ROOT [Err] Переполнение в результате выполнения арифметической операции.
+#CallFrom: ClassName=BootloaderTasksMonitor, FullName=SmartCity.Server.BootloaderTasksMonitor, Method=WorkProcess
+14.01.2018 0:09:07 ROOT [Err] Ссылка на объект не указывает на экземпляр объекта.
+#CallFrom: ClassName=BootloaderTasksMonitor, FullName=SmartCity.Server.BootloaderTasksMonitor, Method=WorkProcess
+14.01.2018 0:09:53 ROOT [Err] Ссылка на объект не указывает на экземпляр объекта.
+#CallFrom: ClassName=BootloaderTasksMonitor, FullName=SmartCity.Server.BootloaderTasksMonitor, Method=WorkProcess
+14.01.2018 0:11:08 ROOT [Err] Переполнение в результате выполнения арифметической операции.
+#CallFrom: ClassName=BootloaderTasksMonitor, FullName=SmartCity.Server.BootloaderTasksMonitor, Method=WorkProcess

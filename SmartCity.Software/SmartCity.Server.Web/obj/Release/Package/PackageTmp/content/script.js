@@ -1,9 +1,12 @@
 ﻿var _lastDeviceId         = 0;
 var _lastAccessPointId    = 0;
 var _lastBootloaderTaskId = 0;
+var _lastLoggerTaskId     = 0;
+
 var _trafficUrl          = "/api/TrafficMonitor.ashx";
 var _FrimwareUpdateUrl   = "/api/FirmwareUpdate.ashx";
 var _AccesPointUpdateUrl = "/api/AccessPointsStates.ashx";
+var _SystemLogUpdateUrl = "/api/SystemLogs.ashx";
 
 $(document).ready(function () {
     $("a").click(function (event) {
@@ -21,9 +24,17 @@ $(function () {
             table_header.prependTo("#traffic_monitor_table");
         });
     });
+
+    $("#system_log_clear").click(function () {
+        $.get(_SystemLogUpdateUrl + "?act=clear_base", function (data, status) {
+            $("#logs_table").empty();
+        });
+    });
+
     setInterval(traffic_monitor_update, 3000);
     setInterval(refresh_device_update_page, 3000);
-    setInterval(access_points_page_update, 3000);
+    setInterval(access_points_page_update, 5000);
+    setInterval(system_logger_update_page, 2000);
 });
 
 function access_point_refresh()
@@ -32,8 +43,8 @@ function access_point_refresh()
         var json = JSON.parse(data);
         var data_count = json.result.length;
         for (var i = 0; i < data_count; i++) {
-            if (_lastid < parseInt(json.result[i].id)) _lastid = parseInt(json.result[i].id);
-            $("#firmware_table_table").prepend("<tr onclick='traffic_monitor_show_map(this)'><td>" + json.result[i].id + "</td><td>" + json.result[i].device_id + "</td><td>" + json.result[i].base_station + "</td><td>" + json.result[i].hex_file + "</td><td>" + json.result[i].state + "</td><td>" + json.result[i].time + "</td></tr>");
+            if (_lastid < parseInt(json.result[i].ID)) _lastid = parseInt(json.result[i].ID);
+            $("#firmware_table_table").prepend("<tr onclick='traffic_monitor_show_map(this)'><td>" + json.result[i].ID + "</td><td>" + json.result[i].device_id + "</td><td>" + json.result[i].base_station + "</td><td>" + json.result[i].hex_file + "</td><td>" + json.result[i].state + "</td><td>" + json.result[i].time + "</td></tr>");
         }
     });
 }
@@ -50,8 +61,8 @@ function traffic_monitor_update() {
         var json = JSON.parse(data);
         var data_count = json.result.length;
         for (var i = 0; i < data_count; i++) {
-            if (_lastDeviceId < parseInt(json.result[i].id)) _lastDeviceId = parseInt(json.result[i].id);
-            $("#traffic_monitor_table").prepend("<tr onclick='traffic_monitor_show_map(this)'><td>" + json.result[i].id + "</td><td>" + json.result[i].device_id + "</td><td>" + json.result[i].mean_speed + "</td><td>" + json.result[i].latitude + "</td><td>" + json.result[i].longitude + "</td><td>" + json.result[i].device_time + "</td><td>" + json.result[i].input_voltage + "</td><td>" + json.result[i].battery_voltage + "</td><td>" + json.result[i].rssi + "</td><td>" + json.result[i].rssi_packet + "</td></tr>");
+            if (_lastDeviceId < parseInt(json.result[i].ID)) _lastDeviceId = parseInt(json.result[i].ID);
+            $("#traffic_monitor_table").prepend("<tr onclick='traffic_monitor_show_map(this)'><td>" + json.result[i].ID + "</td><td>" + json.result[i].device_id + "</td><td>" + json.result[i].mean_speed + "</td><td>" + json.result[i].latitude + "</td><td>" + json.result[i].longitude + "</td><td>" + json.result[i].device_time + "</td><td>" + json.result[i].input_voltage + "</td><td>" + json.result[i].battery_voltage + "</td><td>" + json.result[i].rssi + "</td><td>" + json.result[i].rssi_packet + "</td></tr>");
         }
     });
 }
@@ -96,6 +107,25 @@ function access_points_page_update()
                 color = "#ffcccd";
             }
             $("#access_points_table").prepend("<tr style='background-color:"+color+";'><td>" + json.result[i].ID + "</td><td>" + json.result[i].device_id + "</td><td>" + json.result[i].last_active + "</td><td>" + json.result[i].current_version + "</td></tr>");
+        }
+    });
+}
+
+function system_logger_update_page() {
+    $.get(_SystemLogUpdateUrl + "?last_id=" + _lastLoggerTaskId, function (data, status) {
+        var json = JSON.parse(data);
+        var data_count = json.result.length;
+        for (var i = 0; i < data_count; i++) {
+            if (_lastLoggerTaskId < parseInt(json.result[i].ID)) _lastLoggerTaskId = parseInt(json.result[i].ID);
+            var color = "#ffffbb";
+            var ap_time = Date.parse(json.result[i].last_active);
+            if (json.result[i].message_type.toLowerCase().indexOf("error") >= 0) {
+                color = "#ffcccd";
+            }
+            if (json.result[i].message_type.toLowerCase().indexOf("info") >= 0) {
+                color = "#e8fff7";
+            }
+            $("#logs_table").prepend("<tr style='background-color:" + color + ";'><td>" + json.result[i].ID + "</td><td>#" + json.result[i].base_id + "</td><td>#" + json.result[i].device_id + "</td><td>" + json.result[i].message + "</td><td>" + json.result[i].message_type + "</td><td>" + json.result[i].time + "</td></tr>");
         }
     });
 }

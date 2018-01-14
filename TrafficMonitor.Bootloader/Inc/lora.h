@@ -1,7 +1,7 @@
 #include <stdint.h>
 
 #define SETTING_ADDRESS 0x0806000
-void    Lora_Init(void);
+void    Lora_Polling(void);
 void    Lora_Init(void);
 void    Rfm_Send(uint8_t *data, uint8_t length);
 uint8_t Rfm_Read(uint8_t reg);

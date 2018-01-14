@@ -71,6 +71,7 @@
                 Catch ex As Exception
                     Console.ForegroundColor = ConsoleColor.Red
                     Console.WriteLine(ex.Message)
+                    Threading.Thread.Sleep(2000)
                 End Try
             Else
                 Threading.Thread.Sleep(10)

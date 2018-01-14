@@ -6,10 +6,12 @@ Public Class TcpServer
     Private _logger As Logger
     Private _port As Integer
     Private _tcpClients As Dictionary(Of String, AccessPointProcessor) = New Dictionary(Of String, AccessPointProcessor)
+    Private _db As DataBase = Nothing
 
     Event onDevicePacketEvent(packet As DevicePacket)
 
-    Sub New(logger As Logger, tcpPort As Integer)
+    Sub New(logger As Logger, db As DataBase, tcpPort As Integer)
+        _db = db
         _port = tcpPort
         _logger = logger
         Dim th = New Threading.Thread(AddressOf ListenProcess)
@@ -37,7 +39,9 @@ Public Class TcpServer
         _logger.AddMessage("TCP received data from: " + packet.AccessPointId)
         If Not _tcpClients.ContainsKey(packet.AccessPointId) Then
             _tcpClients.Add(packet.AccessPointId, packet.Client)
+            _db.AppendLoggerInfo(packet.AccessPointId, "", "Connected to server")
         End If
+        _db.AppendLoggerPacket(packet)
         RaiseEvent onDevicePacketEvent(packet)
     End Sub
 
@@ -51,12 +55,10 @@ Public Class TcpServer
     End Function
 
     Public Sub onClientDisconnectedHandelr(client As AccessPointProcessor)
-        Dim keySet = _tcpClients.Keys.ToArray
-        For Each key In keySet
-            If client Is _tcpClients(key) Then
-                _tcpClients.Remove(key)
-            End If
-        Next
+        If _tcpClients.ContainsKey(client.AccessPointid) Then
+            _db.AppendLoggerInfo(client.AccessPointid, "-", "Access point disconnected")
+            _tcpClients.Remove(client.AccessPointid)
+        End If
     End Sub
 
     Public Function ClientExist(apId As String) As Boolean

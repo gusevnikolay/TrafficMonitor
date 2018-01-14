@@ -11,8 +11,6 @@ Public Class ServerConnector
     Private _id(9) As Byte
     Private _crc As New Crc32
 
-
-
     Event onReceiveHandler(data As Byte())
 
     Sub New(ip As String, port As Integer, serverKey As String)
@@ -88,10 +86,8 @@ Public Class ServerConnector
         Catch ex As Exception
             If (_tcp IsNot Nothing) Then _tcp.Close()
             _tcp = Nothing
-            Throw New Exception("TCP sending failed")
+            Throw New Exception("TCP sending failed: " + ex.Message)
         End Try
-
     End Sub
-
 
 End Class

@@ -133,6 +133,9 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="api\SystemLogs.ashx.vb">
+      <DependentUpon>SystemLogs.ashx</DependentUpon>
+    </Compile>
     <Compile Include="api\FirmwareUpdate.ashx.vb">
       <DependentUpon>FirmwareUpdate.ashx</DependentUpon>
     </Compile>
@@ -188,6 +191,7 @@
     <Content Include="api\TrafficMonitor.ashx" />
     <Content Include="api\FirmwareUpdate.ashx" />
     <Content Include="api\AccessPointsStates.ashx" />
+    <Content Include="api\SystemLogs.ashx" />
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>

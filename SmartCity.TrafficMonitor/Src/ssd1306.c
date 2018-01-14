@@ -43,7 +43,7 @@ void Display(unsigned int state)
 				
 				SSD1306_GotoXY(0, 49);
 				uint16_t vbat = ADC_RESULTS[0];
-				lora_data[12] = (uint8_t)vbat;
+				lora_data[7] = (uint8_t)vbat;
 				power_line[5] = vbat/10 + 0x30;
 				power_line[7] = vbat%10 + 0x30;				
 				SSD1306_Puts(power_line, &Font_7x10, SSD1306_COLOR_WHITE);

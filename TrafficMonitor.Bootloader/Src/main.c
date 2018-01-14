@@ -30,12 +30,15 @@ void Lora_Rx_Handler(uint8_t *data, uint8_t data_length)
 					Rfm_Send(buffer,5);
 		}
 		
+		if(data[0] == 0x55 && data[1] == 0xAA && data[2] == 0x55){
+				  Bootloader_erase();
+					buffer[0] = 0xAA;
+					buffer[1] = 0x55;
+					buffer[2] = 0xAA;
+					Rfm_Send(buffer,3);
+		}
+		
 		if(data[0] == 76 && data[1] == 74 && data[2] == 98){
-					if(rx_present == 0){
-							Bootloader_erase();
-							rx_present = 1;
-					}
-					uint8_t buffer[256];
 					address = ((data[3]*256 + data[4]) | (offset<<16));	
 					uint16_t crc = 0;
 					for(int i=0;i<data[5];i++)
@@ -55,20 +58,28 @@ void Lora_Rx_Handler(uint8_t *data, uint8_t data_length)
 		}
 					
 		if(data[0] == 1 && data[1] == 241 && data[2] == 38){
+					uint32_t crc = data[3]<<24 | data[4] << 16 | data[5] << 8 | data[6];
+			    Bootloader_save_checksum(crc);
 				  buffer[0] = 87;
 					buffer[1] = 24;
 					buffer[2] = 73;
-					buffer[3] = 0;
-					buffer[4] = 0;
+					crc = Bootloader_get_application_crc();
+					buffer[3] = crc >> 24;
+					buffer[4] = crc >> 16;
+					buffer[5] = crc >> 8;
+					buffer[6] = crc & 0xFF;
+					HAL_GPIO_WritePin(LED2_GPIO_Port, LED2_Pin, GPIO_PIN_SET);
 					for (int i=0;i<10;i++){
-							Rfm_Send(buffer,5);
+							Rfm_Send(buffer,7);
 							HAL_Delay(1000);
 					}		
-					MX_GPIO_DeInit();
-			    HAL_SPI_DeInit(&hspi2);
-					HAL_CRC_DeInit(&hcrc); 
-					HAL_RCC_DeInit();
-					Bootloader_start();
+					if(Bootloader_validate_application()){
+						MX_GPIO_DeInit();
+						HAL_SPI_DeInit(&hspi2);
+						HAL_CRC_DeInit(&hcrc); 
+						HAL_RCC_DeInit();
+						Bootloader_start();
+				  }
 		}
 }		
 
@@ -78,15 +89,16 @@ int main(void)
   HAL_Init();
   SystemClock_Config();
   MX_GPIO_Init();
-	HAL_GPIO_WritePin(RFM_RESET_GPIO_Port, RFM_RESET_Pin, GPIO_PIN_SET);
   MX_SPI2_Init();
   MX_CRC_Init();
+	HAL_GPIO_WritePin(LED2_GPIO_Port, LED2_Pin, GPIO_PIN_SET);
 	Lora_Init();
 	unsigned long delay = 0;
   while (1)
   {
 		Lora_Polling();
 		if(delay++>24000){
+			HAL_GPIO_WritePin(LED2_GPIO_Port, LED2_Pin, GPIO_PIN_SET);
 			delay = 0;
 			if(sec_to_boot-->0){
 					if(rx_present == 0){
@@ -96,12 +108,16 @@ int main(void)
 							buffer[2] = 127;
 							Rfm_Send(buffer, 5);		
 					}
+				HAL_GPIO_WritePin(LED2_GPIO_Port, LED2_Pin, GPIO_PIN_RESET);
 			}else{
-				MX_GPIO_DeInit();
-				HAL_SPI_DeInit(&hspi2);
-				HAL_CRC_DeInit(&hcrc); 
-				HAL_RCC_DeInit();
-				Bootloader_start();
+					sec_to_boot = 600;
+				  if(Bootloader_validate_application()){
+							MX_GPIO_DeInit();
+							HAL_SPI_DeInit(&hspi2);
+							HAL_CRC_DeInit(&hcrc); 
+							HAL_RCC_DeInit();
+							Bootloader_start();
+					}
 			}
 		}
   }

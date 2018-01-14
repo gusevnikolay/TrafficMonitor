@@ -8,6 +8,8 @@ Public Class AccessPointProcessor
     Private _crc As New Tool
     Public Property LastTime As DateTime = Now
     Public Property AccessPointid As String = ""
+    Private _lockObject As New Object
+
     Sub New(client As TcpClient)
         _tcp = client
         _stream = _tcp.GetStream
@@ -82,20 +84,24 @@ Public Class AccessPointProcessor
         Dim dataLength As UInt16 = packet.Length
         Dim header As Byte() = {0, 0, 0, 0, 0, &H55, &HAA, &H47, &H7A, &HA7, dataLength >> 8, dataLength And &HFF}
         Dim crc = BitConverter.GetBytes(_crc.ComputeChecksum(packet))
-        _stream.Write(header, 0, header.Length)
-        _stream.Write(packet, 0, packet.Length)
-        _stream.Write(crc, 0, crc.Length)
+        SyncLock _lockObject
+            _stream.Write(header, 0, header.Length)
+            _stream.Write(packet, 0, packet.Length)
+            _stream.Write(crc, 0, crc.Length)
+        End SyncLock
     End Sub
 
     Private Sub TcpTest()
         While _tcp IsNot Nothing
             Try
-                _stream.Write({0}, 0, 1)
+                SyncLock _lockObject
+                    _stream.Write({0}, 0, 1)
+                End SyncLock
             Catch ex As Exception
                 _tcp = Nothing
                 RaiseEvent onClinetDisconnectedEvent(Me)
             End Try
-            Threading.Thread.Sleep(2000)
+            Threading.Thread.Sleep(5000)
         End While
     End Sub
 
