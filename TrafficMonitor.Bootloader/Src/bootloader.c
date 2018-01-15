@@ -2,15 +2,17 @@
 #include "bootloader.h"
 
 #define APPLICATION_ADDRESS         (uint32_t)0x08004000  
-#define APPLICATION_LENGTH          (uint32_t)0x00056000 
+#define APPLICATION_LENGTH          (uint32_t)0x00050000 
 //CHANGE "VECT_TAB_OFFSET" IN APP
 //Jump to App: NVIC_SystemReset(); 
 typedef void (*pFunction)(void);
 
+uint32_t saved_crc = 0;
+uint32_t flash_crc = 0;
 uint8_t Bootloader_validate_application(void)
 {
-	  uint32_t saved_crc = *(__IO uint32_t*)(APPLICATION_LENGTH+APPLICATION_ADDRESS-4);
-		uint32_t flash_crc = Bootloader_get_application_crc();
+	  saved_crc = *(__IO uint32_t*)(APPLICATION_LENGTH+APPLICATION_ADDRESS-4);
+		flash_crc = Bootloader_get_application_crc();
 		if(saved_crc == flash_crc)return 1;
 		return 0;
 }
@@ -41,10 +43,11 @@ uint32_t crc32_calculate(const uint32_t* p32, size_t count) {
         return ~crc;
 }
 
+uint32_t temp_crc = 0;
 uint32_t Bootloader_get_application_crc(void) 
 {
-   uint32_t crc = crc32_calculate((uint32_t*)APPLICATION_ADDRESS, (APPLICATION_LENGTH)/4-1);
-   return crc;
+   temp_crc = crc32_calculate((uint32_t*)APPLICATION_ADDRESS, ((APPLICATION_LENGTH)/4)-1);
+   return temp_crc;
 }
 
 uint8_t Bootloader_write(uint32_t address, uint8_t *data, uint8_t datalength)
@@ -67,7 +70,7 @@ uint8_t Bootloader_write(uint32_t address, uint8_t *data, uint8_t datalength)
 void Bootloader_save_checksum(uint32_t crc)
 {
 		uint8_t buffer[4] = {crc>>24, crc>>16, crc>>8, crc&0xFF};
-		Bootloader_write(APPLICATION_LENGTH+APPLICATION_ADDRESS-4, buffer,4);
+		while(Bootloader_write(APPLICATION_LENGTH+APPLICATION_ADDRESS-4, buffer,4)==0);
 }
 
 void Bootloader_erase(void)

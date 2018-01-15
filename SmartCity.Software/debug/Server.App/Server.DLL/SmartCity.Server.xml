@@ -52,19 +52,6 @@ SmartCity.Server
  Вводим устройство в режим загрузчика, отправляя ключевую пследоавтельность раз в секунду
  </summary>
 </member>
-<member name="M:SmartCity.Server.FirmwareUpdateTask.SendHexToDevice(System.UInt16,System.Byte[])">
- <summary>
- Прошивает память
- </summary>
- <param name="address">Целевой адрес памяти</param>
- <param name="prog">Данные для записи в память</param>
-</member>
-<member name="M:SmartCity.Server.FirmwareUpdateTask.SetDeviceAddressShift(System.UInt16)">
- <summary>
- Устанавливаем смещение адреса прошивки
- </summary>
- <param name="shift">Смещение</param>
-</member>
 <member name="M:SmartCity.Server.FirmwareUpdateTask.StartMainApplication">
  <summary>
  Запускаем основной код

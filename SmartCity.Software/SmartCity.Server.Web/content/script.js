@@ -86,7 +86,7 @@ function refresh_device_update_page()
             if (json.result[i].state.toLowerCase().indexOf("complete") >= 0) {
                 color = "#e8fff7";
             }
-            $("#firmware_update_table").prepend("<tr style='background-color:" + color + ";'><td>" + json.result[i].ID + "</td><td>" + json.result[i].device_id + "</td><td>" + json.result[i].base_station + "</td><td>" + json.result[i].hex_file + "</td><td>" + json.result[i].state + "</td><td>" + json.result[i].time + "</td></tr>");
+            $("#firmware_update_table").prepend("<tr style='background-color:" + color + ";'><td>" + json.result[i].ID + "</td><td>" + json.result[i].device_id + "</td><td>" + json.result[i].base_station + "</td><td>" + json.result[i].hex_file + "</td><td>" + json.result[i].state + "</td><td>" + json.result[i].elapsed_time + " сек</td><td>" + json.result[i].time + "</td></tr>");
         }
     });
 }

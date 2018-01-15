@@ -15,10 +15,44 @@ static void MX_GPIO_DeInit(void);
 int sec_to_boot    = 600;
 uint16_t offset    = 0;
 uint8_t rx_present = 0;
+uint32_t last_address = 0;	
+
+uint32_t HW_CRC32(const uint8_t* pData, size_t count) {
+        uint32_t crc;
+        uint32_t *p32 = (uint32_t*) pData;
+        size_t count32 = count >> 2;
+	      CRC->CR |= CRC_CR_RESET;
+        while (count32--) {
+                CRC->DR = __RBIT(*p32++);
+        }
+        crc = __RBIT(CRC->DR);
+        count = count % 4;
+        if (count) {
+                CRC->DR = __RBIT(crc);
+                switch (count) {
+                case 1:
+                        CRC->DR = __RBIT((*p32 & 0x000000FF) ^ crc) >> 24;
+                        crc = (crc >> 8) ^ __RBIT(CRC->DR);
+                        break;
+                case 2:
+                        CRC->DR = (__RBIT((*p32 & 0x0000FFFF) ^ crc) >> 16);
+                        crc = (crc >> 16) ^ __RBIT(CRC->DR);
+                        break;
+                case 3:
+                        CRC->DR = __RBIT((*p32 & 0x00FFFFFF) ^ crc) >> 8;
+                        crc = (crc >> 24) ^ __RBIT(CRC->DR);
+                        break;
+                }
+        }
+        return ~crc;
+}
+
+uint32_t temp_c = 0;
+uint32_t hw_crc = 0;
 void Lora_Rx_Handler(uint8_t *data, uint8_t data_length)
 {			
 		sec_to_boot = 600;
-		uint32_t address = 0;	
+
 	  uint8_t buffer[256];
 		if(data[0] == 26 && data[1] == 126 && data[2] == 76){
 					offset = data[3]*256 + data[4];	
@@ -39,21 +73,27 @@ void Lora_Rx_Handler(uint8_t *data, uint8_t data_length)
 		}
 		
 		if(data[0] == 76 && data[1] == 74 && data[2] == 98){
-					address = ((data[3]*256 + data[4]) | (offset<<16));	
-					uint16_t crc = 0;
-					for(int i=0;i<data[5];i++)
+			    uint8_t  data_count = data[3];
+					uint32_t address    = data[4]<<24 | data[5] << 16 | data[6] << 8 | data[7];		
+			
+					for(int i=0;i<data_count;i++)
 					{
-							buffer[i] = data[i+7];
-						  crc += data[i+7];
+							buffer[i] = data[i+8];
 					}
-					if((data[6] - (crc & 0xFF)) == 0){
-							Bootloader_write(address, buffer, data[5]);
+					hw_crc   = HW_CRC32(buffer, data_count);
+					temp_c = data[8+data_count]<<24 | data[9+data_count] << 16 | data[10+data_count] << 8 | data[11+data_count];
+					if(hw_crc == temp_c){
+							if(last_address != address){
+									if(Bootloader_write(address, buffer, data_count))last_address = address;
+							}
 							buffer[0] = 24;
 							buffer[1] = 42;
 							buffer[2] = 64;
-							buffer[3] = data[3];
-							buffer[4] = data[4];
-							Rfm_Send(buffer,5);
+							buffer[3] = address >> 24;
+							buffer[4] = address >> 16;
+							buffer[5] = address >> 8;
+							buffer[6] = address & 0xFF;
+							Rfm_Send(buffer,8);
 					}
 		}
 					

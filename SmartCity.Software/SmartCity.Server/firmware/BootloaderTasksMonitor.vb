@@ -63,11 +63,15 @@ Public Class BootloaderTasksMonitor
                     Dim bootloder = New FirmwareUpdateTask(accessPointProcess, task, _logger)
                     _db.Execute("UPDATE firmware_tasks SET state = 'In process', base_station='" + accessPointId + "' WHERE device_id='" + task.DeviceId + "' and hash='" + task.TaskHashId + "'")
                     bootloder.Start()
+                    Dim watch As Stopwatch = Stopwatch.StartNew()
+                    watch.Start()
                     While bootloder.isComplete <> True
-                        Threading.Thread.Sleep(5000)
-                        _db.Execute("UPDATE firmware_tasks SET state = '" + bootloder.Status + "' WHERE device_id='" + task.DeviceId + "' and hash='" + task.TaskHashId + "'")
+                        Threading.Thread.Sleep(3000)
+                        _logger.AddDebug(bootloder.Status)
+                        _db.Execute("UPDATE firmware_tasks SET state = '" + bootloder.Status + "', elapsed_time=" + (Math.Round(watch.ElapsedMilliseconds / 1000)).ToString + " WHERE device_id='" + task.DeviceId + "' and hash='" + task.TaskHashId + "';")
                     End While
-                    _db.Execute("UPDATE firmware_tasks SET state = '" + bootloder.Status + "' WHERE device_id='" + task.DeviceId + "' and hash='" + task.TaskHashId + "'")
+                    watch.Stop()
+                    _db.Execute("UPDATE firmware_tasks SET state = '" + bootloder.Status + "', elapsed_time=" + TimeString + " WHERE device_id='" + task.DeviceId + "' and hash='" + task.TaskHashId + "'")
                     Threading.Thread.Sleep(1000)
                     _tcpServer.InsertProcess(accessPointProcess)
                     _tasks.Remove(task)

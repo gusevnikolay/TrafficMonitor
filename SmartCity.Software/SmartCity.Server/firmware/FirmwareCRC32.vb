@@ -3,7 +3,6 @@
     Dim crc As UInteger = &HFFFFFFFFUI
     Private _currentAddress As UInt32 = 0
     Private _endAddress As UInt32 = 0
-    Private _shift As UInt16 = 0
 
     Sub New(startAdress As UInt32, applicationLength As UInt32)
         _currentAddress = startAdress
@@ -25,8 +24,7 @@
     End Sub
 
     Public Sub AppendFirmwareData(address As UInt32, dataBytes As Byte())
-        Dim validAddress As UInt32 = _shift * &HFFFF + address
-        While _currentAddress < validAddress
+        While _currentAddress < address
             _currentAddress = _currentAddress + 1
             AppendData(&HFF)
         End While
@@ -38,10 +36,6 @@
 
     Private Sub AppendData(dataByte As UInt32)
         crc = CUInt((crc >> 8) Xor CrcTable(((crc) And &HFF) Xor dataByte))
-    End Sub
-
-    Public Sub SetMemoryShift(shift As UInt32)
-        _shift = shift
     End Sub
 
     Public Function GetCRC32() As UInt32

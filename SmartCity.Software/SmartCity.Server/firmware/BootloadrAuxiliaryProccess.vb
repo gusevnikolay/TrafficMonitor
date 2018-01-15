@@ -5,8 +5,7 @@ Public Class BootloadrAuxiliaryProccess
 
     Private _bootMode As Boolean = False
     Private _flashErased As Boolean = False
-    Private _currentFlashAddress As UInt16 = 0
-    Private _flashAddressShift As UInt16 = 0
+    Private _currentFlashAddress As UInt32 = 0
     Private _deviceId As String = ""
     Private _mainAppIsRunned As Boolean = False
     Private _flashCRC32 As UInt32 = 0
@@ -19,7 +18,12 @@ Public Class BootloadrAuxiliaryProccess
         Return _flashCRC32
     End Function
 
-    Public Function isErasedFlash() As Boolean
+    Public Function isErasedFlash(waitTimeout As Integer) As Boolean
+        Dim watch As Stopwatch = Stopwatch.StartNew()
+        watch.Start()
+        While (_flashErased = False And watch.ElapsedMilliseconds < waitTimeout)
+            Threading.Thread.Sleep(1)
+        End While
         If _flashErased Then
             _flashErased = False
             Return True
@@ -35,12 +39,13 @@ Public Class BootloadrAuxiliaryProccess
         Return False
     End Function
 
-    Public Function FlashWriteIsComplete(addr As UInt16) As Boolean
+    Public Function FlashWriteIsComplete(addr As UInt32, timeout As Integer) As Boolean
+        Dim watch As Stopwatch = Stopwatch.StartNew()
+        watch.Start()
+        While (_currentFlashAddress <> addr And watch.ElapsedMilliseconds < timeout)
+            Threading.Thread.Sleep(1)
+        End While
         Return _currentFlashAddress = addr
-    End Function
-
-    Public Function FlashShiftIsComplete(addr As UInt16) As Boolean
-        Return _flashAddressShift = addr
     End Function
 
     Public Function MainAppIsRunned() As Boolean
@@ -52,11 +57,12 @@ Public Class BootloadrAuxiliaryProccess
             If pack.Data(0) = 48 And pack.Data(1) = 85 And pack.Data(2) = 127 Then
                 _bootMode = True
             End If
-            If pack.Data(0) = 148 And pack.Data(1) = 185 And pack.Data(2) = 27 Then
-                _flashAddressShift = (pack.Data(3) * 256 + pack.Data(4))
-            End If
             If pack.Data(0) = 24 And pack.Data(1) = 42 And pack.Data(2) = 64 Then
-                _currentFlashAddress = (pack.Data(3) * 256 + pack.Data(4))
+                _currentFlashAddress = 0
+                _currentFlashAddress = _currentFlashAddress * 256 + pack.Data(3)
+                _currentFlashAddress = _currentFlashAddress * 256 + pack.Data(4)
+                _currentFlashAddress = _currentFlashAddress * 256 + pack.Data(5)
+                _currentFlashAddress = _currentFlashAddress * 256 + pack.Data(6)
             End If
             If pack.Data(0) = 87 And pack.Data(1) = 24 And pack.Data(2) = 73 Then
                 _flashCRC32 = _flashCRC32 * 256 + pack.Data(3)

@@ -70,3 +70,7 @@
 #CallFrom: ClassName=BootloaderTasksMonitor, FullName=SmartCity.Server.BootloaderTasksMonitor, Method=WorkProcess
 14.01.2018 0:11:08 ROOT [Err] Переполнение в результате выполнения арифметической операции.
 #CallFrom: ClassName=BootloaderTasksMonitor, FullName=SmartCity.Server.BootloaderTasksMonitor, Method=WorkProcess
+15.01.2018 18:23:46 ROOT [Err] Индекс находился вне границ массива.
+#CallFrom: ClassName=FirmwareUpdateTask, FullName=SmartCity.Server.FirmwareUpdateTask, Method=Run
+15.01.2018 18:50:48 ROOT [Err] Индекс находился вне границ массива.
+#CallFrom: ClassName=FirmwareUpdateTask, FullName=SmartCity.Server.FirmwareUpdateTask, Method=Run
