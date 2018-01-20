@@ -93,11 +93,8 @@ int main(void)
   while (1)
   {
 			if(HAL_GPIO_ReadPin(BUTTON_GPIO_Port, BUTTON_Pin)==GPIO_PIN_RESET){
-					display_counter = 60000;
-					
+					display_counter = 60000;				
 			}
-			HAL_GPIO_TogglePin(LED1_GPIO_Port, LED1_Pin);
-			HAL_Delay(200);
 			if(display_counter>0){
 					HAL_GPIO_WritePin(GPS_EN_GPIO_Port, GPS_EN_Pin, GPIO_PIN_SET); 
 					display_counter--;
@@ -105,7 +102,7 @@ int main(void)
 					HAL_GPIO_WritePin(GPS_EN_GPIO_Port, GPS_EN_Pin, GPIO_PIN_RESET);
 			}
 			Lora_Polling(); 
-			//Display(display_counter);	
+			Display(display_counter);	
   }
 }
 

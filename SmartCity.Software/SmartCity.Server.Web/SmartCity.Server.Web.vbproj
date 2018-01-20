@@ -126,9 +126,11 @@
   <ItemGroup>
     <Content Include="content\bootstrap.js" />
     <Content Include="content\bootstrap.min.js" />
-    <Content Include="content\npm.js" />
     <Content Include="content\script.js" />
     <Content Include="Global.asax" />
+    <Content Include="img\bus.png" />
+    <Content Include="img\car.png" />
+    <Content Include="img\truck.png" />
     <Content Include="Main.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>

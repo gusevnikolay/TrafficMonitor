@@ -1,10 +1,10 @@
-﻿var _lastDeviceId         = 0;
-var _lastAccessPointId    = 0;
+﻿var _lastDeviceId = 0;
+var _lastAccessPointId = 0;
 var _lastBootloaderTaskId = 0;
-var _lastLoggerTaskId     = 0;
+var _lastLoggerTaskId = 0;
 
-var _trafficUrl          = "/api/TrafficMonitor.ashx";
-var _FrimwareUpdateUrl   = "/api/FirmwareUpdate.ashx";
+var _trafficUrl = "/api/TrafficMonitor.ashx";
+var _FrimwareUpdateUrl = "/api/FirmwareUpdate.ashx";
 var _AccesPointUpdateUrl = "/api/AccessPointsStates.ashx";
 var _SystemLogUpdateUrl = "/api/SystemLogs.ashx";
 
@@ -37,8 +37,7 @@ $(function () {
     setInterval(system_logger_update_page, 2000);
 });
 
-function access_point_refresh()
-{
+function access_point_refresh() {
     $.get(_FrimwareUpdateUrl + "?last_id=" + _lastid, function (data, status) {
         var json = JSON.parse(data);
         var data_count = json.result.length;
@@ -49,8 +48,7 @@ function access_point_refresh()
     });
 }
 
-function traffic_monitor_show_map(obj)
-{
+function traffic_monitor_show_map(obj) {
     alert(obj);
     $('#message_modal').modal('show');
     $("#message_modal").css("z-index", "1500");
@@ -67,8 +65,7 @@ function traffic_monitor_update() {
     });
 }
 
-function refresh_device_update_page()
-{
+function refresh_device_update_page() {
     $.get(_FrimwareUpdateUrl + "?last_id=" + _lastBootloaderTaskId, function (data, status) {
         var json = JSON.parse(data);
         var data_count = json.result.length;
@@ -92,21 +89,20 @@ function refresh_device_update_page()
 }
 
 // _AccesPointUpdateUrl
-function access_points_page_update()
-{
+function access_points_page_update() {
     $.get(_AccesPointUpdateUrl, function (data, status) {
         var json = JSON.parse(data);
         var data_count = json.result.length;
         $("#access_points_table tr").remove();
         var server_time = Date.parse(json.time);
         for (var i = 0; i < data_count; i++) {
-            
+
             var color = "#e8fff7";
             var ap_time = Date.parse(json.result[i].last_active);
             if ((server_time - ap_time) > 200000) {
                 color = "#ffcccd";
             }
-            $("#access_points_table").prepend("<tr style='background-color:"+color+";'><td>" + json.result[i].ID + "</td><td>" + json.result[i].device_id + "</td><td>" + json.result[i].last_active + "</td><td>" + json.result[i].current_version + "</td></tr>");
+            $("#access_points_table").prepend("<tr style='background-color:" + color + ";'><td>" + json.result[i].ID + "</td><td>" + json.result[i].device_id + "</td><td>" + json.result[i].last_active + "</td><td>" + json.result[i].current_version + "</td></tr>");
         }
     });
 }
